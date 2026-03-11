@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleverX Design System — Ashu Kaur</title>
+  <meta name="description" content="Building CleverX's first design system from scratch — 50+ components, tokens, icons, and usage rules.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CleverX Design System — Ashu Kaur">
+  <meta property="og:description" content="Building CleverX's first design system from scratch — 50+ components, tokens, icons, and usage rules.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ashukaur.netlify.app/cleverx-design-system.html">
+  <meta property="og:image" content="https://ashukaur.netlify.app/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleverX Design System — Ashu Kaur">
+  <meta name="twitter:description" content="Building CleverX's first design system from scratch — 50+ components, tokens, icons, and usage rules.">
+  <meta name="twitter:image" content="https://ashukaur.netlify.app/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAFAF7;
+      --bg-elevated: #F2F2ED;
+      --bg-surface: #EAEAE4;
+      --accent: #556B2F;
+      --accent-dim: rgba(85,107,47,0.35);
+      --accent-glow: rgba(85,107,47,0.12);
+      --accent-warm: #7A8450;
+      --text-primary: #1C1C1A;
+      --text-secondary: #5A5A55;
+      --text-tertiary: #9A9A93;
+      --line-color: rgba(28,28,26,0.08);
+      --font-display: 'Lora', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--accent-warm);
+      color: #FAFAF7;
+    }
+
+    a { transition: color 0.25s ease; }
+
+    /* ======== GRAIN OVERLAY ======== */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+      opacity: 0.025;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ======== NAVIGATION ======== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      transition: background 0.4s ease, padding 0.3s ease;
+    }
+    .nav--scrolled {
+      background: rgba(250, 250, 247, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid var(--line-color);
+    }
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.25s ease;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ======== LAYOUT ======== */
+    main { position: relative; z-index: 5; }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* ======== PROJECT HERO ======== */
+    .project-hero {
+      padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem);
+    }
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .project-tag::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent-dim);
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .project-intro {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 620px;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line-color);
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .meta-label {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .meta-value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    /* ======== CONTENT SECTIONS ======== */
+    .case-section {
+      padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+    .case-section + .case-section {
+      border-top: 1px solid var(--line-color);
+    }
+    .case-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .case-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .case-body p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+    .case-body p:last-child {
+      margin-bottom: 0;
+    }
+    .case-body strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ======== LISTS ======== */
+    .case-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .case-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .case-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .case-list li strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ======== SCREEN GALLERY ======== */
+    .screen-gallery {
+      margin-top: 2.5rem;
+    }
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .screen-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line-color);
+      background: #f5f5f5;
+    }
+    .screen-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ======== BACK LINK ======== */
+    .back-section {
+      padding: clamp(4rem, 8vh, 6rem) 0;
+      text-align: center;
+      border-top: 1px solid var(--line-color);
+    }
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+    .back-link:hover { color: var(--text-primary); }
+
+    /* ======== FOOTER ======== */
+    footer {
+      border-top: 1px solid var(--line-color);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.06em;
+    }
+    footer .gold-dot {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      vertical-align: middle;
+      margin: 0 0.5rem;
+    }
+
+    /* ======== SCROLL REVEAL ======== */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      transition-delay: var(--d, 0s);
+    }
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 600px) {
+      .nav { padding: 1rem 1.2rem; }
+      .nav--scrolled { padding: 0.8rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.55rem; }
+      .screen-grid { grid-template-columns: 1fr; }
+      .project-meta { gap: 1.2rem 2rem; }
+    }
+
+    /* ======== REDUCED MOTION ======== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      [data-reveal] { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H82NT92R7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-H82NT92R7N");
+  </script>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html#work" class="nav-back">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to Work
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ======== PROJECT HERO ======== -->
+    <section class="project-hero">
+      <div class="wrap">
+        <div class="project-tag" data-reveal>Design System &middot; Component Library</div>
+        <h1 class="project-title" data-reveal style="--d:0.1s">CleverX Design System</h1>
+        <p class="project-intro" data-reveal style="--d:0.2s">CleverX is an AI-powered user research platform. When I joined as the only designer, there was no design system — every page was built independently, and it showed.</p>
+        <div class="project-meta" data-reveal style="--d:0.3s">
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">UI/UX Designer &amp; Design Engineer</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Tools</span>
+            <span class="meta-value">Figma</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Scale</span>
+            <span class="meta-value">50+ components</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== THE PROBLEM ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Context</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">The Problem</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>As CleverX grew, the inconsistency became impossible to ignore:</p>
+          <ul class="case-list">
+            <li>The same components were being built differently across pages — buttons, cards, inputs all had slight variations depending on which page they lived on</li>
+            <li>There were no shared rules for spacing, typography, or colour — so every new page introduced new values instead of reusing existing ones</li>
+            <li>Responsive behaviour was unreliable because sizing wasn't standardised — elements would break or misalign across screen sizes</li>
+            <li>Developers had no single source of truth, so design decisions were being made in code without any reference</li>
+            <li>Every new feature meant rebuilding patterns that already existed somewhere else in the product</li>
+          </ul>
+          <p>The product worked, but it didn't feel like one product.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== WHAT WE BUILT ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Deliverables</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">What We Built</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>We designed and documented CleverX's first design system from scratch — a shared language that brought consistency to the entire platform.</p>
+          <ul class="case-list">
+            <li><strong>50+ components</strong> — Buttons, inputs, cards, modals, tables, navigation, badges, tooltips, and more. Each built with variants, states, and responsive behaviour defined</li>
+            <li><strong>Design tokens</strong> — Colour, typography, spacing, and sizing — all named and documented. No more hardcoded or arbitrary values</li>
+            <li><strong>Iconography</strong> — A unified icon set that replaced the inconsistent mix scattered across the product</li>
+            <li><strong>Usage rules</strong> — Documentation for when and how to use each component — not just what it looks like, but when to choose it, spacing requirements, and do's and don'ts</li>
+          </ul>
+          <div class="screen-gallery" data-reveal style="--d:0.2s">
+            <div class="screen-grid">
+              <div class="screen-item"><img src="images/buttons.png" alt="Button components — all variants and states"></div>
+              <div class="screen-item"><img src="images/input.png" alt="Input fields — text, date, currency variants"></div>
+              <div class="screen-item"><img src="images/badge.png" alt="Badge components — colours and icon variants"></div>
+              <div class="screen-item"><img src="images/checkbox.png" alt="Checkbox components — states and variants"></div>
+            </div>
+            <div class="screen-grid" style="grid-template-columns:1fr;margin-top:1rem;">
+              <div class="screen-item"><img src="images/search-field.png" alt="Search field component — states"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== HOW I APPROACHED IT ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Process</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">How I Approached It</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>We didn't start by building components — we started by researching how established systems solve these problems.</p>
+          <ul class="case-list">
+            <li><strong>Research</strong> — Studied Material Design, Apple's Human Interface Guidelines, and other established design systems to understand their component structures, token architectures, and usage patterns. Used these as a foundation for our own decisions</li>
+            <li><strong>UI audit</strong> — Went through the platform screen by screen, cataloguing every component variation and inconsistency. This gave us a clear picture of what needed to be standardised first</li>
+            <li><strong>Prioritisation</strong> — Focused on the components that appeared most frequently and caused the most visual inconsistency across the product</li>
+            <li><strong>Build and document</strong> — Designed each component with all its variants and states, defined the tokens, and wrote clear usage guidelines. Followed component rules and patterns from the systems we studied, adapted for CleverX's needs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== IMPACT ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Impact</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">What Changed</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <ul class="case-list">
+            <li>Brought visual consistency across the entire CleverX platform for the first time</li>
+            <li>Gave developers a single source of truth — reducing guesswork during implementation</li>
+            <li>Made responsive behaviour reliable by standardising sizing and spacing</li>
+            <li>Cut the time to design new pages — composing from a shared library instead of starting from scratch every time</li>
+            <li>Served as the foundation for CleverX's product UI for years</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== BACK TO WORK ======== -->
+    <section class="back-section">
+      <div class="wrap">
+        <a href="index.html#work" class="back-link">&larr; Back to all work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Designed & vibe coded by Ashu Kaur <span class="gold-dot"></span> 2026</p>
+  </footer>
+
+  <script>
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+    /* ======== NAV SCROLL STATE ======== */
+    (function() {
+      var nav = document.querySelector('.nav');
+      var scrolled = false;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 60 && !scrolled) {
+          nav.classList.add('nav--scrolled');
+          scrolled = true;
+        } else if (window.scrollY <= 60 && scrolled) {
+          nav.classList.remove('nav--scrolled');
+          scrolled = false;
+        }
+      }, { passive: true });
+    })();
+
+    /* ======== SCROLL REVEAL ======== */
+    (function() {
+      var els = document.querySelectorAll('[data-reveal]');
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('revealed');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { obs.observe(el); });
+    })();
+  </script>
+</body>
+</html>

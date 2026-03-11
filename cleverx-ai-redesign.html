@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleverX AI Redesign — Ashu Kaur</title>
+  <meta name="description" content="Redesigning CleverX's participant and researcher experience using Claude Code.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CleverX AI Redesign — Ashu Kaur">
+  <meta property="og:description" content="Redesigning CleverX's participant and researcher experience using Claude Code.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://ashukaur.netlify.app/cleverx-ai-redesign.html">
+  <meta property="og:image" content="https://ashukaur.netlify.app/og-image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CleverX AI Redesign — Ashu Kaur">
+  <meta name="twitter:description" content="Redesigning CleverX's participant and researcher experience using Claude Code.">
+  <meta name="twitter:image" content="https://ashukaur.netlify.app/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAFAF7;
+      --bg-elevated: #F2F2ED;
+      --bg-surface: #EAEAE4;
+      --accent: #556B2F;
+      --accent-dim: rgba(85,107,47,0.35);
+      --accent-glow: rgba(85,107,47,0.12);
+      --accent-warm: #7A8450;
+      --text-primary: #1C1C1A;
+      --text-secondary: #5A5A55;
+      --text-tertiary: #9A9A93;
+      --line-color: rgba(28,28,26,0.08);
+      --font-display: 'Lora', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--accent-warm);
+      color: #FAFAF7;
+    }
+
+    a { transition: color 0.25s ease; }
+
+    /* ======== GRAIN OVERLAY ======== */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 200;
+      opacity: 0.025;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ======== NAVIGATION ======== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      transition: background 0.4s ease, padding 0.3s ease;
+    }
+    .nav--scrolled {
+      background: rgba(250, 250, 247, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 1rem 2.5rem;
+      border-bottom: 1px solid var(--line-color);
+    }
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.25s ease;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-back svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ======== LAYOUT ======== */
+    main { position: relative; z-index: 5; }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* ======== PROJECT HERO ======== */
+    .project-hero {
+      padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem);
+    }
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .project-tag::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent-dim);
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .project-intro {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 620px;
+    }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line-color);
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .meta-label {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .meta-value {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 400;
+    }
+
+    /* ======== CONTENT SECTIONS ======== */
+    .case-section {
+      padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+    .case-section + .case-section {
+      border-top: 1px solid var(--line-color);
+    }
+    .case-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .case-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    .case-body p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+    .case-body p:last-child {
+      margin-bottom: 0;
+    }
+    .case-body strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ======== LISTS ======== */
+    .case-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+    .case-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+    .case-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .case-list li strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* ======== SCREEN GALLERY ======== */
+    .screen-gallery {
+      margin-top: 2.5rem;
+    }
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .screen-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line-color);
+      background: #f5f5f5;
+    }
+    .screen-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .screen-caption {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.7rem 1rem;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--line-color);
+    }
+
+    /* ======== WORKFLOW STRIP ======== */
+    .workflow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0;
+      align-items: center;
+    }
+    .workflow-step {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      letter-spacing: 0.04em;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--line-color);
+      border-radius: 4px;
+      background: var(--bg-surface);
+    }
+    .workflow-arrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent-dim);
+    }
+
+    /* ======== IMPACT GRID ======== */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .impact-item {
+      padding: 1.2rem 1.4rem;
+      border: 1px solid var(--line-color);
+      border-radius: 6px;
+      background: var(--bg-surface);
+    }
+    .impact-number {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .impact-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ======== BACK LINK ======== */
+    .back-section {
+      padding: clamp(4rem, 8vh, 6rem) 0;
+      text-align: center;
+      border-top: 1px solid var(--line-color);
+    }
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+    .back-link:hover { color: var(--text-primary); }
+
+    /* ======== FOOTER ======== */
+    footer {
+      border-top: 1px solid var(--line-color);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.06em;
+    }
+    footer .gold-dot {
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--accent);
+      vertical-align: middle;
+      margin: 0 0.5rem;
+    }
+
+    /* ======== SCROLL REVEAL ======== */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      transition-delay: var(--d, 0s);
+    }
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 600px) {
+      .nav { padding: 1rem 1.2rem; }
+      .nav--scrolled { padding: 0.8rem 1.2rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.55rem; }
+      .screen-grid { grid-template-columns: 1fr; }
+      .impact-grid { grid-template-columns: 1fr; }
+      .workflow { flex-direction: column; align-items: flex-start; }
+      .workflow-arrow { transform: rotate(90deg); }
+      .project-meta { gap: 1.2rem 2rem; }
+    }
+
+    /* ======== REDUCED MOTION ======== */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      [data-reveal] { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H82NT92R7N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-H82NT92R7N");
+  </script>
+</head>
+<body>
+
+  <!-- ======== NAVIGATION ======== -->
+  <nav class="nav">
+    <a href="index.html#work" class="nav-back">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to Work
+    </a>
+    <div class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ======== PROJECT HERO ======== -->
+    <section class="project-hero">
+      <div class="wrap">
+        <div class="project-tag" data-reveal>AI + Design &middot; Claude Code &middot; 2025–2026</div>
+        <h1 class="project-title" data-reveal style="--d:0.1s">Redesigning CleverX with AI</h1>
+        <p class="project-intro" data-reveal style="--d:0.2s">CleverX is an AI-powered user research platform that helps companies design, recruit, conduct, and analyze research studies across B2B and B2C audiences. I've been a UI/UX Designer here for over 5 years.</p>
+        <div class="project-meta" data-reveal style="--d:0.3s">
+          <div class="meta-item">
+            <span class="meta-label">Role</span>
+            <span class="meta-value">UI/UX Designer & Design Engineer</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Tools</span>
+            <span class="meta-value">Claude Code, Git, Figma</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">2025–2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== THE SHIFT ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>The Shift</p>
+        <div class="case-body" data-reveal style="--d:0.1s">
+          <p>In the last few months, my workflow changed completely. I went from designing in Figma and handing off to developers, to writing prompts in Claude Code, making design decisions in the browser, and pushing code to staging through Git. Bugs I'd normally flag and wait days for? Fixed and shipped the same cycle.</p>
+          <p>This project covers two pieces of work from that shift: a redesign of the participant-side experience and fixes across the researcher study dashboard — designed, coded, and shipped using Claude Code.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PART 1: PARTICIPANT SIDE ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Part 1</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">Participant Side Redesign</h2>
+
+        <h3 class="case-label" data-reveal style="--d:0.15s; margin-top: 2.5rem;">The Problems</h3>
+        <div class="case-body" data-reveal style="--d:0.2s">
+          <p>After running audits and walking through the flows myself, a lot of issues surfaced:</p>
+          <ul class="case-list">
+            <li>Project cards were missing relevant badges — participants had no quick way to know a project's state, urgency, or expiry without clicking into each one</li>
+            <li>Study details pages showed various states but with missing context — no clarity on what happens next, when to expect payment, or what the participant should do in the meantime</li>
+            <li>The cards had poor information hierarchy — key details were buried while less relevant content took up visual space, making it hard for participants to scan and take action quickly</li>
+            <li>Study detail pages across all states — action required, paid, awaiting incentive, expired — had center-aligned content that made scanning difficult, no clear visual hierarchy, and missing navigation</li>
+            <li>A mix of old and new design system components made the experience feel inconsistent</li>
+          </ul>
+        </div>
+
+        <h3 class="case-label" data-reveal style="margin-top: 2.5rem;">What I Shipped</h3>
+        <div class="case-body" data-reveal style="--d:0.1s">
+          <ul class="case-list">
+            <li><strong>Project cards</strong> — Fixed the UX and information placement. Researched how other platforms handle similar cards, then restructured ours — surfacing the details participants actually need and adding relevant status badges</li>
+            <li><strong>Study details page</strong> — The biggest overhaul. Added next steps, payment timelines, and clear expectations for every state. Participants should never have to guess what happens after they complete a study</li>
+            <li><strong>All study states</strong> — Redesigned detail pages for every state. Fixed the center-aligned layout, built proper visual hierarchy, added navigation, and filled in missing information</li>
+            <li><strong>Consistency pass</strong> — Swapped all old components for the current design system across every page</li>
+            <li><strong>Responsive</strong> — Every redesigned page was built responsive from the start, not retrofitted after</li>
+          </ul>
+        </div>
+
+        <div class="screen-gallery" data-reveal>
+          <div class="screen-grid">
+            <div class="screen-item">
+              <img src="images/participant-accepted.png" alt="Participant study detail page" loading="lazy">
+            </div>
+            <div class="screen-item">
+              <img src="images/participant-under-review.png" alt="Participant study detail page" loading="lazy">
+            </div>
+            <div class="screen-item">
+              <img src="images/participant-approved.png" alt="Participant study detail page" loading="lazy">
+            </div>
+            <div class="screen-item">
+              <img src="images/participant-paid.png" alt="Participant study detail page" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PART 2: RESEARCHER DASHBOARD ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Part 2</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">Researcher Study Dashboard</h2>
+
+        <h3 class="case-label" data-reveal style="--d:0.15s; margin-top: 2.5rem;">The Problems</h3>
+        <div class="case-body" data-reveal style="--d:0.2s">
+          <p>The researcher side had issues that directly slowed down their core workflow — verifying participants and managing studies:</p>
+          <ul class="case-list">
+            <li>Researchers couldn't efficiently verify participants because the drawer was missing critical information — skills, work experience, industries, and qualification details were either absent or dumped with no structure. This meant researchers had to dig through scattered data to make approval decisions</li>
+            <li>The overview page made scanning difficult — repeated information and duplicate buttons created confusion instead of clarity</li>
+            <li>Study controls were confusing — pause buttons didn't clearly explain what they controlled, making it unclear what action a researcher was actually taking</li>
+            <li>Key stats showed numbers but with no way to navigate and check the relevant participants — researchers could see counts but couldn't act on them</li>
+            <li>Responsive layouts were broken in places and old components were still scattered throughout</li>
+          </ul>
+        </div>
+
+        <h3 class="case-label" data-reveal style="margin-top: 2.5rem;">What I Shipped</h3>
+        <div class="case-body" data-reveal style="--d:0.1s">
+          <ul class="case-list">
+            <li><strong>Participant drawer</strong> — Made scanning easier by adding relevant participant info — skills, work experience, industries — so researchers could quickly understand who they're looking at. Added qualification checks to each screener question so researchers can see at a glance whether a participant qualifies. This made it significantly faster to approve responses and pay incentives, reducing participant wait time</li>
+            <li><strong>Overview &amp; Settings</strong> — Fixed the cards, removed unnecessary repeated information, and made key stats clickable for deeper navigation. Fixed the study controls section by adding separate pause buttons for BYOA audience and CleverX panel, making it clear what each action does</li>
+            <li><strong>Screener page</strong> — Removed visual noise and aligned styling with CleverX's design language</li>
+            <li><strong>Responsive tables</strong> — Fixed how data tables render on smaller screens — kept them scannable without horizontal scrolling or hidden columns</li>
+            <li><strong>Component swap</strong> — Pulled in the new component library and removed legacy components across all pages</li>
+          </ul>
+        </div>
+
+        <div class="screen-gallery" data-reveal>
+          <div class="screen-grid">
+            <div class="screen-item">
+              <img src="Screenshot-2026-03-10-at-2.50.29PM.png" alt="Participants list with status filters and search" loading="lazy">
+            </div>
+            <div class="screen-item">
+              <img src="Screenshot-2026-03-10-at-3.43.56PM.png" alt="Study overview dashboard with funnel and details" loading="lazy">
+            </div>
+          </div>
+          <div class="screen-grid" style="margin-top: 1.5rem;">
+            <div class="screen-item">
+              <img src="Screenshot-2026-03-10-at-1.41.00PM.png" alt="Participant screener response with qualification score" loading="lazy">
+            </div>
+            <div class="screen-item">
+              <img src="Screenshot-2026-03-10-at-1.41.22PM.png" alt="Participant profile with skills and experience" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== THE AUDITS ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Methodology</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">The Audits</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>The audits weren't limited to these two flows — I went across the full dashboard including billing, settings, and teams pages.</p>
+          <ul class="case-list">
+            <li><strong>Heuristic evaluation</strong> — Checked key screens against usability principles (visibility of system status, consistency, error prevention). This is where most hierarchy, labelling, and navigation issues surfaced</li>
+            <li><strong>Usability walkthrough</strong> — Went through the product as a user, step by step, noting every friction point and dead end</li>
+            <li><strong>Accessibility audit</strong> — Checked contrast, readability, keyboard navigation, and screen reader considerations</li>
+            <li><strong>Competitive analysis</strong> — Benchmarked against other research platforms to see how they handle similar screens and information display</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== HOW I WORKED ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Process</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">How I Worked</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>This was a new workflow for me, and it changed how I think about my role:</p>
+        </div>
+        <div class="workflow" data-reveal style="--d:0.2s">
+          <span class="workflow-step">Audit & identify</span>
+          <span class="workflow-arrow">&rarr;</span>
+          <span class="workflow-step">Design decisions</span>
+          <span class="workflow-arrow">&rarr;</span>
+          <span class="workflow-step">Claude Code to build</span>
+          <span class="workflow-arrow">&rarr;</span>
+          <span class="workflow-step">Git push to staging</span>
+          <span class="workflow-arrow">&rarr;</span>
+          <span class="workflow-step">Team reviews & ships</span>
+        </div>
+        <div class="case-body" data-reveal style="--d:0.25s">
+          <p>I owned every design and UX decision. Claude Code was how I got those decisions into working frontend code without waiting in a developer queue. I'd spot an issue, decide what the fix should be from a UX perspective — what information is missing, where it should sit, how it should look — then describe that intent to Claude Code, review the output, and iterate until it matched. Developers reviewed the code before it went live.</p>
+          <p>The back-and-forth between design thinking and AI is what made it work. I bring the product understanding and the eye — AI removes the bottleneck between decision and execution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== IMPACT ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Impact</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">What Changed</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <ul class="case-list">
+            <li>Fixed bugs and responsive issues across the dashboard</li>
+            <li>Reduced participant confusion with clear status indicators, next steps, and payment timelines across all study states</li>
+            <li>Made the researcher dashboard actually scannable — key info surfaced, noise removed</li>
+            <li>Unified the visual language by replacing legacy components across every page touched</li>
+            <li>Contributed to a team-wide shift where designers started using AI to ship directly, accelerating overall delivery speed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== BACK TO WORK ======== -->
+    <section class="back-section">
+      <div class="wrap">
+        <a href="index.html#work" class="back-link">&larr; Back to all work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Designed & vibe coded by Ashu Kaur <span class="gold-dot"></span> 2026</p>
+  </footer>
+
+  <script>
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+    /* ======== NAV SCROLL STATE ======== */
+    (function() {
+      var nav = document.querySelector('.nav');
+      var scrolled = false;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 60 && !scrolled) {
+          nav.classList.add('nav--scrolled');
+          scrolled = true;
+        } else if (window.scrollY <= 60 && scrolled) {
+          nav.classList.remove('nav--scrolled');
+          scrolled = false;
+        }
+      }, { passive: true });
+    })();
+
+    /* ======== SCROLL REVEAL ======== */
+    (function() {
+      var els = document.querySelectorAll('[data-reveal]');
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('revealed');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { obs.observe(el); });
+    })();
+  </script>
+</body>
+</html>

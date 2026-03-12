@@ -392,7 +392,8 @@
       <div class="wrap">
         <div class="project-tag" data-reveal>Design System &middot; Component Library</div>
         <h1 class="project-title" data-reveal style="--d:0.1s">CleverX Design System</h1>
-        <p class="project-intro" data-reveal style="--d:0.2s">CleverX is an AI-powered user research platform. When I joined as the only designer, there was no design system — every page was built independently, and it showed.</p>
+        <p class="project-intro" data-reveal style="--d:0.2s">When I joined CleverX, there were no designs — no Figma files, no shared components, no visual reference for how anything should look or behave. The development team was building UI directly in code, and every page was made independently. Colors were slightly off between pages, buttons looked different depending on where they lived, and there was no consistent hierarchy.</p>
+        <p class="project-intro" data-reveal style="--d:0.25s; margin-top: 1rem;">The product worked, but it didn't feel like one product. That's when we decided to build a proper design system from the ground up.</p>
         <div class="project-meta" data-reveal style="--d:0.3s">
           <div class="meta-item">
             <span class="meta-label">Role</span>
@@ -416,31 +417,87 @@
         <p class="case-label" data-reveal>Context</p>
         <h2 class="case-heading" data-reveal style="--d:0.1s">The Problem</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
-          <p>As CleverX grew, the inconsistency became impossible to ignore:</p>
+          <p>CleverX's product worked, but it didn't feel like one product. Without a designer or a shared design tool, every page had been built in isolation:</p>
           <ul class="case-list">
-            <li>The same components were being built differently across pages — buttons, cards, inputs all had slight variations depending on which page they lived on</li>
-            <li>There were no shared rules for spacing, typography, or colour — so every new page introduced new values instead of reusing existing ones</li>
-            <li>Responsive behaviour was unreliable because sizing wasn't standardised — elements would break or misalign across screen sizes</li>
-            <li>Developers had no single source of truth, so design decisions were being made in code without any reference</li>
-            <li>Every new feature meant rebuilding patterns that already existed somewhere else in the product</li>
+            <li>The same button existed in slightly different styles depending on which page it lived on</li>
+            <li>Colors were close but never quite the same — similar blues, slightly different greys, no shared palette</li>
+            <li>Spacing and padding were inconsistent, so elements that should have felt aligned didn't</li>
+            <li>There was no typographic hierarchy — pages felt flat, with no clear visual distinction between headings, body text, and labels</li>
+            <li>Developers had no reference to design against, so every implementation involved guesswork</li>
           </ul>
-          <p>The product worked, but it didn't feel like one product.</p>
+          <p>The inconsistency wasn't just a visual issue. It slowed everything down — developers had to make design decisions they shouldn't have been making, and every new feature introduced new one-off patterns instead of reusing what already existed.</p>
         </div>
       </div>
     </section>
 
-    <!-- ======== WHAT WE BUILT ======== -->
+    <!-- ======== STARTING WITH BRAND ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Foundation</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">Starting with Brand, Not Components</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>We didn't start by drawing buttons. We started by asking what CleverX actually stands for.</p>
+          <p>Before touching any UI, we ran a brand exercise as a team. We defined CleverX's vision, mission, and core values together. This wasn't a side project — it directly shaped every visual decision that followed.</p>
+          <p>Color selection came out of this exercise. Instead of picking a palette because it "looked nice," we researched what different colors communicate and chose our primary, secondary, tertiary, and semantic colors based on how they reflected CleverX's brand values. Every color in the system traces back to a deliberate decision rooted in what we wanted the product to feel like.</p>
+          <p>This foundation — brand first, then design system — meant the system wasn't just consistent. It was intentional.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== BUILDING IN PRIORITY ORDER ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Process</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">Building in Priority Order</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>We needed to get the system into production fast, so we prioritized ruthlessly.</p>
+          <p><strong>Phase 1: Foundation.</strong> Colors, typography, and buttons. These three touch every single page in the product, so standardizing them first had the widest immediate impact. We updated the full color palette — primary, secondary, tertiary, and semantic colors — established a type scale with clear hierarchy, and built out button components with all their variants and states.</p>
+          <p><strong>Phase 2: Core inputs and patterns.</strong> Input fields, cards, modals, badges, and navigation components. These were the building blocks of CleverX's most-used pages — study creation, dashboards, and participant management.</p>
+          <p><strong>Phase 3: Incremental expansion.</strong> From there, we built new components as the product needed them. Every new feature was an opportunity to add to the system rather than creating one-off patterns. Over time, this grew to 50+ documented components.</p>
+          <p>This phased approach meant the system was useful from day one instead of being a months-long project that shipped all at once.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== THE HARD DECISIONS ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Thinking</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">The Hard Decisions</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>Building components is straightforward. Defining the rules around them is where it gets difficult.</p>
+          <p><strong>Buttons were the biggest debate.</strong> How many styles do we actually need? When does a user see a primary button versus a default? How do we handle destructive actions — is it always red, or only in certain contexts? How many buttons can appear on a single page before it becomes overwhelming? What's the alignment rule — left-aligned, right-aligned, or does it depend on the context?</p>
+          <p>We studied how Material Design and Apple's Human Interface Guidelines handle these decisions. Not to copy them, but to understand the reasoning behind their rules — why certain patterns exist, what problems they solve, and how they scale. Then we adapted those principles for CleverX's specific needs.</p>
+          <p><strong>Input fields required similar thinking.</strong> Where do labels go — above the field, inside it, or beside it? How do we handle required versus optional fields? What does an error state look like, and where does the error message sit? Every decision had to work not just on one page, but across every form in the product.</p>
+          <p>These weren't just visual decisions. They were rules that every future page would follow, so getting them wrong meant compounding the mistake across the entire product.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== GETTING IT ADOPTED ======== -->
+    <section class="case-section">
+      <div class="wrap">
+        <p class="case-label" data-reveal>Adoption</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">Getting It Adopted</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>Building the system was only half the work. Getting developers to actually use it was the other half.</p>
+          <p>We documented everything in the same Figma file — not in a separate wiki or document that nobody checks. Each component included its variants, states, spacing rules, and usage guidelines: when to use it, when not to, and how it differs from similar components. Developers could reference a single file for any design question.</p>
+          <p>But documentation alone wasn't enough. I had to actively push for adoption — reviewing implementations, flagging when old patterns were used instead of system components, and making the case that short-term effort to switch would save time on every future feature. Over time, the system became the default — but it didn't happen automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== WHAT I DESIGNED ======== -->
     <section class="case-section">
       <div class="wrap">
         <p class="case-label" data-reveal>Deliverables</p>
-        <h2 class="case-heading" data-reveal style="--d:0.1s">What We Built</h2>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">What I Designed</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
-          <p>We designed and documented CleverX's first design system from scratch — a shared language that brought consistency to the entire platform.</p>
+          <p>The full design system included:</p>
           <ul class="case-list">
-            <li><strong>50+ components</strong> — Buttons, inputs, cards, modals, tables, navigation, badges, tooltips, and more. Each built with variants, states, and responsive behaviour defined</li>
-            <li><strong>Design tokens</strong> — Colour, typography, spacing, and sizing — all named and documented. No more hardcoded or arbitrary values</li>
-            <li><strong>Iconography</strong> — A unified icon set that replaced the inconsistent mix scattered across the product</li>
-            <li><strong>Usage rules</strong> — Documentation for when and how to use each component — not just what it looks like, but when to choose it, spacing requirements, and do's and don'ts</li>
+            <li><strong>50+ components</strong> — Buttons, inputs, cards, modals, tables, navigation, badges, tooltips, search fields, checkboxes, and more. Each built with all variants, states, and responsive behavior defined</li>
+            <li><strong>Design tokens</strong> — Color, typography, spacing, and sizing — all named, documented, and traceable back to brand decisions</li>
+            <li><strong>Usage documentation</strong> — Rules for every component: when to use it, spacing requirements, alignment rules, and do's and don'ts. All housed in Figma alongside the components</li>
           </ul>
           <div class="screen-gallery" data-reveal style="--d:0.2s">
             <div class="screen-grid">
@@ -457,23 +514,6 @@
       </div>
     </section>
 
-    <!-- ======== HOW I APPROACHED IT ======== -->
-    <section class="case-section">
-      <div class="wrap">
-        <p class="case-label" data-reveal>Process</p>
-        <h2 class="case-heading" data-reveal style="--d:0.1s">How I Approached It</h2>
-        <div class="case-body" data-reveal style="--d:0.15s">
-          <p>We didn't start by building components — we started by researching how established systems solve these problems.</p>
-          <ul class="case-list">
-            <li><strong>Research</strong> — Studied Material Design, Apple's Human Interface Guidelines, and other established design systems to understand their component structures, token architectures, and usage patterns. Used these as a foundation for our own decisions</li>
-            <li><strong>UI audit</strong> — Went through the platform screen by screen, cataloguing every component variation and inconsistency. This gave us a clear picture of what needed to be standardised first</li>
-            <li><strong>Prioritisation</strong> — Focused on the components that appeared most frequently and caused the most visual inconsistency across the product</li>
-            <li><strong>Build and document</strong> — Designed each component with all its variants and states, defined the tokens, and wrote clear usage guidelines. Followed component rules and patterns from the systems we studied, adapted for CleverX's needs</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
     <!-- ======== IMPACT ======== -->
     <section class="case-section">
       <div class="wrap">
@@ -481,11 +521,12 @@
         <h2 class="case-heading" data-reveal style="--d:0.1s">What Changed</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
           <ul class="case-list">
-            <li>Brought visual consistency across the entire CleverX platform for the first time</li>
-            <li>Gave developers a single source of truth — reducing guesswork during implementation</li>
-            <li>Made responsive behaviour reliable by standardising sizing and spacing</li>
-            <li>Cut the time to design new pages — composing from a shared library instead of starting from scratch every time</li>
-            <li>Served as the foundation for CleverX's product UI for years</li>
+            <li>Introduced design tooling (Figma) and a design-driven workflow to a team that previously had no shared design process</li>
+            <li>Built CleverX's first design system from scratch as a two-person design team — 50+ components, a full token system, and documentation — creating a single source of truth for the entire product</li>
+            <li>Rooted every visual decision in brand strategy through a foundational brand exercise, ensuring the system was intentional and not just consistent</li>
+            <li>Gave developers a reliable reference that eliminated guesswork during implementation and cut repeated conversations about spacing, color, and component behavior</li>
+            <li>Standardized responsive behavior across the product by establishing sizing and spacing rules that every component follows</li>
+            <li>The system became the foundation for CleverX's product UI for years and is still in use today</li>
           </ul>
         </div>
       </div>

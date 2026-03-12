@@ -456,6 +456,9 @@
         <div class="project-tag" data-reveal>AI + Design &middot; Claude Code &middot; 2025–2026</div>
         <h1 class="project-title" data-reveal style="--d:0.1s">Redesigning CleverX with AI</h1>
         <p class="project-intro" data-reveal style="--d:0.2s">CleverX is an AI-powered user research platform that helps companies design, recruit, conduct, and analyze research studies across B2B and B2C audiences. I've been a UI/UX Designer here for over 5 years.</p>
+        <p class="project-intro" data-reveal style="--d:0.25s; margin-top: 1rem;">The industry shifted, and so did we. AI became a core part of how we build — not just as a product feature, but as the main tool in our workflow. We started shipping faster than ever, redesigning and building directly with AI and pushing code through Git.</p>
+        <p class="project-intro" data-reveal style="--d:0.3s; margin-top: 1rem;">But speed came with tradeoffs. As we shipped quickly, design inconsistencies crept in — scattered buttons, old components mixed with new ones, broken visual hierarchy, and UX dead ends where users were left without clear next steps. Clients started flagging broken flows. The product was moving fast, but the experience wasn't keeping up.</p>
+        <p class="project-intro" data-reveal style="--d:0.35s; margin-top: 1rem;">That's when we started auditing the product systematically — flow by flow — and fix what was broken. This case study covers two pieces of that work: a redesign of the participant-side experience and fixes across the researcher study dashboard.</p>
         <div class="project-meta" data-reveal style="--d:0.3s">
           <div class="meta-item">
             <span class="meta-label">Role</span>
@@ -473,13 +476,21 @@
       </div>
     </section>
 
-    <!-- ======== THE SHIFT ======== -->
+    <!-- ======== THE AUDIT ======== -->
     <section class="case-section">
       <div class="wrap">
-        <p class="case-label" data-reveal>The Shift</p>
-        <div class="case-body" data-reveal style="--d:0.1s">
-          <p>In the last few months, my workflow changed completely. I went from designing in Figma and handing off to developers, to writing prompts in Claude Code, making design decisions in the browser, and pushing code to staging through Git. Bugs I'd normally flag and wait days for? Fixed and shipped the same cycle.</p>
-          <p>This project covers two pieces of work from that shift: a redesign of the participant-side experience and fixes across the researcher study dashboard — designed, coded, and shipped using Claude Code.</p>
+        <p class="case-label" data-reveal>Methodology</p>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">The Audit</h2>
+        <div class="case-body" data-reveal style="--d:0.15s">
+          <p>I audit CleverX flow by flow — walking through each experience as a user, noting every friction point, dead end, and inconsistency. A full flow audit typically takes a day.</p>
+          <p>So far I've audited the AI study creation tool, study details pages, participant dashboard, My Studies cards, Browse Studies cards, team management, and settings. This is ongoing work — every audit surfaces new issues to fix.</p>
+          <p>For each audit, I use a combination of approaches:</p>
+          <ul class="case-list">
+            <li><strong>Heuristic evaluation</strong> — Checking screens against usability principles: visibility of system status, consistency, error prevention, hierarchy. This is where most labelling, navigation, and layout issues surface</li>
+            <li><strong>Usability walkthrough</strong> — Going through every step of a flow as a real user would, noting dead ends, missing information, and moments of confusion</li>
+            <li><strong>Accessibility check</strong> — Reviewing contrast, readability, keyboard navigation, and screen reader considerations</li>
+            <li><strong>Competitive analysis</strong> — Benchmarking against other platforms to see how they handle similar screens and information patterns</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -492,24 +503,23 @@
 
         <h3 class="case-label" data-reveal style="--d:0.15s; margin-top: 2.5rem;">The Problems</h3>
         <div class="case-body" data-reveal style="--d:0.2s">
-          <p>After running audits and walking through the flows myself, a lot of issues surfaced:</p>
+          <p>After auditing the participant flows, the issues were clear — and some of them were things clients had already raised:</p>
           <ul class="case-list">
-            <li>Project cards were missing relevant badges — participants had no quick way to know a project's state, urgency, or expiry without clicking into each one</li>
-            <li>Study details pages showed various states but with missing context — no clarity on what happens next, when to expect payment, or what the participant should do in the meantime</li>
-            <li>The cards had poor information hierarchy — key details were buried while less relevant content took up visual space, making it hard for participants to scan and take action quickly</li>
-            <li>Study detail pages across all states — action required, paid, awaiting incentive, expired — had center-aligned content that made scanning difficult, no clear visual hierarchy, and missing navigation</li>
-            <li>A mix of old and new design system components made the experience feel inconsistent</li>
+            <li><strong>Dead ends after completing screeners.</strong> Participants would finish a screener and land on a page with no information about what happens next. No next steps, no timeline, no indication of whether they'd been accepted or when to expect payment. It was a dead end that likely drove support questions</li>
+            <li><strong>Project cards with no useful context.</strong> Participants had no quick way to know a project's state, urgency, or expiry without clicking into each one. Key details were buried while less relevant content took up visual space</li>
+            <li><strong>No visual hierarchy across study states.</strong> Detail pages for every state — action required, paid, awaiting incentive, expired — had center-aligned content, no clear scanning pattern, and missing navigation</li>
+            <li><strong>Inconsistent components.</strong> A mix of old and new design system components made the experience feel like different products stitched together</li>
           </ul>
         </div>
 
         <h3 class="case-label" data-reveal style="margin-top: 2.5rem;">What I Shipped</h3>
         <div class="case-body" data-reveal style="--d:0.1s">
           <ul class="case-list">
-            <li><strong>Project cards</strong> — Fixed the UX and information placement. Researched how other platforms handle similar cards, then restructured ours — surfacing the details participants actually need and adding relevant status badges</li>
-            <li><strong>Study details page</strong> — The biggest overhaul. Added next steps, payment timelines, and clear expectations for every state. Participants should never have to guess what happens after they complete a study</li>
-            <li><strong>All study states</strong> — Redesigned detail pages for every state. Fixed the center-aligned layout, built proper visual hierarchy, added navigation, and filled in missing information</li>
-            <li><strong>Consistency pass</strong> — Swapped all old components for the current design system across every page</li>
-            <li><strong>Responsive</strong> — Every redesigned page was built responsive from the start, not retrofitted after</li>
+            <li><strong>Fixed the dead ends.</strong> Every study state now shows relevant information — what's happening, what to expect next, and when. Participants should never complete a screener and wonder what happens after</li>
+            <li><strong>Redesigned project cards.</strong> Studied how competitor platforms handle similar cards, then restructured ours — surfacing details participants actually need and adding status badges for quick scanning</li>
+            <li><strong>Rebuilt all study detail pages.</strong> Fixed the center-aligned layout, established proper visual hierarchy, added navigation, and filled in missing context for every state</li>
+            <li><strong>Consistency pass.</strong> Swapped all old components for current design system components across every participant-facing page</li>
+            <li><strong>Responsive from the start.</strong> Every redesigned page was built responsive from day one, not retrofitted after</li>
           </ul>
         </div>
 
@@ -542,22 +552,22 @@
         <div class="case-body" data-reveal style="--d:0.2s">
           <p>The researcher side had issues that directly slowed down their core workflow — verifying participants and managing studies:</p>
           <ul class="case-list">
-            <li>Researchers couldn't efficiently verify participants because the drawer was missing critical information — skills, work experience, industries, and qualification details were either absent or dumped with no structure. This meant researchers had to dig through scattered data to make approval decisions</li>
-            <li>The overview page made scanning difficult — repeated information and duplicate buttons created confusion instead of clarity</li>
-            <li>Study controls were confusing — pause buttons didn't clearly explain what they controlled, making it unclear what action a researcher was actually taking</li>
-            <li>Key stats showed numbers but with no way to navigate and check the relevant participants — researchers could see counts but couldn't act on them</li>
-            <li>Responsive layouts were broken in places and old components were still scattered throughout</li>
+            <li><strong>Participant verification was painful.</strong> The drawer was missing critical information — skills, work experience, industries, and qualification details were either absent or unstructured. Researchers had to leave CleverX entirely, click through to a participant's LinkedIn profile, review them there, then come back to approve. This back-and-forth added unnecessary friction to every single approval</li>
+            <li><strong>Overview page was noisy.</strong> Repeated information and duplicate buttons created confusion instead of clarity</li>
+            <li><strong>Study controls were unclear.</strong> Pause buttons didn't explain what they controlled — researchers couldn't tell whether they were pausing the BYOA audience, the CleverX panel, or both. Button text was truncated and hidden, making it worse</li>
+            <li><strong>Stats without navigation.</strong> Key numbers showed counts but with no way to click through and see the actual participants behind them</li>
+            <li>Broken responsive layouts and legacy components scattered throughout</li>
           </ul>
         </div>
 
         <h3 class="case-label" data-reveal style="margin-top: 2.5rem;">What I Shipped</h3>
         <div class="case-body" data-reveal style="--d:0.1s">
           <ul class="case-list">
-            <li><strong>Participant drawer</strong> — Made scanning easier by adding relevant participant info — skills, work experience, industries — so researchers could quickly understand who they're looking at. Added qualification checks to each screener question so researchers can see at a glance whether a participant qualifies. This made it significantly faster to approve responses and pay incentives, reducing participant wait time</li>
-            <li><strong>Overview &amp; Settings</strong> — Fixed the cards, removed unnecessary repeated information, and made key stats clickable for deeper navigation. Fixed the study controls section by adding separate pause buttons for BYOA audience and CleverX panel, making it clear what each action does</li>
-            <li><strong>Screener page</strong> — Removed visual noise and aligned styling with CleverX's design language</li>
-            <li><strong>Responsive tables</strong> — Fixed how data tables render on smaller screens — kept them scannable without horizontal scrolling or hidden columns</li>
-            <li><strong>Component swap</strong> — Pulled in the new component library and removed legacy components across all pages</li>
+            <li><strong>Redesigned the participant drawer.</strong> Added skills, work experience, and industries directly into the drawer so researchers can evaluate a participant without leaving CleverX. Added qualification checks next to each screener question for at-a-glance assessment. What used to require leaving the platform and checking LinkedIn now happens in a single panel</li>
+            <li><strong>Cleaned up overview and settings.</strong> Removed repeated information, made key stats clickable for deeper navigation, and added separate clearly-labelled pause buttons for BYOA audience and CleverX panel</li>
+            <li><strong>Redesigned screener pages.</strong> Removed visual noise and aligned styling with the current design language</li>
+            <li><strong>Fixed responsive tables.</strong> Made data tables scannable on smaller screens without horizontal scrolling or hidden columns</li>
+            <li><strong>Component swap.</strong> Replaced all legacy components with the current design system library across every page</li>
           </ul>
         </div>
 
@@ -582,45 +592,28 @@
       </div>
     </section>
 
-    <!-- ======== THE AUDITS ======== -->
-    <section class="case-section">
-      <div class="wrap">
-        <p class="case-label" data-reveal>Methodology</p>
-        <h2 class="case-heading" data-reveal style="--d:0.1s">The Audits</h2>
-        <div class="case-body" data-reveal style="--d:0.15s">
-          <p>The audits weren't limited to these two flows — I went across the full dashboard including billing, settings, and teams pages.</p>
-          <ul class="case-list">
-            <li><strong>Heuristic evaluation</strong> — Checked key screens against usability principles (visibility of system status, consistency, error prevention). This is where most hierarchy, labelling, and navigation issues surfaced</li>
-            <li><strong>Usability walkthrough</strong> — Went through the product as a user, step by step, noting every friction point and dead end</li>
-            <li><strong>Accessibility audit</strong> — Checked contrast, readability, keyboard navigation, and screen reader considerations</li>
-            <li><strong>Competitive analysis</strong> — Benchmarked against other research platforms to see how they handle similar screens and information display</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======== HOW I WORKED ======== -->
+    <!-- ======== HOW I WORK NOW ======== -->
     <section class="case-section">
       <div class="wrap">
         <p class="case-label" data-reveal>Process</p>
-        <h2 class="case-heading" data-reveal style="--d:0.1s">How I Worked</h2>
+        <h2 class="case-heading" data-reveal style="--d:0.1s">How I Work Now</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
-          <p>This was a new workflow for me, and it changed how I think about my role:</p>
+          <p>This project marked a real shift in how I work. My workflow used to be: design in Figma, hand off to developers, file bugs, wait for fixes. Now it looks like this:</p>
         </div>
         <div class="workflow" data-reveal style="--d:0.2s">
-          <span class="workflow-step">Audit & identify</span>
+          <span class="workflow-step">Plan in Claude</span>
           <span class="workflow-arrow">&rarr;</span>
-          <span class="workflow-step">Design decisions</span>
+          <span class="workflow-step">Build on local</span>
           <span class="workflow-arrow">&rarr;</span>
-          <span class="workflow-step">Claude Code to build</span>
+          <span class="workflow-step">Audit and critique</span>
           <span class="workflow-arrow">&rarr;</span>
-          <span class="workflow-step">Git push to staging</span>
+          <span class="workflow-step">Push to staging</span>
           <span class="workflow-arrow">&rarr;</span>
-          <span class="workflow-step">Team reviews & ships</span>
+          <span class="workflow-step">Dev team reviews & ships</span>
         </div>
         <div class="case-body" data-reveal style="--d:0.25s">
-          <p>I owned every design and UX decision. Claude Code was how I got those decisions into working frontend code without waiting in a developer queue. I'd spot an issue, decide what the fix should be from a UX perspective — what information is missing, where it should sit, how it should look — then describe that intent to Claude Code, review the output, and iterate until it matched. Developers reviewed the code before it went live.</p>
-          <p>The back-and-forth between design thinking and AI is what made it work. I bring the product understanding and the eye — AI removes the bottleneck between decision and execution.</p>
+          <p>When I spot a bug or a UX issue, I fix it myself instead of filing a ticket and waiting days for it to get picked up. Claude Code handles the translation from design intent to working frontend code — I describe what needs to change, review the output, and iterate until it matches.</p>
+          <p>This workflow has fundamentally changed our speed. Design and UX fixes that used to sit in a dev queue for days now get resolved the same day I find them.</p>
         </div>
       </div>
     </section>
@@ -632,11 +625,12 @@
         <h2 class="case-heading" data-reveal style="--d:0.1s">What Changed</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
           <ul class="case-list">
-            <li>Fixed bugs and responsive issues across the dashboard</li>
-            <li>Reduced participant confusion with clear status indicators, next steps, and payment timelines across all study states</li>
-            <li>Made the researcher dashboard actually scannable — key info surfaced, noise removed</li>
+            <li>Eliminated dead ends across participant flows — every study state now provides clear next steps, payment timelines, and status context</li>
+            <li>Removed the need for researchers to leave CleverX to verify participants — profile review now happens entirely within the platform</li>
+            <li>Made the researcher dashboard scannable by surfacing key information, removing noise, and adding navigable stats</li>
             <li>Unified the visual language by replacing legacy components across every page touched</li>
-            <li>Contributed to a team-wide shift where designers started using AI to ship directly, accelerating overall delivery speed</li>
+            <li>Reduced the turnaround on design and UX fixes from days (waiting in dev queue) to same-day — by shipping fixes directly through Claude Code</li>
+            <li>Ongoing audits continue to surface and resolve issues across the platform flow by flow</li>
           </ul>
         </div>
       </div>

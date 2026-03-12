@@ -245,9 +245,9 @@
       <div class="wrap">
         <div class="project-tag" data-reveal>AI + UX Research &middot; Product Design</div>
         <h1 class="project-title" data-reveal style="--d:0.1s">Designing AI-Powered Research Analysis</h1>
-        <p class="project-intro" data-reveal style="--d:0.2s">Research teams across the industry face the same bottleneck — too much time spent analysing, not enough time building. Product teams and researchers spend days reviewing recordings, pulling out insights, and compiling reports before they can act on anything. The analysis phase was taking longer than the research itself.</p>
-        <p class="project-intro" data-reveal style="--d:0.25s; margin-top: 1rem;">CleverX's goal was to solve this: help researchers analyse large volumes of interviews faster using AI — summaries, highlights, insights, transcripts — so teams could get to decisions and start building sooner.</p>
-        <p class="project-intro" data-reveal style="--d:0.3s; margin-top: 1rem;">I led the research and design for this feature, working with the team to take it from competitive analysis to shipped product.</p>
+        <p class="project-intro" data-reveal style="--d:0.2s">CleverX supported moderated video interviews — but once a session ended, that's where the platform stopped. There were no transcripts, no summaries, no way to revisit what was said without rewatching the full recording. Researchers had to do all their analysis outside CleverX, manually.</p>
+        <p class="project-intro" data-reveal style="--d:0.25s; margin-top: 1rem;">This wasn't a guess. Researchers kept asking for transcripts. It was one of the most consistent requests we heard, and it pointed to a clear gap: CleverX helped teams run research, but not make sense of it.</p>
+        <p class="project-intro" data-reveal style="--d:0.3s; margin-top: 1rem;">The goal was to change that — give researchers AI-powered tools to go from a raw interview recording to structured, shareable findings without leaving the platform.</p>
         <div class="project-meta" data-reveal style="--d:0.35s">
           <div class="meta-item">
             <span class="meta-label">Role</span>
@@ -271,14 +271,14 @@
         <p class="case-label" data-reveal>Context</p>
         <h2 class="case-heading" data-reveal style="--d:0.1s">The Problem</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
-          <p>The manual analysis workflow was the biggest time sink in the entire research process:</p>
+          <p>CleverX had no analysis layer. After a moderated interview, here's what a researcher's workflow looked like:</p>
           <ul class="case-list">
-            <li>After every moderated interview, researchers had to rewatch full recordings to find the moments that mattered — a single 30-minute interview could take over an hour to process</li>
-            <li>Identifying patterns meant jumping between multiple interview transcripts, manually tagging quotes, and trying to hold context across dozens of responses</li>
-            <li>Compiling shareable reports meant copying quotes into documents, writing summaries from scratch, and formatting everything for stakeholders who just wanted the bottom line</li>
-            <li>The longer analysis took, the longer product teams waited to act — and in fast-moving companies, that delay costs real momentum</li>
+            <li>Rewatch the full recording to find key moments — a 30-minute call could easily take over an hour to process</li>
+            <li>Manually note timestamps, pull quotes, and try to hold context across multiple interviews</li>
+            <li>Copy everything into a separate document to compile findings for stakeholders</li>
+            <li>Repeat for every single interview in the study</li>
           </ul>
-          <p>The core UX challenge was clear: how do you compress hours of manual cognitive work into something a researcher can review, trust, and share in minutes — without losing the nuance that makes qualitative research valuable?</p>
+          <p>The platform handled recruitment, scheduling, and the interview itself — but the moment the call ended, researchers were on their own. For a product positioning itself as an end-to-end research platform, this was a significant gap — both for our users and competitively.</p>
         </div>
       </div>
     </section>
@@ -289,12 +289,9 @@
         <p class="case-label" data-reveal>Research</p>
         <h2 class="case-heading" data-reveal style="--d:0.1s">Competitive Analysis</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
-          <p>Before designing anything, I needed to understand how this problem was being solved across the industry.</p>
-          <ul class="case-list">
-            <li><strong>Maze, Lyssna, UserTesting, User Interviews</strong> — Studied how each platform handles AI transcription, summarisation, and report generation for moderated and unmoderated studies</li>
-            <li>Used the findings to understand what patterns existed across platforms and what approach would work best for CleverX's researchers</li>
-          </ul>
-          <p>This research shaped every design decision that followed.</p>
+          <p>Before designing anything, I studied how every major competitor handles post-interview analysis. I looked at <strong>Maze, Lyssna, UserTesting, and User Interviews</strong> — specifically how they approach AI transcription, summaries, highlights, and report generation.</p>
+          <p>I mapped out their feature sets, noted patterns in how they structure analysis workflows, and identified where approaches differed. Then I put together a walkthrough for the team — showing what each platform does, what the common patterns are, and what I thought would work best for CleverX's use case.</p>
+          <p>This research shaped the direction for the entire feature.</p>
         </div>
 
         <div class="screen-gallery" data-reveal>
@@ -313,13 +310,11 @@
         <p class="case-label" data-reveal>Thinking</p>
         <h2 class="case-heading" data-reveal style="--d:0.1s">Design Decisions</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
-          <p>The biggest challenge wasn't what features to build — it was how to present AI-generated analysis in a way researchers would actually trust and use.</p>
-          <ul class="case-list">
-            <li><strong>AI alongside source, not instead of</strong> — Every AI summary sits next to the original transcript and quotes. Researchers can always verify what the AI is telling them. This was a deliberate choice — we didn't want researchers to blindly accept AI output</li>
-            <li><strong>Interview and project-level summaries</strong> — Each interview gets its own AI summary with representative quotes. At the project level, a combined summary pulls together findings across all interviews — giving researchers both the detail and the big picture depending on what they need</li>
-            <li><strong>Highlights as a first-class element</strong> — Key moments and quotes are pulled out and presented as standalone, quotable pieces. These become the building blocks for reports and stakeholder presentations</li>
-            <li><strong>Export that's actually useful</strong> — PDF reports and CSV exports designed to be stakeholder-ready. The goal was: a researcher should be able to go from "study complete" to "sharing findings with the team" in one click</li>
-          </ul>
+          <p>The biggest challenge wasn't deciding what to build — the competitor research made the feature set fairly clear. The hard part was figuring out how to present AI-generated content in a way researchers would actually trust.</p>
+          <p><strong>AI alongside the source, never replacing it.</strong> This was the most important decision. Every competitor I studied kept AI output anchored to original source material, and for good reason — researchers need to verify. So every AI summary in our design sits next to the transcript and original quotes. A researcher can always check what the AI is drawing from. We deliberately avoided any design where the AI summary was the only thing a researcher would see.</p>
+          <p><strong>Two levels of summary.</strong> Each individual interview gets its own AI-generated summary with representative quotes pulled from the transcript. At the project level, a combined summary draws patterns across all interviews. This lets researchers zoom in on a single conversation or zoom out to see themes — depending on what they need at that moment.</p>
+          <p><strong>Highlights as standalone, quotable pieces.</strong> Key moments aren't just marked in the transcript — they're extracted and presented as individual items that can be referenced, tagged, and dropped into reports. The idea was that these highlights become the building blocks for whatever the researcher needs to communicate to their team.</p>
+          <p><strong>Export designed for stakeholders, not just researchers.</strong> PDF reports and CSV exports were designed to be shareable as-is. The goal: a researcher should be able to go from "study complete" to "here are the findings" in a single click, without reformatting anything.</p>
         </div>
       </div>
     </section>
@@ -332,11 +327,11 @@
         <div class="case-body" data-reveal style="--d:0.15s">
           <p>The end-to-end AI analysis experience for moderated interviews:</p>
           <ul class="case-list">
-            <li><strong>AI transcripts</strong> — Automatic transcription of interview recordings with searchable, scannable text</li>
+            <li><strong>AI transcripts</strong> — Automatic transcription of recordings with searchable, scannable text</li>
             <li><strong>AI summaries</strong> — Interview-level and project-level summaries with representative quotes</li>
-            <li><strong>Highlights</strong> — Key moments and quotes automatically identified and ready to reference</li>
-            <li><strong>Insight generation</strong> — Structured findings generated from raw responses</li>
-            <li><strong>Export and share</strong> — PDF reports and CSV exports, shareable with stakeholders in one click</li>
+            <li><strong>Highlights</strong> — Key moments automatically identified and presented as standalone, referenceable pieces</li>
+            <li><strong>Insight generation</strong> — Structured findings surfaced from raw interview responses</li>
+            <li><strong>Export and share</strong> — PDF reports and CSV exports, shareable with stakeholders directly</li>
           </ul>
         </div>
 
@@ -365,11 +360,10 @@
         <h2 class="case-heading" data-reveal style="--d:0.1s">What Changed</h2>
         <div class="case-body" data-reveal style="--d:0.15s">
           <ul class="case-list">
-            <li>Shipped the AI analysis feature for moderated interviews on CleverX</li>
-            <li>Transformed a process that took researchers days into one that takes minutes — from raw interviews to shareable findings</li>
-            <li>Gave researchers AI they could trust by always connecting summaries back to source quotes and transcripts</li>
-            <li>Helped product teams act faster on research — less time waiting for analysis, more time building</li>
-            <li>The feature remains part of CleverX's core product today</li>
+            <li>Shipped a net-new capability that moved CleverX from an interview-only platform to a full research analysis tool — closing a significant competitive gap</li>
+            <li>Directly addressed the most consistent researcher request (transcripts) and expanded it into a complete analysis workflow</li>
+            <li>Established CleverX's first AI-powered feature set, which became a core part of the product's positioning</li>
+            <li>Gave the team a clear design direction for future AI features by establishing patterns around trust, source anchoring, and progressive summarization</li>
           </ul>
         </div>
       </div>

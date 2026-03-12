@@ -1157,7 +1157,8 @@
       }
       document.body.prepend(svg);
 
-      /* -- Proximity Ripple -- */
+      /* -- Proximity Ripple (desktop only) -- */
+      if (window.matchMedia('(pointer: coarse)').matches) return;
       var allCircles = svg.querySelectorAll('circle');
       var mouseX = -1000, mouseY = -1000;
       var radius = 120;

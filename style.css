@@ -1259,7 +1259,7 @@ a, button { cursor: none; }
   .hero {
     position: relative;
     min-height: auto;
-    padding: 140px 40px 80px;
+    padding: 160px 40px 100px;
   }
 
   /* Slides — normal flow, auto height */

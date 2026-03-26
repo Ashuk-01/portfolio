@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Powered Research Analysis — Ashu Kaur</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cs-main { position: relative; z-index: 5; }
+    .cs-wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
+    .cs-hero { padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem); }
+    .cs-tag { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
+    .cs-title { font-family: var(--font); font-size: clamp(32px, 5vw, 52px); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
+    .cs-intro { font-size: 16px; font-weight: 400; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
+    .cs-meta { display: flex; flex-wrap: wrap; gap: 24px 48px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(32, 32, 31, 0.08); }
+    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .cs-meta-label { font-family: var(--font); font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; }
+    .cs-meta-value { font-size: 15px; font-weight: 400; color: var(--text); }
+    .cs-section { padding: clamp(3rem, 6vh, 5rem) 0; }
+    .cs-section + .cs-section { border-top: 1px solid rgba(32, 32, 31, 0.08); }
+    .cs-label { font-family: var(--font); font-size: 12px; font-weight: 500; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .cs-heading { font-family: var(--font); font-size: clamp(24px, 3vw, 36px); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
+    .cs-body p { font-size: 15px; font-weight: 400; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
+    .cs-body p:last-child { margin-bottom: 0; }
+    .cs-body strong { color: var(--text); font-weight: 500; }
+    .cs-list { list-style: none; margin: 20px 0; display: flex; flex-direction: column; gap: 12px; }
+    .cs-list li { font-size: 15px; font-weight: 400; color: var(--text-light); line-height: 1.75; padding-left: 20px; position: relative; }
+    .cs-list li::before { content: '—'; position: absolute; left: 0; color: var(--text-light); }
+    .cs-list li strong { color: var(--text); font-weight: 500; }
+    .cs-gallery { margin-top: 32px; }
+    .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .cs-grid + .cs-grid { margin-top: 1rem; }
+    .cs-grid--single { grid-template-columns: 1fr; }
+    .cs-screen { border-radius: 12px; overflow: hidden; border: 1px solid rgba(32, 32, 31, 0.08); background: #fff; display: flex; align-items: center; justify-content: center; }
+    .cs-screen img { width: 100%; height: auto; display: block; }
+    .cs-back { padding: clamp(4rem, 8vh, 6rem) 0; text-align: center; border-top: 1px solid rgba(32, 32, 31, 0.08); }
+    .cs-back a { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-light); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.3s ease; }
+    .cs-back a:hover { color: var(--text); }
+    .nav-back { font-family: var(--font); font-size: 12px; font-weight: 400; color: var(--text); text-decoration: none; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; transition: opacity 0.3s ease; }
+    .nav-back:hover { opacity: 0.5; }
+    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    @media (max-width: 767px) {
+      .cs-grid { grid-template-columns: 1fr; }
+      .cs-meta { gap: 16px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <nav class="nav">
+    <a href="option-a.html#work" class="nav-back">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to Work
+    </a>
+    <div class="nav-links">
+      <a href="option-a.html#work">Work</a>
+
+      <a href="option-a.html#about">About</a>
+      <a href="option-a.html#experience">Experience</a>
+      <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="option-a.html#contact">Contact Me</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <main class="cs-main">
+
+    <section class="cs-hero">
+      <div class="cs-wrap">
+        <p class="cs-tag" data-reveal>AI + UX Research &middot; Product Design</p>
+        <h1 class="cs-title" data-reveal>Designing AI-Powered Research Analysis</h1>
+        <p class="cs-intro" data-reveal>CleverX supported moderated video interviews — but once a session ended, that's where the platform stopped. There were no transcripts, no summaries, no way to revisit what was said without rewatching the full recording. Researchers had to do all their analysis outside CleverX, manually.</p>
+        <p class="cs-intro" data-reveal>This wasn't a guess. Researchers kept asking for transcripts. It was one of the most consistent requests we heard, and it pointed to a clear gap: CleverX helped teams run research, but not make sense of it.</p>
+        <p class="cs-intro" data-reveal>The goal was to change that — give researchers AI-powered tools to go from a raw interview recording to structured, shareable findings without leaving the platform.</p>
+        <div class="cs-meta" data-reveal>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">UI/UX Designer</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Tools</span>
+            <span class="cs-meta-value">Figma</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Year</span>
+            <span class="cs-meta-value">2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Context</p>
+        <h2 class="cs-heading" data-reveal>The Problem</h2>
+        <div class="cs-body" data-reveal>
+          <p>CleverX had no analysis layer. After a moderated interview, here's what a researcher's workflow looked like:</p>
+          <ul class="cs-list">
+            <li>Rewatch the full recording to find key moments — a 30-minute call could easily take over an hour to process</li>
+            <li>Manually note timestamps, pull quotes, and try to hold context across multiple interviews</li>
+            <li>Copy everything into a separate document to compile findings for stakeholders</li>
+            <li>Repeat for every single interview in the study</li>
+          </ul>
+          <p>The platform handled recruitment, scheduling, and the interview itself — but the moment the call ended, researchers were on their own. For a product positioning itself as an end-to-end research platform, this was a significant gap — both for our users and competitively.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Research</p>
+        <h2 class="cs-heading" data-reveal>Competitive Analysis</h2>
+        <div class="cs-body" data-reveal>
+          <p>Before designing anything, I studied how every major competitor handles post-interview analysis. I looked at <strong>Maze, Lyssna, UserTesting, and User Interviews</strong> — specifically how they approach AI transcription, summaries, highlights, and report generation.</p>
+          <p>I mapped out their feature sets, noted patterns in how they structure analysis workflows, and identified where approaches differed. Then I put together a walkthrough for the team — showing what each platform does, what the common patterns are, and what I thought would work best for CleverX's use case.</p>
+          <p>This research shaped the direction for the entire feature.</p>
+        </div>
+        <div class="cs-gallery" data-reveal>
+          <div class="cs-grid cs-grid--single">
+            <div class="cs-screen">
+              <img src="images/competitive-analysis.png" alt="Competitive feature analysis across research platforms" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Thinking</p>
+        <h2 class="cs-heading" data-reveal>Design Decisions</h2>
+        <div class="cs-body" data-reveal>
+          <p>The biggest challenge wasn't deciding what to build — the competitor research made the feature set fairly clear. The hard part was figuring out how to present AI-generated content in a way researchers would actually trust.</p>
+          <p><strong>AI alongside the source, never replacing it.</strong> This was the most important decision. Every competitor I studied kept AI output anchored to original source material, and for good reason — researchers need to verify. So every AI summary in our design sits next to the transcript and original quotes. A researcher can always check what the AI is drawing from. We deliberately avoided any design where the AI summary was the only thing a researcher would see.</p>
+          <p><strong>Two levels of summary.</strong> Each individual interview gets its own AI-generated summary with representative quotes pulled from the transcript. At the project level, a combined summary draws patterns across all interviews. This lets researchers zoom in on a single conversation or zoom out to see themes — depending on what they need at that moment.</p>
+          <p><strong>Highlights as standalone, quotable pieces.</strong> Key moments aren't just marked in the transcript — they're extracted and presented as individual items that can be referenced, tagged, and dropped into reports. The idea was that these highlights become the building blocks for whatever the researcher needs to communicate to their team.</p>
+          <p><strong>Export designed for stakeholders, not just researchers.</strong> PDF reports and CSV exports were designed to be shareable as-is. The goal: a researcher should be able to go from "study complete" to "here are the findings" in a single click, without reformatting anything.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Deliverables</p>
+        <h2 class="cs-heading" data-reveal>What I Designed</h2>
+        <div class="cs-body" data-reveal>
+          <p>The end-to-end AI analysis experience for moderated interviews:</p>
+          <ul class="cs-list">
+            <li><strong>AI transcripts</strong> — Automatic transcription of recordings with searchable, scannable text</li>
+            <li><strong>AI summaries</strong> — Interview-level and project-level summaries with representative quotes</li>
+            <li><strong>Highlights</strong> — Key moments automatically identified and presented as standalone, referenceable pieces</li>
+            <li><strong>Insight generation</strong> — Structured findings surfaced from raw interview responses</li>
+            <li><strong>Export and share</strong> — PDF reports and CSV exports, shareable with stakeholders directly</li>
+          </ul>
+        </div>
+        <div class="cs-gallery" data-reveal>
+          <div class="cs-grid cs-grid--single">
+            <div class="cs-screen">
+              <img src="images/analysis-overview.png" alt="Analysis overview — all participants with highlights and tags" loading="lazy">
+            </div>
+          </div>
+          <div class="cs-grid">
+            <div class="cs-screen">
+              <img src="images/analysis-transcript.png" alt="Interview transcript with highlights and key insights" loading="lazy">
+            </div>
+            <div class="cs-screen">
+              <img src="images/analysis-summary.png" alt="AI-generated interview summary" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Impact</p>
+        <h2 class="cs-heading" data-reveal>What Changed</h2>
+        <div class="cs-body" data-reveal>
+          <ul class="cs-list">
+            <li>Shipped a net-new capability that moved CleverX from an interview-only platform to a full research analysis tool — closing a significant competitive gap</li>
+            <li>Compressed research analysis from days or weeks of manual work to AI-generated reports in minutes — across transcripts, summaries, highlights, and insights</li>
+            <li>Established CleverX's first AI-powered feature set, which became a core part of the product's positioning</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="cs-back">
+      <div class="cs-wrap">
+        <a href="option-a.html#work">&larr; Back to all work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer__marquee">
+      <div class="footer__marquee-track">
+        <span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span>
+      </div>
+    </div>
+    <div class="footer__center" data-reveal>
+      <a href="mailto:ashukaur01@gmail.com" class="footer__email">ashukaur01@gmail.com</a>
+      <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X</a>
+        <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+      <p class="footer__note">Currently open to full-time roles and interesting freelance projects.</p>
+    </div>
+    <div class="footer__bottom" data-reveal>
+      <span class="footer__credit">Designed & vibe coded by Ashu Kaur &bull; 2026</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

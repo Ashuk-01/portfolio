@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleverX AI Redesign — Ashu Kaur</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ============================================
+       CASE STUDY — page-specific styles
+       ============================================ */
+    .cs-main {
+      position: relative;
+      z-index: 5;
+    }
+
+    .cs-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* — Hero — */
+    .cs-hero {
+      padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem);
+    }
+
+    .cs-tag {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .cs-title {
+      font-family: var(--font);
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .cs-intro {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .cs-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 48px;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(32, 32, 31, 0.08);
+    }
+
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cs-meta-label {
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .cs-meta-value {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    /* — Sections — */
+    .cs-section {
+      padding: clamp(3rem, 6vh, 5rem) 0;
+    }
+
+    .cs-section + .cs-section {
+      border-top: 1px solid rgba(32, 32, 31, 0.08);
+    }
+
+    .cs-label {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cs-heading {
+      font-family: var(--font);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .cs-body p {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .cs-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .cs-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* — Lists — */
+    .cs-list {
+      list-style: none;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cs-list li {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-light);
+      line-height: 1.75;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .cs-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-light);
+    }
+
+    .cs-list li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* — Screenshot gallery — */
+    .cs-gallery {
+      margin-top: 32px;
+    }
+
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .cs-grid + .cs-grid {
+      margin-top: 1rem;
+    }
+
+    .cs-screen {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(32, 32, 31, 0.08);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* — Workflow — */
+    .cs-workflow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0;
+      align-items: center;
+    }
+
+    .cs-workflow-step {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      padding: 8px 16px;
+      border: 1px solid rgba(32, 32, 31, 0.12);
+      border-radius: 6px;
+      background: rgba(32, 32, 31, 0.04);
+    }
+
+    .cs-workflow-arrow {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* — Sub-label — */
+    .cs-sub-label {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 40px;
+      margin-bottom: 16px;
+    }
+
+    /* — Back link — */
+    .cs-back {
+      padding: clamp(4rem, 8vh, 6rem) 0;
+      text-align: center;
+      border-top: 1px solid rgba(32, 32, 31, 0.08);
+    }
+
+    .cs-back a {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-light);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .cs-back a:hover {
+      color: var(--text);
+    }
+
+    /* — Nav back link — */
+    .nav-back {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-back:hover {
+      opacity: 0.5;
+    }
+
+    .nav-back svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    /* — Responsive — */
+    @media (max-width: 767px) {
+      .cs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-workflow {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cs-workflow-arrow {
+        transform: rotate(90deg);
+      }
+
+      .cs-meta {
+        gap: 16px 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="nav">
+    <a href="option-a.html#work" class="nav-back">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
+      Back to Work
+    </a>
+    <div class="nav-links">
+      <a href="option-a.html#work">Work</a>
+      <a href="option-a.html#about">About</a>
+      <a href="option-a.html#experience">Experience</a>
+      <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="option-a.html#contact">Contact Me</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <main class="cs-main">
+
+    <!-- ===== PROJECT HERO ===== -->
+    <section class="cs-hero">
+      <div class="cs-wrap">
+        <p class="cs-tag" data-reveal>AI + Design &middot; Claude Code &middot; 2025–2026</p>
+        <h1 class="cs-title" data-reveal>From UX Audit to Production — Redesigning CleverX's Core Flows</h1>
+        <p class="cs-intro" data-reveal>CleverX is an AI-powered user research platform that helps companies design, recruit, conduct, and analyze research studies across B2B and B2C audiences. I've been a UI/UX Designer here for over 5 years.</p>
+        <p class="cs-intro" data-reveal>The industry shifted, and so did we. AI became a core part of how we build — not just as a product feature, but as the main tool in our workflow. We started shipping faster than ever, redesigning and building directly with AI and pushing code through Git.</p>
+        <p class="cs-intro" data-reveal>But speed came with tradeoffs. As we shipped quickly, design inconsistencies crept in — scattered buttons, old components mixed with new ones, broken visual hierarchy, and UX dead ends where users were left without clear next steps. Clients started flagging broken flows. The product was moving fast, but the experience wasn't keeping up.</p>
+        <p class="cs-intro" data-reveal>That's when we started auditing the product systematically — flow by flow — and fix what was broken. This case study covers two pieces of that work: a redesign of the participant-side experience and fixes across the researcher study dashboard.</p>
+        <div class="cs-meta" data-reveal>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Role</span>
+            <span class="cs-meta-value">UI/UX Designer & Design Engineer</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Tools</span>
+            <span class="cs-meta-value">Claude Code, Git, Figma</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">Year</span>
+            <span class="cs-meta-value">2025–2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== THE AUDIT ===== -->
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Methodology</p>
+        <h2 class="cs-heading" data-reveal>The Audit</h2>
+        <div class="cs-body" data-reveal>
+          <p>I audit CleverX flow by flow — walking through each experience as a user, noting every friction point, dead end, and inconsistency. A full flow audit typically takes a day.</p>
+          <p>So far I've audited the AI study creation tool, study details pages, participant dashboard, My Studies cards, Browse Studies cards, team management, and settings. This is ongoing work — every audit surfaces new issues to fix.</p>
+          <p>For each audit, I use a combination of approaches:</p>
+          <ul class="cs-list">
+            <li><strong>Heuristic evaluation</strong> — Checking screens against usability principles: visibility of system status, consistency, error prevention, hierarchy. This is where most labelling, navigation, and layout issues surface</li>
+            <li><strong>Usability walkthrough</strong> — Going through every step of a flow as a real user would, noting dead ends, missing information, and moments of confusion</li>
+            <li><strong>Accessibility check</strong> — Reviewing contrast, readability, keyboard navigation, and screen reader considerations</li>
+            <li><strong>Competitive analysis</strong> — Benchmarking against other platforms to see how they handle similar screens and information patterns</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PART 1: PARTICIPANT SIDE ===== -->
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Part 1</p>
+        <h2 class="cs-heading" data-reveal>Participant Side Redesign</h2>
+
+        <p class="cs-sub-label" data-reveal>The Problems</p>
+        <div class="cs-body" data-reveal>
+          <p>After auditing the participant flows, the issues were clear — and some of them were things clients had already raised:</p>
+          <ul class="cs-list">
+            <li><strong>Dead ends after completing screeners.</strong> Participants would finish a screener and land on a page with no information about what happens next. No next steps, no timeline, no indication of whether they'd been accepted or when to expect payment. It was a dead end that likely drove support questions</li>
+            <li><strong>Project cards with no useful context.</strong> Participants had no quick way to know a project's state, urgency, or expiry without clicking into each one. Key details were buried while less relevant content took up visual space</li>
+            <li><strong>No visual hierarchy across study states.</strong> Detail pages for every state — action required, paid, awaiting incentive, expired — had center-aligned content, no clear scanning pattern, and missing navigation</li>
+            <li><strong>Inconsistent components.</strong> A mix of old and new design system components made the experience feel like different products stitched together</li>
+          </ul>
+        </div>
+
+        <p class="cs-sub-label" data-reveal>What I Shipped</p>
+        <div class="cs-body" data-reveal>
+          <ul class="cs-list">
+            <li><strong>Fixed the dead ends.</strong> Every study state now shows relevant information — what's happening, what to expect next, and when. Participants should never complete a screener and wonder what happens after</li>
+            <li><strong>Redesigned project cards.</strong> Studied how competitor platforms handle similar cards, then restructured ours — surfacing details participants actually need and adding status badges for quick scanning</li>
+            <li><strong>Rebuilt all study detail pages.</strong> Fixed the center-aligned layout, established proper visual hierarchy, added navigation, and filled in missing context for every state</li>
+            <li><strong>Consistency pass.</strong> Swapped all old components for current design system components across every participant-facing page</li>
+            <li><strong>Responsive from the start.</strong> Every redesigned page was built responsive from day one, not retrofitted after</li>
+          </ul>
+        </div>
+
+        <div class="cs-gallery" data-reveal>
+          <div class="cs-grid">
+            <div class="cs-screen">
+              <img src="images/participant-accepted.png" alt="Participant study detail — accepted state" loading="lazy">
+            </div>
+            <div class="cs-screen">
+              <img src="images/participant-under-review.png" alt="Participant study detail — under review" loading="lazy">
+            </div>
+          </div>
+          <div class="cs-grid">
+            <div class="cs-screen">
+              <img src="images/participant-approved.png" alt="Participant study detail — approved" loading="lazy">
+            </div>
+            <div class="cs-screen">
+              <img src="images/participant-paid.png" alt="Participant study detail — paid" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PART 2: RESEARCHER DASHBOARD ===== -->
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Part 2</p>
+        <h2 class="cs-heading" data-reveal>Researcher Study Dashboard</h2>
+
+        <p class="cs-sub-label" data-reveal>The Problems</p>
+        <div class="cs-body" data-reveal>
+          <p>The researcher side had issues that directly slowed down their core workflow — verifying participants and managing studies:</p>
+          <ul class="cs-list">
+            <li><strong>Participant verification was painful.</strong> The drawer was missing critical information — skills, work experience, industries, and qualification details were either absent or unstructured. Researchers had to leave CleverX entirely, click through to a participant's LinkedIn profile, review them there, then come back to approve. This back-and-forth added unnecessary friction to every single approval</li>
+            <li><strong>Overview page was noisy.</strong> Repeated information and duplicate buttons created confusion instead of clarity</li>
+            <li><strong>Study controls were unclear.</strong> Pause buttons didn't explain what they controlled — researchers couldn't tell whether they were pausing the BYOA audience, the CleverX panel, or both. Button text was truncated and hidden, making it worse</li>
+            <li><strong>Stats without navigation.</strong> Key numbers showed counts but with no way to click through and see the actual participants behind them</li>
+            <li>Broken responsive layouts and legacy components scattered throughout</li>
+          </ul>
+        </div>
+
+        <p class="cs-sub-label" data-reveal>What I Shipped</p>
+        <div class="cs-body" data-reveal>
+          <ul class="cs-list">
+            <li><strong>Redesigned the participant drawer.</strong> Added skills, work experience, and industries directly into the drawer so researchers can evaluate a participant without leaving CleverX. Added qualification checks next to each screener question for at-a-glance assessment. What used to require leaving the platform and checking LinkedIn now happens in a single panel</li>
+            <li><strong>Cleaned up overview and settings.</strong> Removed repeated information, made key stats clickable for deeper navigation, and added separate clearly-labelled pause buttons for BYOA audience and CleverX panel</li>
+            <li><strong>Redesigned screener pages.</strong> Removed visual noise and aligned styling with the current design language</li>
+            <li><strong>Fixed responsive tables.</strong> Made data tables scannable on smaller screens without horizontal scrolling or hidden columns</li>
+            <li><strong>Component swap.</strong> Replaced all legacy components with the current design system library across every page</li>
+          </ul>
+        </div>
+
+        <div class="cs-gallery" data-reveal>
+          <div class="cs-grid">
+            <div class="cs-screen">
+              <img src="images/Screenshot-2026-03-10-at-2.50.29PM.png" alt="Participants list with status filters and search" loading="lazy">
+            </div>
+            <div class="cs-screen">
+              <img src="images/Screenshot-2026-03-10-at-3.43.56PM.png" alt="Study overview dashboard with funnel and details" loading="lazy">
+            </div>
+          </div>
+          <div class="cs-grid">
+            <div class="cs-screen">
+              <img src="images/Screenshot-2026-03-10-at-1.41.00PM.png" alt="Participant screener response with qualification score" loading="lazy">
+            </div>
+            <div class="cs-screen">
+              <img src="images/Screenshot-2026-03-10-at-1.41.22PM.png" alt="Participant profile with skills and experience" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW I WORK NOW ===== -->
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Process</p>
+        <h2 class="cs-heading" data-reveal>How I Work Now</h2>
+        <div class="cs-body" data-reveal>
+          <p>This project marked a real shift in how I work. My workflow used to be: design in Figma, hand off to developers, file bugs, wait for fixes. Now it looks like this:</p>
+        </div>
+        <div class="cs-workflow" data-reveal>
+          <span class="cs-workflow-step">Plan in Claude</span>
+          <span class="cs-workflow-arrow">&rarr;</span>
+          <span class="cs-workflow-step">Build on local</span>
+          <span class="cs-workflow-arrow">&rarr;</span>
+          <span class="cs-workflow-step">Audit and critique</span>
+          <span class="cs-workflow-arrow">&rarr;</span>
+          <span class="cs-workflow-step">Push to staging</span>
+          <span class="cs-workflow-arrow">&rarr;</span>
+          <span class="cs-workflow-step">Dev team reviews & ships</span>
+        </div>
+        <div class="cs-body" data-reveal>
+          <p>When I spot a bug or a UX issue, I fix it myself instead of filing a ticket and waiting days for it to get picked up. Claude Code handles the translation from design intent to working frontend code — I describe what needs to change, review the output, and iterate until it matches.</p>
+          <p>This workflow has fundamentally changed our speed. Design and UX fixes that used to sit in a dev queue for days now get resolved the same day I find them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== IMPACT ===== -->
+    <section class="cs-section">
+      <div class="cs-wrap">
+        <p class="cs-label" data-reveal>Impact</p>
+        <h2 class="cs-heading" data-reveal>What Changed</h2>
+        <div class="cs-body" data-reveal>
+          <ul class="cs-list">
+            <li>Eliminated dead ends across participant flows — every study state now provides clear next steps, payment timelines, and status context</li>
+            <li>Removed the need for researchers to leave CleverX to verify participants — profile review now happens entirely within the platform</li>
+            <li>Made the researcher dashboard scannable by surfacing key information, removing noise, and adding navigable stats</li>
+            <li>Unified the visual language by replacing legacy components across every page touched</li>
+            <li>Reduced the turnaround on design and UX fixes from days (waiting in dev queue) to same-day — by shipping fixes directly through Claude Code</li>
+            <li>Ongoing audits continue to surface and resolve issues across the platform flow by flow</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BACK TO WORK ===== -->
+    <section class="cs-back">
+      <div class="cs-wrap">
+        <a href="option-a.html#work">&larr; Back to all work</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="footer__marquee">
+      <div class="footer__marquee-track">
+        <span>Let's work together</span>
+        <span>Let's work together</span>
+        <span>Let's work together</span>
+        <span>Let's work together</span>
+        <span>Let's work together</span>
+        <span>Let's work together</span>
+      </div>
+    </div>
+
+    <div class="footer__center" data-reveal>
+      <a href="mailto:ashukaur01@gmail.com" class="footer__email">ashukaur01@gmail.com</a>
+
+      <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X</a>
+        <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
+
+      <p class="footer__note">Currently open to full-time roles and interesting freelance projects.</p>
+    </div>
+
+    <div class="footer__bottom" data-reveal>
+      <span class="footer__credit">Designed & vibe coded by Ashu Kaur &bull; 2026</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

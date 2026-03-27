@@ -269,7 +269,7 @@
   // Build panels in true DOM order by walking children of the stack
   // Plus the hero at the start
   const panels = [hero];
-  const stackPanels = stack.querySelectorAll('.work-klear__slide, .howiai, .about, .exp, .footer');
+  const stackPanels = stack.querySelectorAll('.work-klear__slide, .howiai, .about, .illustrations, .exp, .footer');
   stackPanels.forEach((el) => panels.push(el));
 
   // Assign progressive z-indexes so later panels always cover earlier ones

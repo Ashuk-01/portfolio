@@ -135,43 +135,358 @@
 
 
 /* ============================================
-   SCROLL REVEAL — IntersectionObserver
+   LENIS — Smooth scroll
    ============================================ */
 
 (function () {
   'use strict';
 
-  const reveals = document.querySelectorAll('[data-reveal]');
-  if (!reveals.length) return;
+  if (typeof Lenis === 'undefined') return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('revealed');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.05,
-    rootMargin: '0px 0px 0px 0px'
+  window.lenis = new Lenis({
+    duration: 2.0,
+    easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+    smoothWheel: true
   });
 
-  reveals.forEach((el) => {
-    // Klear/editorial items handle their own internal stagger via CSS
-    const selfAnimated = el.classList.contains('work-editorial__item') ||
-                         el.classList.contains('work-klear__item');
-    if (!selfAnimated) {
-      const siblings = el.parentElement.querySelectorAll(
-        '[data-reveal]:not(.work-editorial__item):not(.work-klear__item)'
-      );
-      const index = Array.from(siblings).indexOf(el);
-      if (index > 0) {
-        el.style.setProperty('--delay', `${index * 0.12}s`);
+  const lenis = window.lenis;
+
+  // Connect Lenis to GSAP ScrollTrigger
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+
+})();
+
+
+/* ============================================
+   GSAP SCROLL ANIMATIONS
+   ============================================ */
+
+(function () {
+  'use strict';
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ----- Section headings: slide up from below with scrub -----
+  document.querySelectorAll('.work-klear__heading').forEach(function (heading) {
+    gsap.fromTo(heading,
+      { y: 80, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: heading.closest('.work-klear__slide--header'),
+          start: 'top 85%',
+          end: 'top 40%',
+          scrub: 0.6
+        }
       }
+    );
+  });
+
+  // ----- Work slides: text slides in from left, image scales up -----
+  document.querySelectorAll('.work-klear__slide:not(.work-klear__slide--header)').forEach(function (slide) {
+    var text = slide.querySelector('.work-klear__text');
+    var image = slide.querySelector('.work-klear__image');
+
+    if (text) {
+      gsap.fromTo(text,
+        { x: -60, opacity: 0 },
+        {
+          x: 0, opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: slide,
+            start: 'top 80%',
+            end: 'top 30%',
+            scrub: 0.6
+          }
+        }
+      );
     }
 
-    observer.observe(el);
+    if (image) {
+      // Scale up + fade in tied to scroll
+      gsap.fromTo(image,
+        { scale: 0.88, opacity: 0, borderRadius: '24px' },
+        {
+          scale: 1, opacity: 1, borderRadius: '16px',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: slide,
+            start: 'top 80%',
+            end: 'top 20%',
+            scrub: 0.6
+          }
+        }
+      );
+
+      // Continuous parallax: image moves slower than scroll
+      gsap.fromTo(image,
+        { yPercent: 8 },
+        {
+          yPercent: -8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: slide,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    }
   });
+
+  // ----- About section: word-by-word opacity + photo tilt -----
+  var aboutText = document.querySelector('.about__text');
+  var aboutPhoto = document.querySelector('.about__photo');
+
+  // Split text into words and wrap each in a span
+  if (aboutText) {
+    var paragraphs = aboutText.querySelectorAll('p');
+    var allWords = [];
+
+    paragraphs.forEach(function (p) {
+      var text = p.innerHTML;
+      // Wrap each word in a span, preserving HTML tags like <em>
+      var wrapped = text.replace(/(\S+)/g, '<span class="about-word-reveal">$1</span>');
+      p.innerHTML = wrapped;
+      p.querySelectorAll('.about-word-reveal').forEach(function (w) {
+        allWords.push(w);
+      });
+    });
+
+    // Set initial state
+    gsap.set(allWords, { opacity: 0.15 });
+
+    // Animate words to full opacity tied to scroll
+    gsap.to(allWords, {
+      opacity: 1,
+      stagger: 0.02,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.about',
+        start: 'top 60%',
+        end: 'bottom 40%',
+        scrub: 0.3
+      }
+    });
+  }
+
+  // Photo: tilt + scale + parallax
+  if (aboutPhoto) {
+    var photoImg = aboutPhoto.querySelector('img');
+
+    // Initial reveal: scale up + rotate in
+    gsap.fromTo(aboutPhoto,
+      { opacity: 0, scale: 0.85, rotate: 3, transformOrigin: 'center center' },
+      {
+        opacity: 1, scale: 1, rotate: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.about',
+          start: 'top 70%',
+          end: 'top 20%',
+          scrub: 0.6
+        }
+      }
+    );
+
+    // Continuous parallax on photo — moves slower than scroll
+    gsap.fromTo(aboutPhoto,
+      { yPercent: 10 },
+      {
+        yPercent: -10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.about',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        }
+      }
+    );
+  }
+
+  // ----- Illustrations: staggered scale-up on each item -----
+  var illustrationItems = document.querySelectorAll('.illustrations__item');
+  if (illustrationItems.length) {
+    gsap.fromTo(illustrationItems,
+      { scale: 0.8, opacity: 0, y: 40 },
+      {
+        scale: 1, opacity: 1, y: 0,
+        ease: 'none',
+        stagger: 0.08,
+        scrollTrigger: {
+          trigger: '.illustrations__grid',
+          start: 'top 80%',
+          end: 'top 30%',
+          scrub: 0.6
+        }
+      }
+    );
+  }
+
+  // ----- Experience rows: draw-in border + staggered columns -----
+  var expRows = document.querySelectorAll('.exp__row');
+  if (expRows.length) {
+    expRows.forEach(function (row) {
+      var year = row.querySelector('.exp__year');
+      var role = row.querySelector('.exp__role');
+      var company = row.querySelector('.exp__company');
+      var details = row.querySelector('.exp__details');
+
+      // Set initial states
+      gsap.set([year, role, company], { opacity: 0, y: 20 });
+      if (details) gsap.set(details, { opacity: 0, y: 20 });
+
+      // Build timeline
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: row,
+          start: 'top 85%',
+          end: 'top 25%',
+          scrub: 0.6
+        }
+      });
+
+      // Stagger columns: date → role → company → details
+      tl.to(year, { opacity: 1, y: 0, duration: 0.25 }, 0);
+      tl.to(role, { opacity: 1, y: 0, duration: 0.25 }, 0.1);
+      tl.to(company, { opacity: 1, y: 0, duration: 0.25 }, 0.2);
+      if (details) tl.to(details, { opacity: 1, y: 0, duration: 0.3 }, 0.3);
+    });
+  }
+
+  // ----- Footer: marquee + content rise up -----
+  var footerCenter = document.querySelector('.footer__center');
+  var footerBottom = document.querySelector('.footer__bottom');
+
+  if (footerCenter) {
+    gsap.fromTo(footerCenter,
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.footer',
+          start: 'top 70%',
+          end: 'top 30%',
+          scrub: 0.6
+        }
+      }
+    );
+  }
+
+  if (footerBottom) {
+    gsap.fromTo(footerBottom,
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.footer',
+          start: 'top 60%',
+          end: 'top 20%',
+          scrub: 0.6
+        }
+      }
+    );
+  }
+
+  // ----- Case study pages -----
+  var csHero = document.querySelector('.cs-hero');
+  if (csHero) {
+
+    // Hero elements: staggered fade up
+    var heroEls = csHero.querySelectorAll('[data-reveal]');
+    gsap.fromTo(heroEls,
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out'
+      }
+    );
+
+    // Case study sections: text slides in, images scale up
+    document.querySelectorAll('.cs-section').forEach(function (section) {
+      var labels = section.querySelectorAll('.cs-label');
+      var headings = section.querySelectorAll('.cs-heading');
+      var bodies = section.querySelectorAll('.cs-body, .cs-list');
+      var galleries = section.querySelectorAll('.cs-gallery');
+
+      // Text content: slide up with scrub
+      var textEls = [];
+      labels.forEach(function (el) { textEls.push(el); });
+      headings.forEach(function (el) { textEls.push(el); });
+      bodies.forEach(function (el) { textEls.push(el); });
+
+      if (textEls.length) {
+        gsap.fromTo(textEls,
+          { y: 30, opacity: 0 },
+          {
+            y: 0, opacity: 1,
+            stagger: 0.06,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              end: 'top 30%',
+              scrub: 0.6
+            }
+          }
+        );
+      }
+
+      // Galleries: scale up with parallax
+      galleries.forEach(function (gallery) {
+        var screens = gallery.querySelectorAll('.cs-screen');
+
+        if (screens.length) {
+          gsap.fromTo(screens,
+            { scale: 0.9, opacity: 0 },
+            {
+              scale: 1, opacity: 1,
+              stagger: 0.05,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: gallery,
+                start: 'top 85%',
+                end: 'top 25%',
+                scrub: 0.6
+              }
+            }
+          );
+        }
+
+        // Parallax on the gallery container
+        gsap.fromTo(gallery,
+          { yPercent: 5 },
+          {
+            yPercent: -5,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: gallery,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          }
+        );
+      });
+    });
+  }
 
 })();
 
@@ -252,67 +567,5 @@
 })();
 
 
-/* ============================================
-   STICKY SLIDES — Scale down + fade on cover
-   (disabled below 1280px)
-   ============================================ */
-
-(function () {
-  'use strict';
-
-  if (window.innerWidth < 1280) return;
-
-  const hero = document.querySelector('.hero');
-  const stack = document.querySelector('.work-klear__stack');
-  if (!hero || !stack) return;
-
-  // Build panels in true DOM order by walking children of the stack
-  // Plus the hero at the start
-  const panels = [hero];
-  const stackPanels = stack.querySelectorAll('.work-klear__slide, .howiai, .about, .illustrations, .exp, .footer');
-  stackPanels.forEach((el) => panels.push(el));
-
-  // Assign progressive z-indexes so later panels always cover earlier ones
-  panels.forEach((panel, i) => {
-    panel.style.zIndex = i + 1;
-  });
-
-  function onScroll() {
-    const viewH = window.innerHeight;
-
-    for (let i = 0; i < panels.length - 1; i++) {
-      const current = panels[i];
-      const next = panels[i + 1];
-
-      const nextRect = next.getBoundingClientRect();
-
-      // progress: 0 = next slide below viewport, 1 = fully covers current
-      const progress = Math.min(1, Math.max(0, 1 - (nextRect.top / viewH)));
-
-      // Scale container: 1 → 0.9
-      const scale = 1 - (progress * 0.1);
-      // Border radius: 0 → 24px
-      const radius = progress * 24;
-      // Dark overlay: 0 → 0.5
-      const overlay = progress * 0.5;
-
-      current.style.transform = `scale(${scale})`;
-      current.style.borderRadius = radius + 'px';
-
-      // Set overlay opacity via the ::after pseudo-element
-      current.style.setProperty('--overlay', overlay);
-    }
-
-    // Reset last panel
-    const last = panels[panels.length - 1];
-    last.style.transform = 'scale(1)';
-    last.style.borderRadius = '0px';
-    last.style.setProperty('--overlay', 0);
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-})();
 
 

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gesture Dueling</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Title Screen -->
+  <div id="screen-title" class="screen active">
+    <div class="title-content">
+      <div class="title-sparks"></div>
+      <h1 class="game-title">GESTURE<br>DUELING</h1>
+      <p class="subtitle">Cast spells with your hands. Defeat the wizard.</p>
+      <button class="pixel-btn" id="btn-start">START GAME</button>
+      <button class="pixel-btn pixel-btn-secondary" id="btn-howto">HOW TO PLAY</button>
+    </div>
+  </div>
+
+  <!-- How To Play Screen -->
+  <div id="screen-howto" class="screen">
+    <div class="howto-content">
+      <h2>HOW TO PLAY</h2>
+      <div class="spell-guide">
+        <div class="spell-item">
+          <span class="spell-gesture">&#9994;</span>
+          <span class="spell-name fire">ROCK</span>
+          <span class="spell-desc">Closed fist &bull; Beats Scissors</span>
+        </div>
+        <div class="spell-item">
+          <span class="spell-gesture">&#9995;</span>
+          <span class="spell-name shield">PAPER</span>
+          <span class="spell-desc">Open palm &bull; Beats Rock</span>
+        </div>
+        <div class="spell-item">
+          <span class="spell-gesture">&#9996;</span>
+          <span class="spell-name lightning">SCISSORS</span>
+          <span class="spell-desc">Peace sign &bull; Beats Paper</span>
+        </div>
+        <div class="spell-item">
+          <span class="spell-gesture">&#128077;</span>
+          <span class="spell-name heal">HEAL</span>
+          <span class="spell-desc">Thumbs up &bull; Risky! +15 HP</span>
+        </div>
+      </div>
+      <div class="howto-rules">
+        <p>Rock Paper Scissors — you know the rules!</p>
+        <p>Hold gesture for 0.5s to lock in</p>
+        <p>First to 0 HP loses</p>
+        <p>Healing while attacked = extra damage!</p>
+      </div>
+      <button class="pixel-btn" id="btn-howto-back">GOT IT</button>
+    </div>
+  </div>
+
+  <!-- Calibration Screen -->
+  <div id="screen-calibrate" class="screen">
+    <div class="calibrate-content">
+      <h2>SHOW YOUR HAND</h2>
+      <p class="calibrate-sub">Hold your hand up to the camera</p>
+      <div class="calibrate-video-wrap">
+        <video id="calibrate-video" autoplay playsinline></video>
+        <canvas id="calibrate-canvas"></canvas>
+        <div id="calibrate-status" class="calibrate-status">Waiting for hand...</div>
+      </div>
+      <div id="debug-info" class="debug-info"></div>
+      <button class="pixel-btn" id="btn-fight" disabled>READY TO FIGHT</button>
+    </div>
+  </div>
+
+  <!-- Battle Screen -->
+  <div id="screen-battle" class="screen">
+    <div class="battle-hud">
+      <!-- Wizard Side (Left) -->
+      <div class="fighter-info wizard-info">
+        <span class="fighter-name">WIZARD</span>
+        <div class="health-bar-wrap">
+          <div class="health-bar" id="wizard-health-bar">
+            <div class="health-fill" id="wizard-health-fill"></div>
+          </div>
+          <span class="health-text" id="wizard-health-text">100 HP</span>
+        </div>
+      </div>
+      <!-- Player Side (Right) -->
+      <div class="fighter-info player-info">
+        <span class="fighter-name">YOU</span>
+        <div class="health-bar-wrap">
+          <div class="health-bar" id="player-health-bar">
+            <div class="health-fill player-fill" id="player-health-fill"></div>
+          </div>
+          <span class="health-text" id="player-health-text">100 HP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="battle-arena">
+      <!-- Wizard (Left) -->
+      <div class="fighter-side wizard-side">
+        <canvas id="wizard-canvas" class="wizard-canvas"></canvas>
+        <div class="spell-indicator" id="wizard-spell-indicator">???</div>
+      </div>
+
+      <!-- Center -->
+      <div class="battle-center">
+        <div class="round-counter" id="round-counter">ROUND 1</div>
+        <div class="countdown" id="countdown"></div>
+        <div class="clash-result" id="clash-result"></div>
+      </div>
+
+      <!-- Player (Right) -->
+      <div class="fighter-side player-side">
+        <div class="webcam-wrap">
+          <video id="battle-video" autoplay playsinline></video>
+          <canvas id="battle-canvas"></canvas>
+        </div>
+        <div class="spell-indicator player-spell" id="player-spell-indicator">???</div>
+      </div>
+    </div>
+
+    <div class="battle-footer">
+      <div class="spell-icons-bar">
+        <div class="spell-icon-card">
+          <span class="spell-icon-emoji">&#9994;</span>
+          <span class="spell-icon-label">Rock</span>
+        </div>
+        <div class="spell-icon-card">
+          <span class="spell-icon-emoji">&#9995;</span>
+          <span class="spell-icon-label">Paper</span>
+        </div>
+        <div class="spell-icon-card">
+          <span class="spell-icon-emoji">&#9996;</span>
+          <span class="spell-icon-label">Scissors</span>
+        </div>
+        <div class="spell-icon-card heal-card">
+          <span class="spell-icon-emoji">&#128077;</span>
+          <span class="spell-icon-label">Heal</span>
+        </div>
+      </div>
+      <button class="pixel-btn pixel-btn-secondary pause-btn" id="btn-pause">PAUSE</button>
+    </div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="screen-gameover" class="screen">
+    <div class="gameover-content">
+      <h2 id="gameover-title">YOU WIN!</h2>
+      <p id="gameover-subtitle"></p>
+      <div class="gameover-stats" id="gameover-stats"></div>
+      <button class="pixel-btn" id="btn-playagain">PLAY AGAIN</button>
+      <button class="pixel-btn pixel-btn-secondary" id="btn-menu">MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- Spell Effect Overlay -->
+  <canvas id="effects-canvas" class="effects-canvas"></canvas>
+
+  <script src="js/sound.js"></script>
+  <script src="js/handTracking.js"></script>
+  <script src="js/gestureRecognition.js"></script>
+  <script src="js/gameEngine.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

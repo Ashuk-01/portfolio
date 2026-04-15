@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#F6F4F0">
+  <title>DayLog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TODAY VIEW -->
+  <main class="app" id="view-today">
+
+    <!-- Header -->
+    <header class="header">
+      <button class="header__date" id="date-toggle">Wednesday, Apr 9</button>
+      <div class="header__weather">
+        <span class="header__weather-temp">22°</span>
+        <svg class="header__weather-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="3.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M8 2.5V1M8 15v-1.5M13.5 8H15M1 8h1.5M12 4L13.2 2.8M2.8 13.2L4 12M12 12l1.2 1.2M2.8 2.8L4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="header__weather-desc">Sunny</span>
+      </div>
+    </header>
+
+    <!-- MIND Section -->
+    <section class="section section--mood" data-section="mood">
+      <span class="section__label">MIND</span>
+      <div class="mood">
+        <div class="mood__pills">
+          <button class="mood__pill" data-mood="great" data-color="#6B8F71">Great</button>
+          <button class="mood__pill" data-mood="good" data-color="#8BAF91">Good</button>
+          <button class="mood__pill" data-mood="ok" data-color="#B8B4AE">OK</button>
+          <button class="mood__pill" data-mood="low" data-color="#C4907C">Low</button>
+          <button class="mood__pill" data-mood="bad" data-color="#B07264">Bad</button>
+        </div>
+        <div class="mood__note-wrap" id="mood-note-wrap">
+          <input type="text" class="mood__note" placeholder="Add a note..." id="mood-note">
+        </div>
+      </div>
+    </section>
+
+    <!-- MEALS Section -->
+    <section class="section section--meals" data-section="meals">
+      <span class="section__label">MEALS</span>
+      <div class="meals">
+        <div class="meal-row" data-meal="breakfast">
+          <span class="meal-row__label">Breakfast</span>
+          <span class="meal-row__value" data-placeholder="—">—</span>
+          <input type="text" class="meal-row__input" placeholder="What did you eat?">
+        </div>
+        <div class="meal-row" data-meal="lunch">
+          <span class="meal-row__label">Lunch</span>
+          <span class="meal-row__value" data-placeholder="—">—</span>
+          <input type="text" class="meal-row__input" placeholder="What did you eat?">
+        </div>
+        <div class="meal-row" data-meal="dinner">
+          <span class="meal-row__label">Dinner</span>
+          <span class="meal-row__value" data-placeholder="—">—</span>
+          <input type="text" class="meal-row__input" placeholder="What did you eat?">
+        </div>
+        <div class="meal-row" data-meal="snacks">
+          <span class="meal-row__label">Snacks</span>
+          <span class="meal-row__value" data-placeholder="—">—</span>
+          <input type="text" class="meal-row__input" placeholder="What did you have?">
+        </div>
+        <div class="meal-row" data-meal="fruits">
+          <span class="meal-row__label">Fruits</span>
+          <span class="meal-row__value" data-placeholder="—">—</span>
+          <input type="text" class="meal-row__input" placeholder="What did you have?">
+        </div>
+      </div>
+    </section>
+
+    <!-- INTAKE Section -->
+    <section class="section section--intake" data-section="intake">
+      <span class="section__label">INTAKE</span>
+      <div class="intake">
+        <div class="counter" data-counter="water">
+          <span class="counter__label">Water</span>
+          <div class="counter__controls">
+            <button class="counter__btn counter__btn--minus" aria-label="Decrease water">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <span class="counter__value" id="water-count">0</span>
+            <button class="counter__btn counter__btn--plus" aria-label="Increase water">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="counter" data-counter="tea">
+          <span class="counter__label">Tea</span>
+          <div class="counter__controls">
+            <button class="counter__btn counter__btn--minus" aria-label="Decrease tea">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+            <span class="counter__value" id="tea-count">0</span>
+            <button class="counter__btn counter__btn--plus" aria-label="Increase tea">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BODY Section -->
+    <section class="section section--body" data-section="body">
+      <span class="section__label">BODY</span>
+      <div class="body-section">
+
+        <!-- Sleep -->
+        <div class="sleep">
+          <span class="sleep__label">Sleep</span>
+          <div class="sleep__times">
+            <div class="sleep__time-group">
+              <input type="time" class="sleep__input" id="sleep-bedtime" value="">
+              <span class="sleep__time-label">Bedtime</span>
+            </div>
+            <span class="sleep__arrow">→</span>
+            <div class="sleep__time-group">
+              <input type="time" class="sleep__input" id="sleep-waketime" value="">
+              <span class="sleep__time-label">Wake up</span>
+            </div>
+          </div>
+          <span class="sleep__duration" id="sleep-duration"></span>
+        </div>
+
+        <!-- Gym -->
+        <div class="gym">
+          <div class="gym__header">
+            <span class="gym__label">Gym</span>
+            <button class="gym__toggle" id="gym-toggle" aria-label="Toggle gym">
+              <span class="gym__toggle-track">
+                <span class="gym__toggle-thumb"></span>
+              </span>
+            </button>
+          </div>
+          <div class="gym__note-wrap" id="gym-note-wrap">
+            <input type="text" class="gym__note" placeholder="What did you do?" id="gym-note">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Reassurance -->
+    <p class="reassurance">Log what feels right. Everything here is optional.</p>
+
+  </main>
+
+  <!-- HISTORY VIEW -->
+  <main class="app app--history" id="view-history" style="display: none;">
+
+    <header class="header">
+      <button class="header__date" id="history-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-right: 6px;">
+          <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Today
+      </button>
+    </header>
+
+    <div class="calendar">
+      <div class="calendar__nav">
+        <button class="calendar__nav-btn" id="cal-prev" aria-label="Previous month">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="calendar__month" id="cal-month">April 2026</span>
+        <button class="calendar__nav-btn" id="cal-next" aria-label="Next month">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="calendar__weekdays">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+
+      <div class="calendar__grid" id="cal-grid">
+        <!-- Generated by JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

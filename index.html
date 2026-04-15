@@ -11,14 +11,14 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ashu Kaur — UI/UX Designer & Design Engineer</title>
-  <meta name="description" content="UI/UX Designer & Design Engineer — crafting digital experiences that feel right.">
-  <meta property="og:title" content="Ashu Kaur — UI/UX Designer & Design Engineer">
+  <title>Ashu Kaur — Lead UI/UX Designer & Design Engineer</title>
+  <meta name="description" content="Lead UI/UX Designer & Design Engineer — crafting digital experiences that feel right.">
+  <meta property="og:title" content="Ashu Kaur — Lead UI/UX Designer & Design Engineer">
   <meta property="og:description" content="Crafting digital experiences that feel right.">
   <meta property="og:image" content="https://ashukaur.netlify.app/og-image.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ashu Kaur — UI/UX Designer & Design Engineer">
+  <meta name="twitter:title" content="Ashu Kaur — Lead UI/UX Designer & Design Engineer">
   <meta name="twitter:description" content="Crafting digital experiences that feel right.">
   <meta name="twitter:image" content="https://ashukaur.netlify.app/og-image.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -32,9 +32,33 @@
   <!-- Custom cursor -->
   <div class="cursor" id="cursor"></div>
 
+
   <!-- ===== NAVIGATION ===== -->
   <nav class="nav">
-    <a href="#" class="nav-logo">AK</a>
+    <a href="#" class="nav-logo" aria-label="Ashu Kaur — home">
+      <svg class="nav-logo__mascot" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g class="nav-logo__face" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 60 80 C 55 45, 85 25, 105 25 C 130 25, 150 48, 148 80 C 146 110, 130 130, 105 132 C 80 132, 62 115, 60 80 Z"/>
+          <path d="M 146 85 C 155 83, 157 93, 152 98 C 148 101, 145 99, 145 95 Z"/>
+          <g class="nav-logo__pupils">
+            <g class="nav-logo__eye-wrap"><circle class="nav-logo__eye" cx="88" cy="75" r="4" fill="currentColor" stroke="none"/></g>
+            <g class="nav-logo__eye-wrap"><circle class="nav-logo__eye" cx="120" cy="75" r="4" fill="currentColor" stroke="none"/></g>
+          </g>
+          <path d="M 82 65 L 94 63" stroke-width="3.5"/>
+          <path d="M 114 63 L 126 65" stroke-width="3.5"/>
+          <path d="M 104 85 Q 102 95, 103 100 Q 104 103, 107 102" stroke-width="3.5"/>
+          <path d="M 92 112 Q 104 118, 116 112"/>
+          <path d="M 75 40 Q 80 28, 90 30" stroke-width="3.5"/>
+          <path d="M 92 32 Q 100 22, 110 28" stroke-width="3.5"/>
+          <path d="M 110 28 Q 120 22, 128 32" stroke-width="3.5"/>
+        </g>
+        <g class="nav-logo__sparkles" fill="currentColor">
+          <path class="nav-logo__spark nav-logo__spark--1" d="M 35 50 L 37 45 L 42 43 L 37 41 L 35 36 L 33 41 L 28 43 L 33 45 Z"/>
+          <path class="nav-logo__spark nav-logo__spark--2" d="M 170 65 L 172 60 L 177 58 L 172 56 L 170 51 L 168 56 L 163 58 L 168 60 Z"/>
+          <path class="nav-logo__spark nav-logo__spark--3" d="M 45 125 L 47 121 L 51 119 L 47 117 L 45 113 L 43 117 L 39 119 L 43 121 Z"/>
+        </g>
+      </svg>
+    </a>
     <div class="nav-links">
       <a href="#work">Work</a>
 
@@ -49,11 +73,14 @@
     </button>
   </nav>
 
+  <!-- Portfolio wrapper — radial clip-path reveals content from mascot center -->
+  <main class="portfolio-reveal">
+
   <!-- ===== HERO SECTION ===== -->
   <section class="hero">
     <div class="hero-row-wrapper">
       <div class="hero-row" id="heroRow">
-        <h1 class="hero-role">UI/UX Designer &<br class="hero-br"> Design Engineer</h1>
+        <h1 class="hero-role">Lead UI/UX Designer &<br class="hero-br"> Design Engineer</h1>
       </div>
     </div>
 
@@ -120,6 +147,78 @@
           </div>
         </div>
       </a>
+
+      <a href="algorithm-dashboard.html" class="work-klear__slide" id="work-algorithm">
+        <div class="work-klear__slide-inner">
+          <div class="work-klear__text" data-reveal>
+            <span class="work-klear__num">04</span>
+            <h3 class="work-klear__name">Escaping the Algorithm</h3>
+            <p class="work-klear__desc">A speculative transparency layer for Instagram, built around the user complaints Meta refuses to answer — diagnose or escape, never negotiate.</p>
+            <span class="work-klear__tag">Speculative Product Design</span>
+          </div>
+          <div class="work-klear__image work-klear__image--algorithm" data-reveal>
+            <img src="images/algorithm-dashboard/home.png" alt="Escaping the Algorithm — Home">
+            <img src="images/algorithm-dashboard/post-inspector.png" alt="Escaping the Algorithm — Post Inspector" class="work-klear__image-secondary">
+          </div>
+        </div>
+      </a>
+
+      <!-- ===== PLAYGROUND TITLE SLIDE ===== -->
+      <div class="work-klear__slide work-klear__slide--header" id="playground">
+        <div class="work-klear__header-inner">
+          <h2 class="work-klear__heading">Playground</h2>
+        </div>
+      </div>
+
+      <!-- ===== PLAYGROUND CONTENT ===== -->
+      <section class="playground">
+        <p class="playground__intro" data-reveal>Smaller experiments, tools, and vibe-coded projects. Click any to explore.</p>
+        <div class="playground__scroll" data-reveal>
+          <a href="playground/music-mood-map/index.html" class="playground__card" target="_blank" rel="noopener">
+            <div class="playground__thumb">
+              <video src="videos/music-map.mp4" muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="playground__meta">
+              <h3 class="playground__name">Music Mood Map</h3>
+              <p class="playground__tagline">Infinite canvas exploration of Spotify songs as vinyls.</p>
+              <span class="playground__link">Explore →</span>
+            </div>
+          </a>
+
+          <a href="playground/gesture-dueling/index.html" class="playground__card" target="_blank" rel="noopener">
+            <div class="playground__thumb">
+              <video src="videos/game1.mp4" muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="playground__meta">
+              <h3 class="playground__name">Dueling Game</h3>
+              <p class="playground__tagline">Turn-based browser game, built in a weekend.</p>
+              <span class="playground__link">Explore →</span>
+            </div>
+          </a>
+
+          <a href="playground/stitch-ify/index.html" class="playground__card" target="_blank" rel="noopener">
+            <div class="playground__thumb">
+              <video src="videos/stitch-ify.mp4" muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="playground__meta">
+              <h3 class="playground__name">Stitch Pattern Generator</h3>
+              <p class="playground__tagline">Convert photos into cross-stitch charts.</p>
+              <span class="playground__link">Explore →</span>
+            </div>
+          </a>
+
+          <button type="button" class="playground__card playground__card--video-only" data-video-modal="videos/harry-potter.mp4">
+            <div class="playground__thumb">
+              <video src="videos/harry-potter.mp4" muted loop playsinline preload="metadata"></video>
+            </div>
+            <div class="playground__meta">
+              <h3 class="playground__name">Harry Potter Card</h3>
+              <p class="playground__tagline">An interactive collectible card in Harry Potter style.</p>
+              <span class="playground__link">Watch →</span>
+            </div>
+          </button>
+        </div>
+      </section>
 
       <!-- ===== HOW I AI SECTION (commented out) =====
       <section class="howiai" id="how-i-ai">
@@ -198,7 +297,7 @@
           <div class="exp__row" data-reveal>
             <div class="exp__row-main">
               <span class="exp__year">Oct 2020 — Mar 2026</span>
-              <span class="exp__role">UI/UX Designer & Design Engineer</span>
+              <span class="exp__role">Lead UI/UX Designer & Design Engineer</span>
               <span class="exp__company">CleverX</span>
             </div>
             <div class="exp__details">
@@ -273,6 +372,24 @@
           <span class="footer__credit">Designed & vibe coded by Ashu &bull; 2026</span>
         </div>
       </footer>
+
+    </div><!-- /work-klear__stack -->
+  </section><!-- /work-klear -->
+
+  </main><!-- /portfolio-reveal -->
+
+  <!-- ===== VIDEO MODAL (for playground video-only cards) ===== -->
+  <div class="video-modal" id="videoModal" aria-hidden="true">
+    <div class="video-modal__backdrop" data-close></div>
+    <div class="video-modal__content">
+      <button type="button" class="video-modal__close" data-close aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <video class="video-modal__video" id="videoModalVideo" controls playsinline></video>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>

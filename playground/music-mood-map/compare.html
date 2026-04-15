@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinyl Style Comparison</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f5f6ee;
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 60px 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+      margin-bottom: 60px;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .section-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .section-desc {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 40px;
+    }
+
+    .vinyl-display {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─── Base vinyl structure (shared) ─── */
+    .vinyl-wrap {
+      border-radius: 50%;
+      position: relative;
+      perspective: 600px;
+    }
+
+    .vinyl-wrap.size-hero { width: 280px; height: 280px; }
+    .vinyl-wrap.size-large { width: 220px; height: 220px; }
+
+    .vinyl {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      background: hsl(var(--vinyl-hue, 0), var(--vinyl-sat, 0%), var(--vinyl-light, 12%));
+    }
+
+    .vinyl-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 54%;
+      height: 54%;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 3;
+      background: #1a1a1a;
+    }
+
+    .vinyl-label img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vinyl-hole {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      z-index: 4;
+      box-shadow: inset 0 0 1px rgba(0,0,0,0.8), 0 0 0 0.5px rgba(255,255,255,0.08);
+    }
+
+    .vinyl-grain {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background-image: var(--noise-texture);
+      background-size: 150px 150px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* ════════════════════════════════════════
+       CURRENT — stacked glossy reflections
+       ════════════════════════════════════════ */
+    .style-current .vinyl-wrap {
+      filter: drop-shadow(3px 5px 5px rgba(0,0,0,0.38))
+              drop-shadow(8px 14px 18px rgba(0,0,0,0.26));
+    }
+
+    .style-current .vinyl::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        conic-gradient(from 10deg at 50% 50%,
+          transparent 0deg,
+          rgba(255,255,255,0.06) 15deg,
+          rgba(255,255,255,0.1) 40deg,
+          rgba(255,255,255,0.06) 70deg,
+          transparent 100deg,
+          transparent 180deg,
+          rgba(255,255,255,0.04) 200deg,
+          rgba(255,255,255,0.08) 220deg,
+          rgba(255,255,255,0.04) 250deg,
+          transparent 280deg,
+          transparent 360deg
+        ),
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0px, transparent 2.5px,
+          rgba(255,255,255,0.035) 2.5px, rgba(255,255,255,0.035) 3px,
+          transparent 3px, transparent 4.5px
+        );
+      -webkit-mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      pointer-events: none; z-index: 1;
+    }
+
+    .style-current .vinyl::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        conic-gradient(from 140deg at 50% 50%,
+          transparent 0deg,
+          rgba(255,255,255,0.04) 10deg,
+          rgba(255,255,255,0.14) 25deg,
+          rgba(255,255,255,0.18) 40deg,
+          rgba(255,255,255,0.12) 55deg,
+          rgba(255,255,255,0.03) 70deg,
+          transparent 85deg,
+          transparent 360deg
+        ),
+        conic-gradient(from 320deg at 50% 50%,
+          transparent 0deg,
+          rgba(255,255,255,0.03) 15deg,
+          rgba(255,255,255,0.08) 30deg,
+          rgba(255,255,255,0.03) 50deg,
+          transparent 65deg,
+          transparent 360deg
+        );
+      pointer-events: none; z-index: 2;
+    }
+
+    .style-current .vinyl-grain {
+      opacity: 0.35;
+      mix-blend-mode: soft-light;
+    }
+
+    /* ════════════════════════════════════════
+       A — MATTE VINYL
+       ════════════════════════════════════════ */
+    .style-a .vinyl-wrap {
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.35))
+              drop-shadow(6px 10px 20px rgba(0,0,0,0.18));
+    }
+
+    .style-a .vinyl::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0px, transparent 2.5px,
+          rgba(255,255,255,0.025) 2.5px, rgba(255,255,255,0.025) 3px,
+          transparent 3px, transparent 4.5px
+        );
+      -webkit-mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      pointer-events: none; z-index: 1;
+    }
+
+    .style-a .vinyl::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background: radial-gradient(circle at center,
+        transparent 85%,
+        rgba(255,255,255,0.04) 92%,
+        rgba(255,255,255,0.06) 96%,
+        transparent 100%
+      );
+      pointer-events: none; z-index: 2;
+    }
+
+    .style-a .vinyl-grain {
+      opacity: 0.5;
+      mix-blend-mode: overlay;
+    }
+
+    /* ════════════════════════════════════════
+       B — SINGLE SPECULAR
+       ════════════════════════════════════════ */
+    .style-b .vinyl-wrap {
+      filter: drop-shadow(2px 4px 5px rgba(0,0,0,0.32))
+              drop-shadow(6px 12px 18px rgba(0,0,0,0.2));
+    }
+
+    .style-b .vinyl::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0px, transparent 2.5px,
+          rgba(255,255,255,0.028) 2.5px, rgba(255,255,255,0.028) 3px,
+          transparent 3px, transparent 4.5px
+        );
+      -webkit-mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      pointer-events: none; z-index: 1;
+    }
+
+    .style-b .vinyl::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        conic-gradient(from 155deg at 50% 50%,
+          transparent 0deg,
+          rgba(255,255,255,0.02) 8deg,
+          rgba(255,255,255,0.06) 16deg,
+          rgba(255,255,255,0.07) 22deg,
+          rgba(255,255,255,0.05) 28deg,
+          rgba(255,255,255,0.02) 35deg,
+          transparent 42deg,
+          transparent 360deg
+        );
+      -webkit-mask-image: radial-gradient(circle at center, transparent 28%, black 34%, black 90%, transparent 94%);
+      mask-image: radial-gradient(circle at center, transparent 28%, black 34%, black 90%, transparent 94%);
+      pointer-events: none; z-index: 2;
+    }
+
+    .style-b .vinyl-grain {
+      opacity: 0.3;
+      mix-blend-mode: soft-light;
+    }
+
+    /* ════════════════════════════════════════
+       C — WARM ANALOG
+       ════════════════════════════════════════ */
+    .style-c .vinyl-wrap {
+      filter: drop-shadow(2px 4px 5px rgba(40,30,10,0.3))
+              drop-shadow(6px 12px 18px rgba(40,30,10,0.16));
+    }
+
+    .style-c .vinyl::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        conic-gradient(from 20deg at 50% 50%,
+          transparent 0deg,
+          rgba(255,240,200,0.03) 20deg,
+          rgba(255,240,200,0.05) 45deg,
+          rgba(255,240,200,0.03) 65deg,
+          transparent 90deg,
+          transparent 360deg
+        ),
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0px, transparent 2.5px,
+          rgba(255,240,200,0.025) 2.5px, rgba(255,240,200,0.025) 3px,
+          transparent 3px, transparent 4.5px
+        );
+      -webkit-mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      mask-image: radial-gradient(circle at center, transparent 28%, black 32%, black 92%, transparent 95%);
+      pointer-events: none; z-index: 1;
+    }
+
+    .style-c .vinyl::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        conic-gradient(from 145deg at 50% 50%,
+          transparent 0deg,
+          rgba(255,230,180,0.03) 10deg,
+          rgba(255,230,180,0.08) 22deg,
+          rgba(255,230,180,0.1) 32deg,
+          rgba(255,230,180,0.07) 42deg,
+          rgba(255,230,180,0.02) 52deg,
+          transparent 62deg,
+          transparent 360deg
+        );
+      -webkit-mask-image: radial-gradient(circle at center, transparent 28%, black 34%, black 90%, transparent 94%);
+      mask-image: radial-gradient(circle at center, transparent 28%, black 34%, black 90%, transparent 94%);
+      pointer-events: none; z-index: 2;
+    }
+
+    .style-c .vinyl-grain {
+      opacity: 0.35;
+      mix-blend-mode: soft-light;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Vinyl Style Comparison</h1>
+
+<!-- CURRENT -->
+<div class="section style-current">
+  <div class="section-label">Current</div>
+  <div class="section-desc">Stacked glossy reflections + double conic gradients</div>
+  <div class="vinyl-display">
+    <div class="vinyl-wrap size-hero">
+      <div class="vinyl" style="--vinyl-hue:0;--vinyl-sat:0%;--vinyl-light:12%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:210;--vinyl-sat:50%;--vinyl-light:30%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b273755995e9ff2b1b0c753f5eb8" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:340;--vinyl-sat:45%;--vinyl-light:28%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b27352c75ed37313b889447011ef" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- A: MATTE -->
+<div class="section style-a">
+  <div class="section-label">A. Matte Vinyl</div>
+  <div class="section-desc">No reflections. Subtle rim light. Heavy grain. Deep & moody.</div>
+  <div class="vinyl-display">
+    <div class="vinyl-wrap size-hero">
+      <div class="vinyl" style="--vinyl-hue:0;--vinyl-sat:0%;--vinyl-light:12%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:210;--vinyl-sat:50%;--vinyl-light:30%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b273755995e9ff2b1b0c753f5eb8" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:340;--vinyl-sat:45%;--vinyl-light:28%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b27352c75ed37313b889447011ef" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- B: SINGLE SPECULAR -->
+<div class="section style-b">
+  <div class="section-label">B. Single Specular</div>
+  <div class="section-desc">One tight highlight arc. Low intensity. Clean & minimal.</div>
+  <div class="vinyl-display">
+    <div class="vinyl-wrap size-hero">
+      <div class="vinyl" style="--vinyl-hue:0;--vinyl-sat:0%;--vinyl-light:12%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:210;--vinyl-sat:50%;--vinyl-light:30%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b273755995e9ff2b1b0c753f5eb8" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:340;--vinyl-sat:45%;--vinyl-light:28%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b27352c75ed37313b889447011ef" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- C: WARM ANALOG -->
+<div class="section style-c">
+  <div class="section-label">C. Warm Analog</div>
+  <div class="section-desc">Amber/cream tinted reflections. Soft transitions. Vintage premium.</div>
+  <div class="vinyl-display">
+    <div class="vinyl-wrap size-hero">
+      <div class="vinyl" style="--vinyl-hue:0;--vinyl-sat:0%;--vinyl-light:12%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:210;--vinyl-sat:50%;--vinyl-light:30%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b273755995e9ff2b1b0c753f5eb8" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+    <div class="vinyl-wrap size-large">
+      <div class="vinyl" style="--vinyl-hue:340;--vinyl-sat:45%;--vinyl-light:28%">
+        <div class="vinyl-label"><img src="https://i.scdn.co/image/ab67616d0000b27352c75ed37313b889447011ef" crossorigin="anonymous"></div>
+        <div class="vinyl-hole"></div>
+        <div class="vinyl-grain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const size = 150;
+  const c = document.createElement('canvas');
+  c.width = c.height = size;
+  const ctx = c.getContext('2d');
+  const imageData = ctx.createImageData(size, size);
+  const data = imageData.data;
+  for (let i = 0; i < data.length; i += 4) {
+    const v = Math.random() * 255;
+    data[i] = v; data[i+1] = v; data[i+2] = v; data[i+3] = 18;
+  }
+  ctx.putImageData(imageData, 0, 0);
+  const noiseURL = c.toDataURL('image/png');
+
+  document.querySelectorAll('.vinyl-grain').forEach(el => {
+    el.style.setProperty('--noise-texture', `url(${noiseURL})`);
+    el.style.backgroundImage = `url(${noiseURL})`;
+  });
+</script>
+
+</body>
+</html>

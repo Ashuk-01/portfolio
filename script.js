@@ -569,3 +569,137 @@
 
 
 
+/* ============================================
+   NAV LOGO MASCOT — Eyes follow cursor
+   ============================================ */
+
+(function () {
+  'use strict';
+
+  const logo = document.querySelector('.nav-logo__mascot');
+  const pupils = document.querySelector('.nav-logo__pupils');
+  if (!logo || !pupils) return;
+
+  // Touch devices: skip (no cursor to follow)
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  const MAX_OFFSET = 3; // SVG units — subtle movement
+
+  document.addEventListener('mousemove', (e) => {
+    const rect = logo.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.hypot(dx, dy);
+
+    if (dist > 0) {
+      // Normalize direction, scale by MAX_OFFSET
+      targetX = (dx / dist) * MAX_OFFSET;
+      targetY = (dy / dist) * MAX_OFFSET;
+    }
+  });
+
+  function animate() {
+    const ease = 0.15;
+    currentX += (targetX - currentX) * ease;
+    currentY += (targetY - currentY) * ease;
+    pupils.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+
+
+/* ============================================
+   PLAYGROUND — Video modal (for video-only cards)
+   ============================================ */
+
+(function () {
+  'use strict';
+
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('videoModalVideo');
+  const triggers = document.querySelectorAll('[data-video-modal]');
+  if (!modal || !video || !triggers.length) return;
+
+  function open(src) {
+    video.src = src;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    video.play().catch(() => {});
+  }
+
+  function close() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const src = trigger.getAttribute('data-video-modal');
+      if (src) open(src);
+    });
+  });
+
+  // Close on backdrop or close button click
+  modal.querySelectorAll('[data-close]').forEach((el) => {
+    el.addEventListener('click', close);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+      close();
+    }
+  });
+
+})();
+
+
+/* ============================================
+   PLAYGROUND — Hover to play video (desktop),
+   autoplay on touch devices (mobile)
+   ============================================ */
+
+(function () {
+  'use strict';
+
+  const cards = document.querySelectorAll('.playground__card');
+  if (!cards.length) return;
+
+  const hasHover = window.matchMedia('(hover: hover)').matches;
+
+  cards.forEach((card) => {
+    const video = card.querySelector('video');
+    if (!video) return;
+
+    if (hasHover) {
+      // Desktop — play on hover, pause + reset on leave
+      card.addEventListener('mouseenter', () => {
+        video.play().catch(() => {});
+      });
+      card.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+      });
+    } else {
+      // Touch devices — autoplay
+      video.setAttribute('autoplay', '');
+      video.play().catch(() => {});
+    }
+  });
+
+})();

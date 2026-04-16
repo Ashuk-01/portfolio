@@ -336,6 +336,60 @@
     );
   }
 
+  // ----- Playground intro + cards: staggered fade up -----
+  var playgroundIntro = document.querySelector('.playground__intro');
+  if (playgroundIntro) {
+    gsap.fromTo(playgroundIntro,
+      { y: 30, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.playground',
+          start: 'top 80%',
+          end: 'top 50%',
+          scrub: 0.6
+        }
+      }
+    );
+  }
+
+  // ----- Playground cards -----
+  var playgroundScroll = document.querySelector('.playground__scroll');
+  var playgroundCards = document.querySelectorAll('.playground__card');
+  var isNarrow = window.matchMedia('(max-width: 1279px)').matches;
+
+  if (isNarrow && playgroundScroll) {
+    gsap.fromTo(playgroundScroll,
+      { y: 50, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: playgroundScroll,
+          start: 'top 90%',
+          end: 'top 50%',
+          scrub: 0.6
+        }
+      }
+    );
+  } else if (playgroundCards.length) {
+    gsap.fromTo(playgroundCards,
+      { y: 50, opacity: 0 },
+      {
+        y: 0, opacity: 1,
+        ease: 'none',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: playgroundScroll,
+          start: 'top 90%',
+          end: 'top 15%',
+          scrub: 0.8
+        }
+      }
+    );
+  }
+
   // ----- Experience rows: draw-in border + staggered columns -----
   var expRows = document.querySelectorAll('.exp__row');
   if (expRows.length) {
@@ -664,6 +718,17 @@
     if (e.key === 'Escape' && modal.classList.contains('is-open')) {
       close();
     }
+  });
+
+  // Below 1280px: intercept playground link cards and open video modal instead
+  document.querySelectorAll('.playground__card[data-video-src]').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      if (window.innerWidth <= 1279) {
+        e.preventDefault();
+        var src = card.getAttribute('data-video-src');
+        if (src) open(src);
+      }
+    });
   });
 
 })();

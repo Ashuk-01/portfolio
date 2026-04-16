@@ -249,7 +249,7 @@
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 28px;
+      border-radius: 32px;
     }
 
     .cs-screen--single {
@@ -354,8 +354,8 @@
       <div class="cs-wrap">
         <p class="cs-tag" data-reveal>Speculative Product Design &middot; 2026</p>
         <h1 class="cs-title" data-reveal>Escaping the Algorithm</h1>
-        <p class="cs-intro" data-reveal>A speculative mobile app that responds to the way Instagram broke in 2025 — a transparency and control layer that sits next to the platform, surfacing the ranking signals Meta hides and giving users a chronological feed of only the people they follow.</p>
-        <p class="cs-intro" data-reveal>This is a design critique disguised as a product proposal. The screens are arguments, not features. Each one answers a specific grievance the platform has refused to acknowledge.</p>
+        <p class="cs-intro" data-reveal>A speculative mobile app built around a simple question: what is Instagram's algorithm actually doing to your feed? It surfaces the ranking signals Meta hides and gives users a chronological feed of only the people they follow.</p>
+        <p class="cs-intro" data-reveal>Every screen in this app is an argument. Not a feature pitch, an argument against a specific thing the platform has chosen to do and refuses to explain.</p>
         <p class="cs-velocity" data-reveal>From research to working prototype, built solo with Claude Code.</p>
         <div class="cs-meta" data-reveal>
           <div class="cs-meta-item">
@@ -380,8 +380,8 @@
         <p class="cs-label" data-reveal>A note on feasibility</p>
         <h2 class="cs-heading" data-reveal>Why This Is Speculative</h2>
         <div class="cs-body" data-reveal>
-          <p>This app cannot actually be built by a third party. Meta's API does not expose the signals it would need — follow-graph activity, DM frequency, like history, per-post ranking rationale.</p>
-          <p>That inaccessibility is not a problem with the project. It is the project. The app exists to make visible what the platform deliberately withholds. If Meta opened these signals tomorrow, the prototype would become buildable. Until then, it stays an argument.</p>
+          <p>This app can't actually be built. Meta's API doesn't expose the signals it would need: follow-graph activity, DM frequency, like history, per-post ranking rationale.</p>
+          <p>That's not a problem with the project. That's the project. If Meta opened these signals tomorrow, the prototype would be buildable overnight. They won't.</p>
         </div>
       </div>
     </section>
@@ -392,15 +392,14 @@
         <p class="cs-label" data-reveal>Research</p>
         <h2 class="cs-heading" data-reveal>The Grievance</h2>
         <div class="cs-body" data-reveal>
-          <p>Before designing anything, I wanted to know what users were actually angry about. Not what tech journalists said. Not what UX research papers said. What real people were posting, in their own words, in 2025.</p>
-          <p>I ran four parallel research passes:</p>
+          <p>Before designing anything, I spent time finding out what people were actually angry about. Not think pieces. Not UX papers. What real users were saying, in their own words, in 2025.</p>
+          <p>Four research passes:</p>
           <ul class="cs-list">
-            <li><strong>App Store reviews and complaint aggregators</strong> — ~45 sampled. Top themes: ads everywhere, "people I don't follow" infiltrating the feed, controls that don't work, the February 2025 gore flood.</li>
-            <li><strong>Reddit</strong> — ~150 threads across r/Instagram, r/digitalminimalism, r/Anticonsumption, and others. The single dominant theme was not curiosity about the algorithm. It was grief. <em>"It's not Instagram anymore." "Where are my friends?" "I don't recognize this app."</em></li>
-            <li><strong>Tech journalism</strong> — Verified the gore flood incident across CNN, CBS, and CNBC. Bloomberg reported a 65% reach drop on political accounts. Mosseri himself, in August 2024, said the goal was to "give every piece of content a chance to be recommended to people who don't follow you."</li>
-            <li><strong>Filterworld by Kyle Chayka</strong> — backing for a quieter complaint that users feel but don't articulate well: feed convergence. Everyone's feed is starting to look the same.</li>
+            <li><strong>App Store reviews.</strong> ~45 sampled. Feeds dominated by accounts they never followed. Controls like "Not Interested" that do nothing. Disturbing content slipping through even with sensitivity settings maxed out.</li>
+            <li><strong>Reddit.</strong> Threads across r/Instagram, r/digitalminimalism, r/Anticonsumption. The dominant theme wasn't curiosity about the algorithm. It was grief. <em>"It's not Instagram anymore." "Where are my friends?"</em></li>
+            <li><strong>Reach suppression.</strong> In 2024, Meta quietly stopped recommending political content to non-followers. Accounts posting about activism, reproductive rights, and climate saw up to 65% less reach. The people who followed those accounts had no idea their posts were being hidden.</li>
+            <li><strong>Filterworld by Kyle Chayka.</strong> Backing for a quieter complaint: feed convergence. Everyone's feed is starting to look the same.</li>
           </ul>
-          <p>The headline I landed on:</p>
         </div>
         <p class="cs-pullquote" data-reveal>Users are mourning a product that no longer exists. I built a viewer that gives back the parts of old Instagram that are still technically deliverable.</p>
       </div>
@@ -412,17 +411,16 @@
         <p class="cs-label" data-reveal>Design philosophy</p>
         <h2 class="cs-heading" data-reveal>The Thesis</h2>
         <div class="cs-body" data-reveal>
-          <p>Once I had the research, I needed a rule that would tell me which features belonged in this app and which didn't.</p>
+          <p>I needed a rule to decide what belongs in this app and what doesn't.</p>
         </div>
         <p class="cs-pullquote" data-reveal>Everything in this app must either diagnose or escape the algorithm. Nothing that negotiates with it.</p>
         <div class="cs-body" data-reveal>
-          <p>This is what got cut, and why:</p>
+          <p>What got cut:</p>
           <ul class="cs-list">
-            <li><strong>Algorithm Preferences and feed-tuning sliders</strong> — controls that let users nudge what they see. Cut. This is negotiation. It assumes the system is fair and the user just needs to ask better. The research says the opposite.</li>
-            <li><strong>Action Audit, as originally sketched</strong> — a screen that let users tune Instagram's controls more precisely. Cut. That's still negotiation. Receipts, the feature that replaced it, doesn't ask the platform to do better — it just keeps score. The distinction matters: Receipts treats the algorithm as something to be witnessed, not improved.</li>
+            <li><strong>Algorithm Preferences and feed-tuning sliders.</strong> Controls that let users nudge what they see. Cut. This assumes the system is fair and the user just needs to ask better. The research says otherwise.</li>
+            <li><strong>Action Audit.</strong> A screen that let users tune Instagram's controls more precisely. Cut. Receipts replaced it. Receipts doesn't ask the platform to improve, it keeps score. Receipts witnesses. Action Audit would have nudged.</li>
           </ul>
-          <p>What's left does one of two things. It tells you what's happening to your feed (Home, Bubble), or it lets you leave (Viewer, Settings firewall).</p>
-          <p>This rule is the spine of the whole project. Without it, the app drifts into "yet another control panel that pretends Instagram cares."</p>
+          <p>What survived does one of two things. Tells you what's happening to your feed (Home, Bubble), or lets you leave (Viewer, Settings firewall).</p>
         </div>
       </div>
     </section>
@@ -438,8 +436,7 @@
 
         <h3 class="cs-sub-heading" data-reveal>Home — "What the algorithm did to your feed today"</h3>
         <div class="cs-body" data-reveal>
-          <p>The first screen you see. Top number: how many of today's 50 posts came from people you actually follow. Below it, a button to switch to the clean feed. Below that, Receipts — proof that the controls you set last week were honored, with a coral banner when something slipped through. At the bottom, the breakdown: Followed, Suggested, Sponsored, AI-Generated.</p>
-          <p>The Home screen is the state of your feed. Receipts is the state of your controls. Together they're the full accountability loop the platform refuses to show.</p>
+          <p>Top number: how many of today's 50 posts came from people you actually follow. Below that, a button to switch to the clean feed. Below that, Receipts. At the bottom, the breakdown: Followed, Suggested, Sponsored, AI-Generated.</p>
         </div>
 
         <div class="cs-gallery" data-reveal>
@@ -450,8 +447,8 @@
 
         <h3 class="cs-sub-heading" data-reveal>Viewer — "Old Instagram, restored"</h3>
         <div class="cs-body" data-reveal>
-          <p>Chronological. Only people you follow. No ads, no suggested, no algorithmic insertions. Each post has a small label under the username — <em>Close friend, Mutual, Loose follow</em> — which does two things: it explains the ordering, and it reframes the screen as a diagnostic view rather than a feed clone. The feed has a defined ending. <em>"That's everything from your follows in the last 7 days. You're all caught up."</em></p>
-          <p>This is the screen that justifies the headline. These posts exist. The platform just chooses not to show them this way.</p>
+          <p>Chronological. Only people you follow. No ads, no suggested, no algorithmic insertions. Each post has a small label under the username (<em>Close friend, Mutual, Loose follow</em>) which explains the ordering and reframes the screen as a diagnostic view, not a feed clone. The feed has a defined ending. <em>"That's everything from your follows in the last 7 days. You're all caught up."</em></p>
+          <p>These posts exist. The platform just chooses not to show them this way.</p>
         </div>
 
         <div class="cs-gallery" data-reveal>
@@ -462,8 +459,8 @@
 
         <h3 class="cs-sub-heading" data-reveal>Bubble — "What's missing from your feed"</h3>
         <div class="cs-body" data-reveal>
-          <p>A topic treemap of what dominates your feed, paired with a "From Your Network" section: topics your follows post about that rarely reach you. Art, Philosophy, Travel, Health, History — with post counts.</p>
-          <p>The reframing here is the point. "Filter bubble" language usually blames the user for their own interests — <em>you got what you asked for</em>. This screen shows the opposite: even the user's stated choices, the people they explicitly followed, are being filtered by the platform. The bubble isn't built from your behavior. It's built around your behavior, and then narrowed further.</p>
+          <p>A topic treemap of what dominates your feed, paired with a "From Your Network" section: topics your follows post about that rarely reach you. Politics, Activism, Travel, Health, History, with post counts.</p>
+          <p>"Filter bubble" language usually blames the user. <em>You got what you asked for.</em> This screen shows the opposite: even the people you explicitly followed are being filtered. When Meta suppressed political content for a year, users had no way to know. Bubble would have shown them. The algorithm decides what you see based on your activity. But it also hides posts from people you follow, for reasons it never explains.</p>
         </div>
 
         <div class="cs-gallery" data-reveal>
@@ -474,8 +471,8 @@
 
         <h3 class="cs-sub-heading" data-reveal>Post Inspector — "Why am I seeing this?"</h3>
         <div class="cs-body" data-reveal>
-          <p>A pushed screen, not a tab. Tap any post in the Viewer and a drawer opens with the ranking signals: posted by a close friend (45%), DM frequency with this account (30%), recent likes on similar posts (18%), geo-tag matching a recent search (7%). A short narrative at the top: <em>"This post fits your close-friend signal almost perfectly. The algorithm has high confidence you want to see it."</em></p>
-          <p>This is the screen that most directly makes the algorithm legible. Every recommendation engine works on signals like these. Almost no consumer product shows them. The Inspector is the argument that they could.</p>
+          <p>Tap any post in the Viewer. A drawer opens with the ranking signals: posted by a close friend (45%), DM frequency (30%), recent likes on similar posts (18%), geo-tag matching a recent search (7%).</p>
+          <p>Every recommendation engine works on signals like these. Almost no consumer product shows them.</p>
         </div>
 
         <div class="cs-gallery" data-reveal>
@@ -484,9 +481,10 @@
           </div>
         </div>
 
-        <h3 class="cs-sub-heading" data-reveal>Settings — "Hard blocks the platform won't give you"</h3>
+        <h3 class="cs-sub-heading" data-reveal>Settings — "Hard controls the platform won't give you"</h3>
         <div class="cs-body" data-reveal>
-          <p>A Disturbing Content Firewall. Five categories, each a hard toggle. Child safety content is permanently blocked — not a toggle, not a preference. The other four categories are the ones Instagram's "Not Interested" controls fail to suppress, verified by the gore flood incident. This isn't a preference panel. It's a wall.</p>
+          <p>Two sections. The first is a Disturbing Content Firewall. Five categories, each a hard toggle. Child safety content is permanently blocked, not a toggle, not a preference. The other four are the ones Instagram's controls consistently fail to suppress.</p>
+          <p>The second is Feed Controls. Four toggles: Suggested posts, Sponsored posts, AI-generated posts, Reels from non-follows. Off means gone. Not deprioritized, not "shown less often." Gone. The user decides what enters their feed, not the algorithm.</p>
         </div>
 
         <div class="cs-gallery" data-reveal>
@@ -503,15 +501,15 @@
         <p class="cs-label" data-reveal>Accountability</p>
         <h2 class="cs-heading" data-reveal>Receipts</h2>
         <div class="cs-body" data-reveal>
-          <p>The single highest-leverage feature in the app. The #2 complaint in the research is that controls don't work. "Not Interested" has no lasting effect. Users can't tell whether anything they did mattered.</p>
-          <p>Receipts sits on Home — three lines under the CTA, before the feed breakdown. It says things like:</p>
+          <p>Instagram gives you controls. "Not Interested." Mute. Content preferences. But after you set them, there's no feedback. No log. No proof they worked. You tap "Not Interested" on weight-loss content, and similar posts keep showing up a week later.</p>
+          <p>Receipts is an accountability tracker that sits on the Home screen. It keeps a record of every control you've set and tells you whether it was honored:</p>
           <ul class="cs-list">
             <li><em>12 accounts hidden this week &middot; 11 stayed hidden &middot; 1 reappeared after 3 days</em></li>
             <li><em>"Weight loss" muted &middot; 47 posts blocked, 3 slipped through</em></li>
             <li><em>Close friend priority &middot; honored in 94% of sessions</em></li>
           </ul>
-          <p>When something fails, a coral banner at the top of the card flips on: <em>"1 control wasn't honored this week."</em> Tap "See all →" for the granular log.</p>
-          <p>Two design decisions made this work. First, it lives on Home, not as a separate tab — buried-but-surfaced, where a trust-building feature belongs. Second, the failure case is the loudest part. The app tells you when something went wrong, which is precisely what the platform it's auditing refuses to do.</p>
+          <p>When something fails, a coral banner flips on: <em>"1 control wasn't honored this week."</em></p>
+          <p>Two decisions made this work. It lives on Home, not buried in a separate tab. And the failure case is the loudest part. The app tells you when something went wrong, which is exactly what Instagram doesn't do.</p>
         </div>
       </div>
     </section>
@@ -522,14 +520,13 @@
         <p class="cs-label" data-reveal>Honest about scope</p>
         <h2 class="cs-heading" data-reveal>What I'd Build Next</h2>
         <div class="cs-body" data-reveal>
-          <p>A few things I sketched but didn't ship in this version:</p>
+          <p>Things I sketched but didn't ship:</p>
           <ul class="cs-list">
-            <li><strong>Rewind</strong> — reconstructing a user's feed from a chosen week in the past, using their Instagram data export. Emotionally powerful, but it depends on a data import flow that changes the scope of the tool. Considered, deferred.</li>
-            <li><strong>A detail view for Receipts</strong> — pushed from "See all →" with a granular log of every blocked post, every honored control. Designed in outline, not built.</li>
-            <li><strong>A real backend</strong> — the app, as designed, would need access to Meta's APIs that no third party will ever get. The screens will stay speculative until the platform decides accountability is something it owes its users.</li>
+            <li><strong>Rewind.</strong> Reconstructing a user's feed from a chosen week in the past, using their Instagram data export. Good idea, wrong scope for this version.</li>
+            <li><strong>A detail view for Receipts.</strong> A granular log of every blocked post, every honored control. Designed in outline, not built.</li>
+            <li><strong>A real backend.</strong> The app needs access to Meta APIs that no third party will ever get. The screens stay speculative until that changes.</li>
           </ul>
-          <p>The hardest part of this project wasn't designing screens. It was knowing what to cut. Every interesting feature I sketched had to pass the same test — does it diagnose, or does it negotiate? Most of them negotiated. Most of them got cut. The app got smaller and sharper every week.</p>
-          <p>That's the real ending. The prototype is the argument.</p>
+          <p>The hardest part of this project wasn't the screens. It was cutting. Every interesting feature had to pass the same test: diagnose or negotiate? Most of them negotiated. Most got cut.</p>
           <p>Until the platform decides accountability is something it owes its users, these screens are the receipt.</p>
         </div>
       </div>

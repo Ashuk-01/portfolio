@@ -1,0 +1,704 @@
+/* =====================================================================
+   Case study pages — shared styles (work/*.html)
+   Matches the warm paper aesthetic of index.html
+   ===================================================================== */
+
+:root {
+  --cream: #F5EEE1;
+  --cream-deep: #EDE2D0;
+  --cream-aged: #E8DCC5;
+  --peach: #E8A57E;
+  --peach-soft: #F2C9AE;
+  --sky: #B8CFD9;
+  --sky-deep: #7FA3B3;
+  --moss: #9CAE8E;
+  --butter: #E8CA87;
+  --ink: #3A2E26;
+  --ink-soft: #6B5A4D;
+  --ink-faded: #9C8874;
+
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-hand: 'Caveat', 'Brush Script MT', cursive;
+}
+
+body.evening {
+  --cream: #E8D8B8;
+  --cream-deep: #DCCAA8;
+  --cream-aged: #CFB98E;
+  --peach: #C77A4E;
+  --peach-soft: #D9A078;
+  --sky: #8FA5AE;
+  --sky-deep: #5F7C8C;
+  --moss: #798970;
+  --butter: #C9A35C;
+  --ink: #2A1F17;
+  --ink-soft: #4D3E30;
+  --ink-faded: #7A6851;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(255,230,200,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(184,207,217,0.2) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+body, body *:not(.obj) {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, fill 0.6s ease;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(58,46,38,0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+}
+
+/* ------------------------------------------------------------------
+   Top nav — matches index.html
+   ------------------------------------------------------------------ */
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.35s ease, backdrop-filter 0.35s ease, padding 0.25s ease, border-bottom 0.35s ease;
+  background: transparent;
+  border-bottom: 0.5px solid transparent;
+}
+.topnav.scrolled {
+  background: rgba(245, 238, 225, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 2.5rem;
+  border-bottom: 0.5px solid rgba(58,46,38,0.12);
+}
+body.evening .topnav.scrolled { background: rgba(232, 216, 184, 0.82); }
+
+.topnav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+}
+.topnav-brand .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--peach);
+  flex-shrink: 0;
+}
+
+.topnav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topnav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--ink);
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid rgba(228, 140, 100, 0.55);
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+.topnav-links a:hover {
+  background: var(--peach);
+  border-color: var(--peach);
+  color: #FFFFFF;
+}
+.topnav-links a .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  font-size: 11px;
+  line-height: 1;
+}
+.topnav-links a:hover .arrow { transform: translate(2px, -2px); }
+
+/* Back-affordance on the brand — case study specific */
+.topnav-brand .back-arrow {
+  font-family: var(--font-mono);
+  color: var(--ink-faded);
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.topnav-brand:hover .back-arrow {
+  transform: translateX(-3px);
+  color: var(--peach);
+}
+
+@media (max-width: 820px) {
+  .topnav { padding: 14px 1.25rem; }
+  .topnav.scrolled { padding: 12px 1.25rem; }
+  .topnav-links { gap: 6px; }
+  .topnav-links a { padding: 5px 12px; font-size: 11px; }
+  .topnav-links a[data-hide-mobile] { display: none; }
+  .topnav-brand { font-size: 12px; }
+}
+@media (max-width: 560px) {
+  .topnav-links a:not(.topnav-cta-pill) { display: none; }
+}
+
+/* ------------------------------------------------------------------
+   Left-side table of contents — desktop only
+   ------------------------------------------------------------------ */
+.cs-toc {
+  position: fixed;
+  left: clamp(1.75rem, 4vw, 3.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  max-width: 200px;
+}
+.cs-toc-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 1rem;
+  padding-left: 16px;
+}
+.cs-toc ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+.cs-toc li { position: relative; }
+.cs-toc a {
+  position: relative;
+  display: block;
+  padding: 5px 0 5px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  line-height: 1.45;
+  transition: color 0.25s ease, padding-left 0.25s ease;
+}
+.cs-toc a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 1.5px;
+  background: var(--peach);
+  transition: width 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cs-toc a:hover {
+  color: var(--ink);
+}
+.cs-toc a.is-active {
+  color: var(--peach);
+  padding-left: 26px;
+  font-weight: 600;
+}
+.cs-toc a.is-active::before {
+  width: 18px;
+}
+
+/* Hide below wide desktop — below this, TOC would overlap content */
+@media (max-width: 1280px) {
+  .cs-toc { display: none; }
+}
+
+/* ------------------------------------------------------------------
+   Reading progress bar
+   ------------------------------------------------------------------ */
+.cs-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--peach);
+  z-index: 150;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
+   Case study layout
+   ------------------------------------------------------------------ */
+.cs-main {
+  position: relative;
+  z-index: 1;
+}
+
+.cs-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Hero ------------------------------------------------------------- */
+.cs-hero {
+  padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem);
+}
+
+.cs-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 1.5rem;
+}
+
+.cs-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+}
+.cs-title em {
+  font-style: normal;
+  color: var(--peach);
+  font-weight: 500;
+}
+
+.cs-intro {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 620px;
+}
+.cs-intro strong { color: var(--ink); font-weight: 500; }
+
+.cs-velocity {
+  font-family: var(--font-hand);
+  font-size: 20px;
+  color: var(--ink);
+  margin: 1.5rem 0 0;
+  line-height: 1.4;
+}
+
+.cs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 0.5px solid rgba(58, 46, 38, 0.15);
+}
+.cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cs-meta-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--ink-faded);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.cs-meta-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+/* Sections --------------------------------------------------------- */
+.cs-section {
+  padding: clamp(3rem, 6vh, 5rem) 0;
+}
+.cs-section + .cs-section {
+  position: relative;
+}
+.cs-section + .cs-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: rgba(58, 46, 38, 0.12);
+}
+/* Above 1280px, TOC is visible on the left — inset the divider so it starts past it */
+@media (min-width: 1281px) {
+  .cs-section + .cs-section::before {
+    left: 280px;
+  }
+}
+
+.cs-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--peach);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.cs-heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 38px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.cs-sub-heading {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 2.5rem 0 0.75rem;
+}
+
+.cs-sub-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.cs-body p {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 620px;
+}
+.cs-body p:last-child { margin-bottom: 0; }
+.cs-body strong { color: var(--ink); font-weight: 500; }
+.cs-body em { font-style: italic; }
+
+/* Em-dash bullet list --------------------------------------------- */
+.cs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+  max-width: 620px;
+}
+.cs-list li {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  padding-left: 1.5rem;
+  position: relative;
+}
+.cs-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--peach);
+  font-family: var(--font-mono);
+}
+.cs-list li strong { color: var(--ink); font-weight: 500; }
+.cs-list li em { font-style: italic; }
+
+/* Pull quote in Caveat -------------------------------------------- */
+.cs-pullquote {
+  font-family: var(--font-hand);
+  font-size: clamp(22px, 2.5vw, 28px);
+  line-height: 1.3;
+  color: var(--ink);
+  border-left: 2px solid var(--peach);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  margin: 2rem 0;
+  max-width: 620px;
+}
+
+/* Workflow chips -------------------------------------------------- */
+.cs-workflow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  align-items: center;
+}
+.cs-workflow-step {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  padding: 0.55rem 0.9rem;
+  background: var(--cream-aged);
+  border: 0.5px solid rgba(58, 46, 38, 0.15);
+  border-radius: 4px;
+}
+.cs-workflow-arrow {
+  color: var(--peach);
+  font-size: 14px;
+  font-family: var(--font-mono);
+}
+
+/* Image galleries — paper frame aesthetic ------------------------- */
+.cs-gallery { margin-top: 2.5rem; }
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+.cs-grid + .cs-grid { margin-top: 1rem; }
+.cs-grid--single { grid-template-columns: 1fr; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+.cs-screen {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow:
+    0 1px 2px rgba(58, 46, 38, 0.08),
+    0 4px 14px rgba(58, 46, 38, 0.1);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease;
+}
+.cs-screen:hover {
+  transform: translateY(-3px) rotate(-0.4deg);
+  box-shadow:
+    0 2px 4px rgba(58, 46, 38, 0.1),
+    0 10px 24px rgba(58, 46, 38, 0.18);
+}
+.cs-screen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Single centered phone-sized screen (used on speculative / mobile case studies) */
+.cs-screen--single {
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 32px;
+}
+.cs-screen--single img {
+  border-radius: 32px;
+}
+
+/* Placeholder screen (for missing images) ------------------------- */
+.cs-screen--placeholder {
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream-aged);
+  padding: 1rem;
+}
+.cs-screen--placeholder::after {
+  content: attr(data-placeholder);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-faded);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Next project card ----------------------------------------------- */
+.cs-next {
+  padding: clamp(4rem, 8vh, 6rem) 0;
+  text-align: center;
+  position: relative;
+}
+.cs-next::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: rgba(58, 46, 38, 0.12);
+}
+@media (min-width: 1281px) {
+  .cs-next::before { left: 280px; }
+}
+.cs-next-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 1rem;
+}
+.cs-next-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 0.5rem 0;
+}
+.cs-next-link .title {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  border-bottom: 0.5px solid var(--peach);
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+}
+.cs-next-link:hover .title { color: var(--peach); }
+.cs-next-link .arrow {
+  color: var(--peach);
+  font-family: var(--font-mono);
+  transition: transform 0.3s ease;
+}
+.cs-next-link:hover .arrow { transform: translate(4px, -2px); }
+
+/* Back link (bottom) ---------------------------------------------- */
+.cs-back {
+  padding: clamp(2rem, 4vh, 3rem) 0;
+  text-align: center;
+}
+.cs-back a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.cs-back a:hover { color: var(--ink); }
+
+/* Footer ---------------------------------------------------------- */
+.cs-footer {
+  padding: 4rem 3rem 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.cs-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.5px;
+  background: rgba(58, 46, 38, 0.2);
+  background-image: linear-gradient(90deg, rgba(58,46,38,0.3) 50%, transparent 50%);
+  background-size: 8px 0.5px;
+  background-repeat: repeat-x;
+}
+@media (min-width: 1281px) {
+  .cs-footer::before { left: 280px; }
+}
+.cs-footer-line {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+.cs-footer-email {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--peach);
+  padding-bottom: 2px;
+}
+.cs-footer-email:hover { color: var(--peach); }
+.cs-footer-contact-row {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.cs-footer-contact-row a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+.cs-footer-credits {
+  margin-top: 4rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--ink-faded);
+}
+
+/* Reveal animation (triggered by intersection observer) ----------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .cs-screen { transition: none; }
+  html, body { scroll-behavior: auto; }
+}
+
+/* Responsive ------------------------------------------------------ */
+@media (max-width: 767px) {
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-workflow { flex-direction: column; align-items: flex-start; }
+  .cs-workflow-arrow { transform: rotate(90deg); }
+  .cs-meta { gap: 1rem 2rem; }
+  .cs-footer { padding: 3rem 1.5rem 2rem; }
+}

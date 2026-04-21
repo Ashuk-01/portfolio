@@ -1,90 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H82NT92R7N"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-H82NT92R7N");
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI-Powered Research Analysis — Ashu Kaur</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing AI-Powered Research Analysis — Ashu</title>
+  <meta name="description" content="Designing CleverX's AI analysis feature for moderated interviews — transcripts, summaries, highlights, and shareable reports." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .cs-main { position: relative; z-index: 5; }
-    .cs-wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-    .cs-hero { padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem); }
-    .cs-tag { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
-    .cs-title { font-family: var(--font); font-size: clamp(32px, 5vw, 52px); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
-    .cs-intro { font-size: 16px; font-weight: 400; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
-    .cs-meta { display: flex; flex-wrap: wrap; gap: 24px 48px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(32, 32, 31, 0.08); }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .cs-meta-label { font-family: var(--font); font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; }
-    .cs-meta-value { font-size: 15px; font-weight: 400; color: var(--text); }
-    .cs-section { padding: clamp(3rem, 6vh, 5rem) 0; }
-    .cs-section + .cs-section { border-top: 1px solid rgba(32, 32, 31, 0.08); }
-    .cs-label { font-family: var(--font); font-size: 12px; font-weight: 500; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
-    .cs-heading { font-family: var(--font); font-size: clamp(24px, 3vw, 36px); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
-    .cs-body p { font-size: 15px; font-weight: 400; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
-    .cs-body p:last-child { margin-bottom: 0; }
-    .cs-body strong { color: var(--text); font-weight: 500; }
-    .cs-list { list-style: none; margin: 20px 0; display: flex; flex-direction: column; gap: 12px; }
-    .cs-list li { font-size: 15px; font-weight: 400; color: var(--text-light); line-height: 1.75; padding-left: 20px; position: relative; }
-    .cs-list li::before { content: '—'; position: absolute; left: 0; color: var(--text-light); }
-    .cs-list li strong { color: var(--text); font-weight: 500; }
-    .cs-gallery { margin-top: 32px; }
-    .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .cs-grid + .cs-grid { margin-top: 1rem; }
-    .cs-grid--single { grid-template-columns: 1fr; }
-    .cs-screen { border-radius: 12px; overflow: hidden; border: 1px solid rgba(32, 32, 31, 0.08); background: #fff; display: flex; align-items: center; justify-content: center; }
-    .cs-screen img { width: 100%; height: auto; display: block; }
-    .cs-back { padding: clamp(4rem, 8vh, 6rem) 0; text-align: center; border-top: 1px solid rgba(32, 32, 31, 0.08); }
-    .cs-back a { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-light); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.3s ease; }
-    .cs-back a:hover { color: var(--text); }
-    .nav-back { font-family: var(--font); font-size: 12px; font-weight: 400; color: var(--text); text-decoration: none; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; transition: opacity 0.3s ease; }
-    .nav-back:hover { opacity: 0.5; }
-    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-    @media (max-width: 767px) {
-      .cs-grid { grid-template-columns: 1fr; }
-      .cs-meta { gap: 16px 32px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Ccircle cx=%2710%27 cy=%2710%27 r=%276%27 fill=%27%23E8A57E%27/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles/case-study.css" />
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
+  <!-- Reading progress bar -->
+  <div class="cs-progress" id="cs-progress"></div>
 
-  <nav class="nav">
-    <a href="index.html#work-analysis" class="nav-back">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
-      Back to Work
+  <!-- Top nav -->
+  <nav class="topnav" id="topnav">
+    <a href="index.html" class="topnav-brand" aria-label="Back to home">
+      <span class="back-arrow">←</span>
+      <span class="dot"></span>
+      ashu
     </a>
-    <div class="nav-links">
-      <a href="index.html#work-analysis">Work</a>
-
-      <a href="index.html#about">About</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="index.html#contact">Contact Me</a>
+    <div class="topnav-links">
+      <a href="index.html#work">work</a>
+      <a href="index.html#about">about</a>
+      <a href="index.html#playground" data-hide-mobile>playground</a>
+      <a href="mailto:ashukaur01@gmail.com" class="topnav-cta-pill">say hi <span class="arrow">↗</span></a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-    </button>
   </nav>
 
   <main class="cs-main">
 
+    <!-- Left-side section nav -->
+    <nav class="cs-toc" id="cs-toc" aria-label="On this page">
+      <p class="cs-toc-label">On this page</p>
+      <ul>
+        <li><a href="#problem" data-toc-target="problem">The Problem</a></li>
+        <li><a href="#competitive" data-toc-target="competitive">Competitive Analysis</a></li>
+        <li><a href="#decisions" data-toc-target="decisions">Design Decisions</a></li>
+        <li><a href="#deliverables" data-toc-target="deliverables">What I Designed</a></li>
+        <li><a href="#impact" data-toc-target="impact">What Changed</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
     <section class="cs-hero">
       <div class="cs-wrap">
-        <p class="cs-tag" data-reveal>AI + UX Research &middot; Product Design</p>
+        <p class="cs-tag" data-reveal>AI + UX Research · Product Design</p>
         <h1 class="cs-title" data-reveal>Designing AI-Powered Research Analysis</h1>
         <p class="cs-intro" data-reveal>CleverX supported moderated video interviews — but once a session ended, that's where the platform stopped. There were no transcripts, no summaries, no way to revisit what was said without rewatching the full recording. Researchers had to do all their analysis outside CleverX, manually.</p>
         <p class="cs-intro" data-reveal>This wasn't a guess. Researchers kept asking for transcripts. It was one of the most consistent requests we heard, and it pointed to a clear gap: CleverX helped teams run research, but not make sense of it.</p>
@@ -106,24 +72,28 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- The Problem -->
+    <section class="cs-section" id="problem">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Context</p>
         <h2 class="cs-heading" data-reveal>The Problem</h2>
         <div class="cs-body" data-reveal>
           <p>CleverX had no analysis layer. After a moderated interview, here's what a researcher's workflow looked like:</p>
-          <ul class="cs-list">
-            <li>Rewatch the full recording to find key moments — a 30-minute call could easily take over an hour to process</li>
-            <li>Manually note timestamps, pull quotes, and try to hold context across multiple interviews</li>
-            <li>Copy everything into a separate document to compile findings for stakeholders</li>
-            <li>Repeat for every single interview in the study</li>
-          </ul>
+        </div>
+        <ul class="cs-list" data-reveal>
+          <li>Rewatch the full recording to find key moments — a 30-minute call could easily take over an hour to process</li>
+          <li>Manually note timestamps, pull quotes, and try to hold context across multiple interviews</li>
+          <li>Copy everything into a separate document to compile findings for stakeholders</li>
+          <li>Repeat for every single interview in the study</li>
+        </ul>
+        <div class="cs-body" data-reveal>
           <p>The platform handled recruitment, scheduling, and the interview itself — but the moment the call ended, researchers were on their own. For a product positioning itself as an end-to-end research platform, this was a significant gap — both for our users and competitively.</p>
         </div>
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- Competitive Analysis -->
+    <section class="cs-section" id="competitive">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Research</p>
         <h2 class="cs-heading" data-reveal>Competitive Analysis</h2>
@@ -142,7 +112,8 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- Design Decisions -->
+    <section class="cs-section" id="decisions">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Thinking</p>
         <h2 class="cs-heading" data-reveal>Design Decisions</h2>
@@ -156,20 +127,21 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- What I Designed -->
+    <section class="cs-section" id="deliverables">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Deliverables</p>
         <h2 class="cs-heading" data-reveal>What I Designed</h2>
         <div class="cs-body" data-reveal>
           <p>The end-to-end AI analysis experience for moderated interviews:</p>
-          <ul class="cs-list">
-            <li><strong>AI transcripts</strong> — Automatic transcription of recordings with searchable, scannable text</li>
-            <li><strong>AI summaries</strong> — Interview-level and project-level summaries with representative quotes</li>
-            <li><strong>Highlights</strong> — Key moments automatically identified and presented as standalone, referenceable pieces</li>
-            <li><strong>Insight generation</strong> — Structured findings surfaced from raw interview responses</li>
-            <li><strong>Export and share</strong> — PDF reports and CSV exports, shareable with stakeholders directly</li>
-          </ul>
         </div>
+        <ul class="cs-list" data-reveal>
+          <li><strong>AI transcripts</strong> — Automatic transcription of recordings with searchable, scannable text</li>
+          <li><strong>AI summaries</strong> — Interview-level and project-level summaries with representative quotes</li>
+          <li><strong>Highlights</strong> — Key moments automatically identified and presented as standalone, referenceable pieces</li>
+          <li><strong>Insight generation</strong> — Structured findings surfaced from raw interview responses</li>
+          <li><strong>Export and share</strong> — PDF reports and CSV exports, shareable with stakeholders directly</li>
+        </ul>
         <div class="cs-gallery" data-reveal>
           <div class="cs-grid cs-grid--single">
             <div class="cs-screen">
@@ -188,51 +160,33 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- What Changed -->
+    <section class="cs-section" id="impact">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Impact</p>
         <h2 class="cs-heading" data-reveal>What Changed</h2>
-        <div class="cs-body" data-reveal>
-          <ul class="cs-list">
-            <li>Shipped a net-new capability that moved CleverX from an interview-only platform to a full research analysis tool — closing a significant competitive gap</li>
-            <li>Compressed research analysis from days or weeks of manual work to AI-generated reports in minutes — across transcripts, summaries, highlights, and insights</li>
-            <li>Established CleverX's first AI-powered feature set, which became a core part of the product's positioning</li>
-          </ul>
-        </div>
+        <ul class="cs-list" data-reveal>
+          <li>Shipped a net-new capability that moved CleverX from an interview-only platform to a full research analysis tool — closing a significant competitive gap</li>
+          <li>Compressed research analysis from days or weeks of manual work to AI-generated reports in minutes — across transcripts, summaries, highlights, and insights</li>
+          <li>Established CleverX's first AI-powered feature set, which became a core part of the product's positioning</li>
+        </ul>
       </div>
     </section>
 
-    <section class="cs-back">
-      <div class="cs-wrap">
-        <a href="index.html#work-analysis">&larr; Back to all work</a>
-      </div>
-    </section>
+</main>
 
-  </main>
-
-  <footer class="footer" id="contact">
-    <div class="footer__marquee">
-      <div class="footer__marquee-track">
-        <span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span>
-      </div>
+  <!-- Footer -->
+  <footer class="cs-footer">
+    <div class="cs-footer-line">Let's make something thoughtful.</div>
+    <a href="mailto:ashukaur01@gmail.com" class="cs-footer-email">ashukaur01@gmail.com</a>
+    <div class="cs-footer-contact-row">
+      <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X ↗</a>
+      <a href="https://ashukaur.netlify.app/Ashu_CV.pdf" target="_blank" rel="noopener">Resume ↗</a>
     </div>
-    <div class="footer__center" data-reveal>
-      <a href="mailto:ashukaur01@gmail.com" class="footer__email">ashukaur01@gmail.com</a>
-      <div class="footer__socials">
-        <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X</a>
-        <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
-      <p class="footer__note">Currently open to full-time roles and interesting freelance projects.</p>
-    </div>
-    <div class="footer__bottom" data-reveal>
-      <span class="footer__credit">Designed & vibe coded by Ashu Kaur &bull; 2026</span>
-    </div>
+    <div class="cs-footer-credits">Designed &amp; coded by Ashu · 2026 · Made with Claude Code</div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="scripts/case-study.js"></script>
 </body>
 </html>

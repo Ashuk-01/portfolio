@@ -1,358 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H82NT92R7N"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-H82NT92R7N");
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escaping the Algorithm — Ashu Kaur</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escaping the Algorithm — Ashu</title>
+  <meta name="description" content="A speculative mobile app built around a simple question: what is Instagram's algorithm actually doing to your feed?" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* ============================================
-       CASE STUDY — page-specific styles
-       ============================================ */
-    .cs-main {
-      position: relative;
-      z-index: 5;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    .cs-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 clamp(1.5rem, 4vw, 3rem);
-    }
-
-    /* — Hero — */
-    .cs-hero {
-      padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem);
-    }
-
-    .cs-tag {
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--text-light);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .cs-title {
-      font-family: var(--font);
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 500;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-
-    .cs-intro {
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    .cs-velocity {
-      font-family: var(--font);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      margin-top: 32px;
-    }
-
-    .cs-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px 48px;
-      margin-top: 24px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(32, 32, 31, 0.08);
-    }
-
-    .cs-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .cs-meta-label {
-      font-family: var(--font);
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-light);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .cs-meta-value {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text);
-    }
-
-    /* — Sections — */
-    .cs-section {
-      padding: clamp(3rem, 6vh, 5rem) 0;
-    }
-
-    .cs-section + .cs-section {
-      border-top: 1px solid rgba(32, 32, 31, 0.08);
-    }
-
-    .cs-label {
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-light);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .cs-heading {
-      font-family: var(--font);
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 20px;
-    }
-
-    .cs-body p {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    .cs-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .cs-body strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .cs-body em {
-      font-style: italic;
-    }
-
-    /* — Lists — */
-    .cs-list {
-      list-style: none;
-      margin: 20px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .cs-list li {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-light);
-      line-height: 1.75;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .cs-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--text-light);
-    }
-
-    .cs-list li strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* — Pullquote — */
-    .cs-pullquote {
-      font-family: var(--font);
-      font-size: clamp(18px, 2.2vw, 22px);
-      font-weight: 500;
-      line-height: 1.4;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      margin: 32px 0;
-      padding: 0 0 0 24px;
-      border-left: 2px solid var(--text);
-    }
-
-    /* — Sub-label — */
-    .cs-sub-label {
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-light);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-top: 40px;
-      margin-bottom: 16px;
-    }
-
-    .cs-sub-heading {
-      font-family: var(--font);
-      font-size: clamp(18px, 2vw, 22px);
-      font-weight: 500;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-top: 36px;
-      margin-bottom: 12px;
-    }
-
-    .cs-sub-heading:first-child {
-      margin-top: 0;
-    }
-
-    /* — Screenshot gallery — */
-    .cs-gallery {
-      margin-top: 56px;
-    }
-
-    .cs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    .cs-grid + .cs-grid {
-      margin-top: 1rem;
-    }
-
-    .cs-screen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .cs-screen img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12% / 6%;
-    }
-
-    .cs-screen--single {
-      max-width: 280px;
-      margin: 0 auto;
-    }
-
-    /* — Back link — */
-    .cs-back {
-      padding: clamp(4rem, 8vh, 6rem) 0;
-      text-align: center;
-      border-top: 1px solid rgba(32, 32, 31, 0.08);
-    }
-
-    .cs-back a {
-      font-family: var(--font);
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--text-light);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color 0.3s ease;
-    }
-
-    .cs-back a:hover {
-      color: var(--text);
-    }
-
-    /* — Nav back link — */
-    .nav-back {
-      font-family: var(--font);
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: opacity 0.3s ease;
-    }
-
-    .nav-back:hover {
-      opacity: 0.5;
-    }
-
-    .nav-back svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.5;
-    }
-
-    /* — Responsive — */
-    @media (max-width: 767px) {
-      .cs-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cs-meta {
-        gap: 16px 32px;
-      }
-
-      .cs-pullquote {
-        font-size: 17px;
-        padding-left: 16px;
-      }
-    }
-  </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Ccircle cx=%2710%27 cy=%2710%27 r=%276%27 fill=%27%23E8A57E%27/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles/case-study.css" />
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
+  <!-- Reading progress bar -->
+  <div class="cs-progress" id="cs-progress"></div>
 
-  <!-- ===== NAVIGATION ===== -->
-  <nav class="nav">
-    <a href="index.html#work-algorithm" class="nav-back">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
-      Back to Work
+  <!-- Top nav -->
+  <nav class="topnav" id="topnav">
+    <a href="index.html" class="topnav-brand" aria-label="Back to home">
+      <span class="back-arrow">←</span>
+      <span class="dot"></span>
+      ashu
     </a>
-    <div class="nav-links">
-      <a href="index.html#work">Work</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="index.html#contact">Contact Me</a>
+    <div class="topnav-links">
+      <a href="index.html#work">work</a>
+      <a href="index.html#about">about</a>
+      <a href="index.html#playground" data-hide-mobile>playground</a>
+      <a href="mailto:ashukaur01@gmail.com" class="topnav-cta-pill">say hi <span class="arrow">↗</span></a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-    </button>
   </nav>
 
   <main class="cs-main">
 
-    <!-- ===== PROJECT HERO ===== -->
+    <!-- Left-side section nav -->
+    <nav class="cs-toc" id="cs-toc" aria-label="On this page">
+      <p class="cs-toc-label">On this page</p>
+      <ul>
+        <li><a href="#speculative" data-toc-target="speculative">Why This Is Speculative</a></li>
+        <li><a href="#grievance" data-toc-target="grievance">The Grievance</a></li>
+        <li><a href="#thesis" data-toc-target="thesis">The Thesis</a></li>
+        <li><a href="#screens" data-toc-target="screens">The Screens</a></li>
+        <li><a href="#receipts" data-toc-target="receipts">Receipts</a></li>
+        <li><a href="#next" data-toc-target="next">What I'd Build Next</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
     <section class="cs-hero">
       <div class="cs-wrap">
-        <p class="cs-tag" data-reveal>Speculative Product Design &middot; 2026</p>
+        <p class="cs-tag" data-reveal>Speculative Product Design · 2026</p>
         <h1 class="cs-title" data-reveal>Escaping the Algorithm</h1>
         <p class="cs-intro" data-reveal>A speculative mobile app built around a simple question: what is Instagram's algorithm actually doing to your feed? It surfaces the ranking signals Meta hides and gives users a chronological feed of only the people they follow.</p>
         <p class="cs-intro" data-reveal>Every screen in this app is an argument. Not a feature pitch, an argument against a specific thing the platform has chosen to do and refuses to explain.</p>
@@ -360,7 +59,7 @@
         <div class="cs-meta" data-reveal>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Role</span>
-            <span class="cs-meta-value">Designer & Researcher</span>
+            <span class="cs-meta-value">Designer &amp; Researcher</span>
           </div>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Tools</span>
@@ -374,8 +73,8 @@
       </div>
     </section>
 
-    <!-- ===== WHY THIS IS SPECULATIVE ===== -->
-    <section class="cs-section">
+    <!-- Why This Is Speculative -->
+    <section class="cs-section" id="speculative">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>A note on feasibility</p>
         <h2 class="cs-heading" data-reveal>Why This Is Speculative</h2>
@@ -386,27 +85,27 @@
       </div>
     </section>
 
-    <!-- ===== THE GRIEVANCE ===== -->
-    <section class="cs-section">
+    <!-- The Grievance -->
+    <section class="cs-section" id="grievance">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Research</p>
         <h2 class="cs-heading" data-reveal>The Grievance</h2>
         <div class="cs-body" data-reveal>
           <p>Before designing anything, I spent time finding out what people were actually angry about. Not think pieces. Not UX papers. What real users were saying, in their own words, in 2025.</p>
           <p>Four research passes:</p>
-          <ul class="cs-list">
-            <li><strong>App Store reviews.</strong> ~45 sampled. Feeds dominated by accounts they never followed. Controls like "Not Interested" that do nothing. Disturbing content slipping through even with sensitivity settings maxed out.</li>
-            <li><strong>Reddit.</strong> Threads across r/Instagram, r/digitalminimalism, r/Anticonsumption. The dominant theme wasn't curiosity about the algorithm. It was grief. <em>"It's not Instagram anymore." "Where are my friends?"</em></li>
-            <li><strong>Reach suppression.</strong> In 2024, Meta quietly stopped recommending political content to non-followers. Accounts posting about activism, reproductive rights, and climate saw up to 65% less reach. The people who followed those accounts had no idea their posts were being hidden.</li>
-            <li><strong>Filterworld by Kyle Chayka.</strong> Backing for a quieter complaint: feed convergence. Everyone's feed is starting to look the same.</li>
-          </ul>
         </div>
+        <ul class="cs-list" data-reveal>
+          <li><strong>App Store reviews.</strong> ~45 sampled. Feeds dominated by accounts they never followed. Controls like "Not Interested" that do nothing. Disturbing content slipping through even with sensitivity settings maxed out.</li>
+          <li><strong>Reddit.</strong> Threads across r/Instagram, r/digitalminimalism, r/Anticonsumption. The dominant theme wasn't curiosity about the algorithm. It was grief. <em>"It's not Instagram anymore." "Where are my friends?"</em></li>
+          <li><strong>Reach suppression.</strong> In 2024, Meta quietly stopped recommending political content to non-followers. Accounts posting about activism, reproductive rights, and climate saw up to 65% less reach. The people who followed those accounts had no idea their posts were being hidden.</li>
+          <li><strong>Filterworld by Kyle Chayka.</strong> Backing for a quieter complaint: feed convergence. Everyone's feed is starting to look the same.</li>
+        </ul>
         <p class="cs-pullquote" data-reveal>Users are mourning a product that no longer exists. I built a viewer that gives back the parts of old Instagram that are still technically deliverable.</p>
       </div>
     </section>
 
-    <!-- ===== THE THESIS ===== -->
-    <section class="cs-section">
+    <!-- The Thesis -->
+    <section class="cs-section" id="thesis">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Design philosophy</p>
         <h2 class="cs-heading" data-reveal>The Thesis</h2>
@@ -416,17 +115,19 @@
         <p class="cs-pullquote" data-reveal>Everything in this app must either diagnose or escape the algorithm. Nothing that negotiates with it.</p>
         <div class="cs-body" data-reveal>
           <p>What got cut:</p>
-          <ul class="cs-list">
-            <li><strong>Algorithm Preferences and feed-tuning sliders.</strong> Controls that let users nudge what they see. Cut. This assumes the system is fair and the user just needs to ask better. The research says otherwise.</li>
-            <li><strong>Action Audit.</strong> A screen that let users tune Instagram's controls more precisely. Cut. Receipts replaced it. Receipts doesn't ask the platform to improve, it keeps score. Receipts witnesses. Action Audit would have nudged.</li>
-          </ul>
+        </div>
+        <ul class="cs-list" data-reveal>
+          <li><strong>Algorithm Preferences and feed-tuning sliders.</strong> Controls that let users nudge what they see. Cut. This assumes the system is fair and the user just needs to ask better. The research says otherwise.</li>
+          <li><strong>Action Audit.</strong> A screen that let users tune Instagram's controls more precisely. Cut. Receipts replaced it. Receipts doesn't ask the platform to improve, it keeps score. Receipts witnesses. Action Audit would have nudged.</li>
+        </ul>
+        <div class="cs-body" data-reveal>
           <p>What survived does one of two things. Tells you what's happening to your feed (Home, Bubble), or lets you leave (Viewer, Settings firewall).</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== THE SCREENS ===== -->
-    <section class="cs-section">
+    <!-- The Screens -->
+    <section class="cs-section" id="screens">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>The prototype</p>
         <h2 class="cs-heading" data-reveal>The Screens</h2>
@@ -438,7 +139,6 @@
         <div class="cs-body" data-reveal>
           <p>Top number: how many of today's 50 posts came from people you actually follow. Below that, a button to switch to the clean feed. Below that, Receipts. At the bottom, the breakdown: Followed, Suggested, Sponsored, AI-Generated.</p>
         </div>
-
         <div class="cs-gallery" data-reveal>
           <div class="cs-screen cs-screen--single">
             <img src="images/algorithm-dashboard/home.png" alt="Home screen — feed state and receipts" loading="lazy">
@@ -450,7 +150,6 @@
           <p>Chronological. Only people you follow. No ads, no suggested, no algorithmic insertions. Each post has a small label under the username (<em>Close friend, Mutual, Loose follow</em>) which explains the ordering and reframes the screen as a diagnostic view, not a feed clone. The feed has a defined ending. <em>"That's everything from your follows in the last 7 days. You're all caught up."</em></p>
           <p>These posts exist. The platform just chooses not to show them this way.</p>
         </div>
-
         <div class="cs-gallery" data-reveal>
           <div class="cs-screen cs-screen--single">
             <img src="images/algorithm-dashboard/viewer.png" alt="Viewer screen — chronological feed" loading="lazy">
@@ -462,7 +161,6 @@
           <p>A topic treemap of what dominates your feed, paired with a "From Your Network" section: topics your follows post about that rarely reach you. Politics, Activism, Travel, Health, History, with post counts.</p>
           <p>"Filter bubble" language usually blames the user. <em>You got what you asked for.</em> This screen shows the opposite: even the people you explicitly followed are being filtered. When Meta suppressed political content for a year, users had no way to know. Bubble would have shown them. The algorithm decides what you see based on your activity. But it also hides posts from people you follow, for reasons it never explains.</p>
         </div>
-
         <div class="cs-gallery" data-reveal>
           <div class="cs-screen cs-screen--single">
             <img src="images/algorithm-dashboard/bubble.png" alt="Bubble screen — topic treemap" loading="lazy">
@@ -474,7 +172,6 @@
           <p>Tap any post in the Viewer. A drawer opens with the ranking signals: posted by a close friend (45%), DM frequency (30%), recent likes on similar posts (18%), geo-tag matching a recent search (7%).</p>
           <p>Every recommendation engine works on signals like these. Almost no consumer product shows them.</p>
         </div>
-
         <div class="cs-gallery" data-reveal>
           <div class="cs-screen cs-screen--single">
             <img src="images/algorithm-dashboard/post-inspector.png" alt="Post Inspector — ranking signals" loading="lazy">
@@ -486,7 +183,6 @@
           <p>Two sections. The first is a Disturbing Content Firewall. Five categories, each a hard toggle. Child safety content is permanently blocked, not a toggle, not a preference. The other four are the ones Instagram's controls consistently fail to suppress.</p>
           <p>The second is Feed Controls. Four toggles: Suggested posts, Sponsored posts, AI-generated posts, Reels from non-follows. Off means gone. Not deprioritized, not "shown less often." Gone. The user decides what enters their feed, not the algorithm.</p>
         </div>
-
         <div class="cs-gallery" data-reveal>
           <div class="cs-screen cs-screen--single">
             <img src="images/algorithm-dashboard/settings.png" alt="Settings screen — disturbing content firewall" loading="lazy">
@@ -495,85 +191,61 @@
       </div>
     </section>
 
-    <!-- ===== RECEIPTS ===== -->
-    <section class="cs-section">
+    <!-- Receipts -->
+    <section class="cs-section" id="receipts">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Accountability</p>
         <h2 class="cs-heading" data-reveal>Receipts</h2>
         <div class="cs-body" data-reveal>
           <p>Instagram gives you controls. "Not Interested." Mute. Content preferences. But after you set them, there's no feedback. No log. No proof they worked. You tap "Not Interested" on weight-loss content, and similar posts keep showing up a week later.</p>
           <p>Receipts is an accountability tracker that sits on the Home screen. It keeps a record of every control you've set and tells you whether it was honored:</p>
-          <ul class="cs-list">
-            <li><em>12 accounts hidden this week &middot; 11 stayed hidden &middot; 1 reappeared after 3 days</em></li>
-            <li><em>"Weight loss" muted &middot; 47 posts blocked, 3 slipped through</em></li>
-            <li><em>Close friend priority &middot; honored in 94% of sessions</em></li>
-          </ul>
+        </div>
+        <ul class="cs-list" data-reveal>
+          <li><em>12 accounts hidden this week · 11 stayed hidden · 1 reappeared after 3 days</em></li>
+          <li><em>"Weight loss" muted · 47 posts blocked, 3 slipped through</em></li>
+          <li><em>Close friend priority · honored in 94% of sessions</em></li>
+        </ul>
+        <div class="cs-body" data-reveal>
           <p>When something fails, a coral banner flips on: <em>"1 control wasn't honored this week."</em></p>
           <p>Two decisions made this work. It lives on Home, not buried in a separate tab. And the failure case is the loudest part. The app tells you when something went wrong, which is exactly what Instagram doesn't do.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== WHAT I'D BUILD NEXT ===== -->
-    <section class="cs-section">
+    <!-- What I'd Build Next -->
+    <section class="cs-section" id="next">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Honest about scope</p>
         <h2 class="cs-heading" data-reveal>What I'd Build Next</h2>
         <div class="cs-body" data-reveal>
           <p>Things I sketched but didn't ship:</p>
-          <ul class="cs-list">
-            <li><strong>Rewind.</strong> Reconstructing a user's feed from a chosen week in the past, using their Instagram data export. Good idea, wrong scope for this version.</li>
-            <li><strong>A detail view for Receipts.</strong> A granular log of every blocked post, every honored control. Designed in outline, not built.</li>
-            <li><strong>A real backend.</strong> The app needs access to Meta APIs that no third party will ever get. The screens stay speculative until that changes.</li>
-          </ul>
+        </div>
+        <ul class="cs-list" data-reveal>
+          <li><strong>Rewind.</strong> Reconstructing a user's feed from a chosen week in the past, using their Instagram data export. Good idea, wrong scope for this version.</li>
+          <li><strong>A detail view for Receipts.</strong> A granular log of every blocked post, every honored control. Designed in outline, not built.</li>
+          <li><strong>A real backend.</strong> The app needs access to Meta APIs that no third party will ever get. The screens stay speculative until that changes.</li>
+        </ul>
+        <div class="cs-body" data-reveal>
           <p>The hardest part of this project wasn't the screens. It was cutting. Every interesting feature had to pass the same test: diagnose or negotiate? Most of them negotiated. Most got cut.</p>
           <p>Until the platform decides accountability is something it owes its users, these screens are the receipt.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== BACK TO WORK ===== -->
-    <section class="cs-back">
-      <div class="cs-wrap">
-        <a href="index.html#work-algorithm">&larr; Back to all work</a>
-      </div>
-    </section>
+</main>
 
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" id="contact">
-    <div class="footer__marquee">
-      <div class="footer__marquee-track">
-        <span>Let's work together</span>
-        <span>Let's work together</span>
-        <span>Let's work together</span>
-        <span>Let's work together</span>
-        <span>Let's work together</span>
-        <span>Let's work together</span>
-      </div>
+  <!-- Footer -->
+  <footer class="cs-footer">
+    <div class="cs-footer-line">Let's make something thoughtful.</div>
+    <a href="mailto:ashukaur01@gmail.com" class="cs-footer-email">ashukaur01@gmail.com</a>
+    <div class="cs-footer-contact-row">
+      <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X ↗</a>
+      <a href="https://ashukaur.netlify.app/Ashu_CV.pdf" target="_blank" rel="noopener">Resume ↗</a>
     </div>
-
-    <div class="footer__center" data-reveal>
-      <a href="mailto:ashukaur01@gmail.com" class="footer__email">ashukaur01@gmail.com</a>
-
-      <div class="footer__socials">
-        <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X</a>
-        <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
-
-      <p class="footer__note">Currently open to full-time roles and interesting freelance projects.</p>
-    </div>
-
-    <div class="footer__bottom" data-reveal>
-      <span class="footer__credit">Designed & vibe coded by Ashu &bull; 2026</span>
-    </div>
+    <div class="cs-footer-credits">Designed &amp; coded by Ashu · 2026 · Made with Claude Code</div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="scripts/case-study.js"></script>
 </body>
 </html>

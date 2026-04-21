@@ -9,402 +9,253 @@
     gtag("js", new Date());
     gtag("config", "G-H82NT92R7N");
   </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ashu Kaur — Lead UI/UX Designer & Design Engineer</title>
-  <meta name="description" content="Lead UI/UX Designer & Design Engineer — crafting digital experiences that feel right.">
+  <meta name="description" content="Lead UI/UX Designer & Design Engineer. I untangle messy products and turn them into interfaces that feel obvious — then I build them.">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
   <meta property="og:title" content="Ashu Kaur — Lead UI/UX Designer & Design Engineer">
-  <meta property="og:description" content="Crafting digital experiences that feel right.">
+  <meta property="og:description" content="I untangle messy products and turn them into interfaces that feel obvious — then I build them.">
   <meta property="og:image" content="https://ashukaur.netlify.app/og-image.png">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ashukaur.netlify.app/">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ashu Kaur — Lead UI/UX Designer & Design Engineer">
-  <meta name="twitter:description" content="Crafting digital experiences that feel right.">
+  <meta name="twitter:description" content="I untangle messy products and turn them into interfaces that feel obvious — then I build them.">
   <meta name="twitter:image" content="https://ashukaur.netlify.app/og-image.png">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='6' fill='%23E8A57E'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="styles/home-layout-2.css">
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
+  <!-- Shared SVG defs -->
+  <svg width="0" height="0" style="position:absolute; left:-9999px; pointer-events:none;" aria-hidden="true">
+    <defs>
+      <filter id="paperEdge" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04 0.08" numOctaves="2" seed="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <!-- Crayon texture: used by the doodle -->
+      <filter id="crayonTexture" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="4" result="crayonNoise"/>
+        <feDisplacementMap in="SourceGraphic" in2="crayonNoise" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
 
-
-  <!-- ===== NAVIGATION ===== -->
-  <nav class="nav">
-    <a href="#" class="nav-logo" aria-label="Ashu Kaur — home">
-      <svg class="nav-logo__mascot" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g class="nav-logo__face" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M 60 80 C 55 45, 85 25, 105 25 C 130 25, 150 48, 148 80 C 146 110, 130 130, 105 132 C 80 132, 62 115, 60 80 Z"/>
-          <path d="M 146 85 C 155 83, 157 93, 152 98 C 148 101, 145 99, 145 95 Z"/>
-          <g class="nav-logo__pupils">
-            <g class="nav-logo__eye-wrap"><circle class="nav-logo__eye" cx="88" cy="75" r="4" fill="currentColor" stroke="none"/></g>
-            <g class="nav-logo__eye-wrap"><circle class="nav-logo__eye" cx="120" cy="75" r="4" fill="currentColor" stroke="none"/></g>
-          </g>
-          <path d="M 82 65 L 94 63" stroke-width="3.5"/>
-          <path d="M 114 63 L 126 65" stroke-width="3.5"/>
-          <path d="M 104 85 Q 102 95, 103 100 Q 104 103, 107 102" stroke-width="3.5"/>
-          <path d="M 92 112 Q 104 118, 116 112"/>
-          <path d="M 75 40 Q 80 28, 90 30" stroke-width="3.5"/>
-          <path d="M 92 32 Q 100 22, 110 28" stroke-width="3.5"/>
-          <path d="M 110 28 Q 120 22, 128 32" stroke-width="3.5"/>
-        </g>
-        <g class="nav-logo__sparkles" fill="currentColor">
-          <path class="nav-logo__spark nav-logo__spark--1" d="M 35 50 L 37 45 L 42 43 L 37 41 L 35 36 L 33 41 L 28 43 L 33 45 Z"/>
-          <path class="nav-logo__spark nav-logo__spark--2" d="M 170 65 L 172 60 L 177 58 L 172 56 L 170 51 L 168 56 L 163 58 L 168 60 Z"/>
-          <path class="nav-logo__spark nav-logo__spark--3" d="M 45 125 L 47 121 L 51 119 L 47 117 L 45 113 L 43 117 L 39 119 L 43 121 Z"/>
-        </g>
-      </svg>
-    </a>
-    <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#playground">Playground</a>
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="#contact">Contact Me</a>
+  <!-- ================ TOP NAV ================ -->
+  <nav class="topnav" id="topnav">
+    <a href="#" class="topnav-brand" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><span class="dot"></span>ashu</a>
+    <div class="topnav-links">
+      <a href="#work">work</a>
+      <a href="#about">about</a>
+      <a href="#playground">playground</a>
+      <a href="mailto:ashukaur01@gmail.com" class="topnav-cta-pill">say hi <span class="arrow">↗</span></a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-    </button>
   </nav>
 
-  <!-- Portfolio wrapper — radial clip-path reveals content from mascot center -->
-  <main class="portfolio-reveal">
+  <!-- ================ HERO — NOTEBOOK AS CANVAS ================ -->
+  <section class="hero-editorial">
 
-  <!-- ===== HERO SECTION ===== -->
-  <section class="hero">
-    <div class="hero-row-wrapper">
-      <div class="hero-row" id="heroRow">
-        <h1 class="hero-role">Lead UI/UX Designer &<br class="hero-br"> Design Engineer</h1>
-      </div>
+    <!-- Left column: text (monospace per mockup) -->
+    <div class="hero-editorial-text">
+      <div class="hero-editorial-eyebrow">Lead UI/UX Designer · Design Engineer</div>
+      <h1>Hi, I'm <em>Ashu</em>. I untangle messy products and turn them into interfaces that feel obvious — then I build them.</h1>
     </div>
 
-    <div class="hero-bottom">
-      <div class="hero-tagline">
-        <p>Hi, I'm Ashu, I think in systems, design for complexity, and now ship my own code.</p>
+    <!-- Right column: lamp + notebook stage -->
+    <div class="hero-cluster">
+
+      <!-- Ambient warm light pool (from lamp) -->
+
+      <!-- NOTEBOOK STAGE — bleeds off the right edge of the hero -->
+      <div class="hero-notebook-stage">
+        <img class="c-notebook-bg" src="images/notebook.png" alt="Open notebook on a desk" />
+
+        <!-- Lamp (ON the right page, small, top edge slightly clipped) -->
+        <div class="c-lamp" role="button" tabindex="0"
+             onclick="toggleEvening()"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleEvening();}"
+             aria-label="Toggle day / evening mode">
+          <img src="lamp.png" alt="Desk lamp" />
+          <div class="c-lamp-hint" id="lamp-hint">click to dim</div>
+        </div>
+
+        <!-- Sticky note (white PNG with blue tape) — upper-left of left page -->
+        <div class="c-sticky">
+          <img src="images/sticky-note-white.png" alt="" />
+          <div class="c-sticky-text">
+            <p>— clarity &gt; clever</p>
+            <p>— ship it</p>
+            <p>— ask why twice</p>
+            <p>— less is harder</p>
+          </div>
+        </div>
+
+        <!-- Portrait stamp — centered on upper-middle of left page -->
+        <div class="c-stamp" aria-label="Postage stamp with a portrait of Ashu">
+          <img src="stamp.png" alt="" />
+        </div>
+
+        <!-- Pressed flower — cascades from stamp's bottom-right -->
+        <div class="c-flower" aria-hidden="true">
+          <img src="lupine.png" alt="" />
+        </div>
+
+        <!-- Apple Pencil — digital tool in an otherwise analog scene -->
+        <div class="c-pencil" aria-hidden="true">
+          <img src="images/apple-pencil.png" alt="" />
+        </div>
+
+        <!-- Yarn ball + crochet hook — bottom-left of left page, "currently making a sweater" -->
+        <div class="c-yarn" aria-label="Yarn ball with a crochet hook">
+          <img src="images/yarn.png" alt="" />
+        </div>
+        <div class="c-yarn-caption" aria-hidden="true">— a sweater i'll never finish</div>
+
       </div>
-      <div class="hero-status">
-        <span class="hero-status__dot"></span>
-        <span class="hero-status__text">Open to work</span>
-      </div>
+
     </div>
   </section>
 
-  <!-- ===== WORK SECTION — Sticky Stacking Slides ===== -->
-  <section class="work-klear" id="work">
-
-    <div class="work-klear__stack">
-
-      <div class="work-klear__slide work-klear__slide--header">
-        <div class="work-klear__header-inner">
-          <h2 class="work-klear__heading">Selected Work</h2>
-        </div>
-      </div>
-
-      <a href="cleverx-redesign.html" class="work-klear__slide" id="work-redesign">
-        <div class="work-klear__slide-inner">
-          <div class="work-klear__text" data-reveal>
-            <span class="work-klear__num">01</span>
-            <h3 class="work-klear__name">From UX Audit to Production Code</h3>
-            <p class="work-klear__desc">Audited and redesigned CleverX's participant and researcher experience — improving information hierarchy and shipping code directly.</p>
-            <span class="work-klear__tag">AI + Design</span>
-          </div>
-          <div class="work-klear__image" data-reveal>
-            <img src="images/participant-under-review-new.png" alt="CleverX Under Review">
-          </div>
-        </div>
-      </a>
-
-      <a href="cleverx-analysis.html" class="work-klear__slide" id="work-analysis">
-        <div class="work-klear__slide-inner">
-          <div class="work-klear__text" data-reveal>
-            <span class="work-klear__num">02</span>
-            <h3 class="work-klear__name">AI-Powered Research Analysis</h3>
-            <p class="work-klear__desc">Designed CleverX's AI analysis feature for moderated interviews — transcripts, summaries, highlights, and shareable reports.</p>
-            <span class="work-klear__tag">AI + UX Research</span>
-          </div>
-          <div class="work-klear__image work-klear__image--bleed" data-reveal>
-            <img src="images/analysis-transcript-clean.png" alt="AI-Powered Research Analysis">
-          </div>
-        </div>
-      </a>
-
-      <a href="cleverx-design-system.html" class="work-klear__slide" id="work-design-system">
-        <div class="work-klear__slide-inner">
-          <div class="work-klear__text" data-reveal>
-            <span class="work-klear__num">03</span>
-            <h3 class="work-klear__name">Design System</h3>
-            <p class="work-klear__desc">Built CleverX's first design system from scratch — 50+ components, tokens, icons, and usage rules across the entire platform.</p>
-            <span class="work-klear__tag">Design System</span>
-          </div>
-          <div class="work-klear__image work-klear__image--bleed" data-reveal>
-            <img src="images/buttons.png" alt="CleverX Design System">
-          </div>
-        </div>
-      </a>
-
-      <a href="algorithm-dashboard.html" class="work-klear__slide" id="work-algorithm">
-        <div class="work-klear__slide-inner">
-          <div class="work-klear__text" data-reveal>
-            <span class="work-klear__num">04</span>
-            <h3 class="work-klear__name">Escaping the Algorithm</h3>
-            <p class="work-klear__desc">A speculative mobile app that asks: what is Instagram's algorithm actually doing to your feed? It surfaces what Meta hides and gives users back control.</p>
-            <span class="work-klear__tag">Speculative Product Design</span>
-          </div>
-          <div class="work-klear__image work-klear__image--algorithm" data-reveal>
-            <img src="images/algorithm-dashboard/home.png" alt="Escaping the Algorithm — Home">
-            <img src="images/algorithm-dashboard/post-inspector.png" alt="Escaping the Algorithm — Post Inspector" class="work-klear__image-secondary">
-          </div>
-        </div>
-      </a>
-
-      <!-- ===== PLAYGROUND TITLE SLIDE ===== -->
-      <div class="work-klear__slide work-klear__slide--header" id="playground">
-        <div class="work-klear__header-inner">
-          <h2 class="work-klear__heading">Playground</h2>
-        </div>
-      </div>
-
-      <!-- ===== PLAYGROUND CONTENT ===== -->
-      <section class="playground">
-        <p class="playground__intro" data-reveal>Smaller experiments, tools, and vibe-coded projects. Click any to explore.</p>
-        <div class="playground__scroll" data-reveal>
-          <a href="playground/music-mood-map/index.html" class="playground__card" data-video-src="videos/music-map.mp4" target="_blank" rel="noopener">
-            <div class="playground__thumb">
-              <video src="videos/music-map.mp4" muted loop playsinline preload="metadata"></video>
-            </div>
-            <div class="playground__meta">
-              <h3 class="playground__name">Music Mood Map</h3>
-              <p class="playground__tagline">Explore Spotify songs as vinyls on a canvas.</p>
-              <span class="playground__link">Explore →</span>
-            </div>
-          </a>
-
-          <a href="playground/gesture-dueling/index.html" class="playground__card" data-video-src="videos/game1.mp4" target="_blank" rel="noopener">
-            <div class="playground__thumb">
-              <video src="videos/game1.mp4" muted loop playsinline preload="metadata"></video>
-            </div>
-            <div class="playground__meta">
-              <h3 class="playground__name">Dueling Game</h3>
-              <p class="playground__tagline">Turn-based browser game, built in a weekend.</p>
-              <span class="playground__link">Explore →</span>
-            </div>
-          </a>
-
-          <a href="playground/stitch-ify/index.html" class="playground__card" data-video-src="videos/stitch-ify.mp4" target="_blank" rel="noopener">
-            <div class="playground__thumb">
-              <video src="videos/stitch-ify.mp4" muted loop playsinline preload="metadata"></video>
-            </div>
-            <div class="playground__meta">
-              <h3 class="playground__name">Stitch Pattern Generator</h3>
-              <p class="playground__tagline">Convert photos into cross-stitch charts.</p>
-              <span class="playground__link">Explore →</span>
-            </div>
-          </a>
-
-          <button type="button" class="playground__card playground__card--video-only" data-video-modal="videos/harry-potter.mp4">
-            <div class="playground__thumb">
-              <video src="videos/harry-potter.mp4" muted loop playsinline preload="metadata"></video>
-            </div>
-            <div class="playground__meta">
-              <h3 class="playground__name">Harry Potter Card</h3>
-              <p class="playground__tagline">An interactive collectible card in Harry Potter style.</p>
-              <span class="playground__link">Watch →</span>
-            </div>
-          </button>
-
-          <div class="playground__card playground__card--soon">
-            <div class="playground__thumb playground__thumb--soon">
-              <span class="playground__soon-icon">🫙</span>
-            </div>
-            <div class="playground__meta">
-              <h3 class="playground__name">Worry Jar</h3>
-              <p class="playground__tagline">Write it down, seal it up, let it go.</p>
-              <span class="playground__link playground__link--soon">Coming soon</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== HOW I AI SECTION (commented out) =====
-      <section class="howiai" id="how-i-ai">
-        <div class="howiai__inner">
-          <span class="howiai__label" data-reveal>How I AI</span>
-          <h2 class="howiai__heading" data-reveal>I design with AI, not against it.</h2>
-          <p class="howiai__text" data-reveal>At CleverX, I started using Claude Code not as an experiment — but as a real tool in production. I'd design a page, then <em>ship it myself</em>. Participant-facing screens, bug fixes, responsive layouts — all pushed directly through AI and Git, no handoff needed.</p>
-          <p class="howiai__text" data-reveal>It changed how I think about speed. I started running <em>UX audits faster</em> — walking through dashboard pages, catching hierarchy and navigation issues, and shipping fixes the same day instead of filing tickets for the next sprint.</p>
-          <p class="howiai__text" data-reveal>Now I use AI to <em>prototype in hours</em>, not days. Rough idea to working interface — fast enough to test with real feedback before committing to a direction. The thinking is still mine. The craft is still mine. AI just removed the waiting.</p>
-          <p class="howiai__footnote" data-reveal><span>This portfolio</span> — vibe coded with Claude Code and a lot of intention.</p>
-        </div>
-      </section>
-      ===== -->
-
-      <!-- ===== ABOUT TITLE SLIDE ===== -->
-      <div class="work-klear__slide work-klear__slide--header" id="about">
-        <div class="work-klear__header-inner">
-          <h2 class="work-klear__heading">About Me</h2>
-        </div>
-      </div>
-
-      <!-- ===== ABOUT CONTENT (inside stack for sticky overlap) ===== -->
-      <section class="about">
-
-        <div class="about__content">
-          <div class="about__text" data-reveal>
-            <p class="about__lead">I spent 5+ years at CleverX owning every design surface on the platform — from signup and onboarding to study dashboards, team management, and participant experiences. I built the design system from scratch, ran UX audits, and created launch videos for marketing. Now I plan in Claude, audit and critique the output, and push code directly.</p>
-            <p class="about__body about__body--light">Outside of work, I illustrate on my iPad, paint, do DIY home decor, rearrange bookshelves, and crochet things I'll never finish.</p>
-          </div>
-          <div class="about__photo" data-reveal>
-            <img src="Tezza-6166.jpg" alt="Ashu Kaur">
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ===== ILLUSTRATIONS TITLE SLIDE ===== -->
-      <div class="work-klear__slide work-klear__slide--header" id="illustrations">
-        <div class="work-klear__header-inner">
-          <h2 class="work-klear__heading">The Fun Stuff</h2>
-        </div>
-      </div>
-
-      <!-- ===== ILLUSTRATIONS SECTION ===== -->
-      <section class="illustrations">
-        <div class="illustrations__inner">
-          <div class="illustrations__grid" data-reveal>
-            <div class="illustrations__item">
-              <img src="images/IMG_4664.PNG" alt="Portrait illustration — bride" loading="lazy">
-            </div>
-            <div class="illustrations__item">
-              <img src="images/IMG_4666.PNG" alt="Aerial beach illustration" loading="lazy">
-            </div>
-            <div class="illustrations__item">
-              <img src="images/IMG_4669.PNG" alt="Mountain illustration" loading="lazy">
-            </div>
-            <div class="illustrations__item">
-              <img src="images/IMG_4663.PNG" alt="Fox illustration" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== EXPERIENCE TITLE SLIDE ===== -->
-      <div class="work-klear__slide work-klear__slide--header" id="experience">
-        <div class="work-klear__header-inner">
-          <h2 class="work-klear__heading">Experience</h2>
-        </div>
-      </div>
-
-      <!-- ===== EXPERIENCE CONTENT (inside stack for sticky overlap) ===== -->
-      <section class="exp">
-
-        <div class="exp__table">
-
-          <div class="exp__row" data-reveal>
-            <div class="exp__row-main">
-              <span class="exp__year">Oct 2020 — Mar 2026</span>
-              <span class="exp__role">Lead UI/UX Designer & Design Engineer</span>
-              <span class="exp__company">CleverX</span>
-            </div>
-            <div class="exp__details">
-              <div class="exp__details-inner">
-                <p class="exp__desc">Designed across CleverX's entire platform — an AI-powered B2B research tool for designing, recruiting, conducting, and analyzing studies.</p>
-                <div class="exp__pills">
-                  <span class="exp__pill">UX Design</span>
-                  <span class="exp__pill">Figma</span>
-                  <span class="exp__pill">Wireframing & Prototyping</span>
-                  <span class="exp__pill">Responsive Design</span>
-                  <span class="exp__pill">Motion Design</span>
-                  <span class="exp__pill">User Research</span>
-                  <span class="exp__pill">Competitive Analysis</span>
-                  <span class="exp__pill">Design System</span>
-                  <span class="exp__pill">Git</span>
-                  <span class="exp__pill">Claude Code</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="exp__row" data-reveal>
-            <div class="exp__row-main">
-              <span class="exp__year">Jul 2018 — May 2019</span>
-              <span class="exp__role">Web Designer</span>
-              <span class="exp__company">Worklabs</span>
-            </div>
-            <div class="exp__details">
-              <div class="exp__details-inner">
-                <p class="exp__desc">Designed and developed client websites from concept to launch at a digital agency.</p>
-                <div class="exp__pills">
-                  <span class="exp__pill">WordPress</span>
-                  <span class="exp__pill">HTML/CSS</span>
-                  <span class="exp__pill">Web Design</span>
-                  <span class="exp__pill">Client Collaboration</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <!-- ===== FOOTER (inside stack for sticky overlap) ===== -->
-      <footer class="footer" id="contact">
-        <!-- Scrolling marquee -->
-        <div class="footer__marquee">
-          <div class="footer__marquee-track">
-            <span>Let's work together</span>
-            <span>Let's work together</span>
-            <span>Let's work together</span>
-            <span>Let's work together</span>
-            <span>Let's work together</span>
-            <span>Let's work together</span>
-          </div>
-        </div>
-
-        <div class="footer__center" data-reveal>
-          <a href="mailto:ashukaur01@gmail.com" class="footer__email">ashukaur01@gmail.com</a>
-
-          <div class="footer__socials">
-            <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X</a>
-            <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-          </div>
-
-          <p class="footer__note">Currently open to full-time roles and interesting freelance projects.</p>
-        </div>
-
-        <div class="footer__bottom" data-reveal>
-          <span class="footer__credit">Designed & vibe coded by Ashu &bull; 2026</span>
-        </div>
-      </footer>
-
-    </div><!-- /work-klear__stack -->
-  </section><!-- /work-klear -->
-
-  </main><!-- /portfolio-reveal -->
-
-  <!-- ===== VIDEO MODAL (for playground video-only cards) ===== -->
-  <div class="video-modal" id="videoModal" aria-hidden="true">
-    <div class="video-modal__backdrop" data-close></div>
-    <div class="video-modal__content">
-      <button type="button" class="video-modal__close" data-close aria-label="Close">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-      </button>
-      <video class="video-modal__video" id="videoModalVideo" controls playsinline></video>
+  <!-- ================ WORK ================ -->
+  <section class="section" id="work">
+    <div class="work-section-header">
+      <h2>Selected Work</h2>
     </div>
-  </div>
+    <div class="work-grid">
 
-  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+      <a class="work-card" href="cleverx-redesign.html">
+        <div class="work-card-image" style="background-image: url('images/participant-under-review.png');"></div>
+        <div class="work-card-body">
+          <div class="work-card-title">CleverX Redesign</div>
+          <div class="work-card-meta">UX audit + design engineering</div>
+          <div class="work-card-desc">Redesigning CleverX's participant and researcher experience — shipping the code directly through Claude Code.</div>
+        </div>
+      </a>
+
+      <a class="work-card" href="cleverx-analysis.html">
+        <div class="work-card-image" style="background-image: url('images/analysis-transcript-clean.png'); background-size: auto 75%; background-repeat: no-repeat; background-position: center; background-color: #fafafa;"></div>
+        <div class="work-card-body">
+          <div class="work-card-title">AI Research Analysis</div>
+          <div class="work-card-meta">Feature design</div>
+          <div class="work-card-desc">Designed CleverX's AI analysis feature — transcripts, summaries, highlights, and shareable reports.</div>
+        </div>
+      </a>
+
+      <a class="work-card" href="cleverx-design-system.html">
+        <div class="work-card-image" style="background-image: url('images/buttons.png');"></div>
+        <div class="work-card-body">
+          <div class="work-card-title">Design System</div>
+          <div class="work-card-meta">Design system</div>
+          <div class="work-card-desc">Rebuilt CleverX's component library for consistency at scale — from tokens to production.</div>
+        </div>
+      </a>
+
+      <a class="work-card" href="algorithm-dashboard.html">
+        <div class="work-card-image" style="background-image: url('images/algorithm-dashboard/home.png'); background-size: auto 75%; background-repeat: no-repeat; background-position: center; background-color: #fafafa;"></div>
+        <div class="work-card-body">
+          <div class="work-card-title">Escaping the Algorithm</div>
+          <div class="work-card-meta">UI + UX</div>
+          <div class="work-card-desc">A personal essay and tool exploring what it means to curate attention in an algorithmic age.</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ================ ABOUT ================ -->
+  <section class="section" id="about">
+    <div class="about-section-header">
+      <h2>About</h2>
+    </div>
+    <div class="about-body">
+      <p>I spent 5+ years at CleverX owning every design surface on the platform — from signup and onboarding to study dashboards, team management, and participant experiences. I built the design system from scratch, ran UX audits, and created launch videos for marketing. Now I plan in Claude, audit and critique the output, and push code directly.</p>
+      <p>Outside of work, I illustrate on my iPad, paint, do DIY home decor, rearrange bookshelves, and crochet things I'll never finish.</p>
+    </div>
+  </section>
+
+  <!-- ================ PLAYGROUND ================ -->
+  <section class="section" id="playground">
+    <div class="playground-section-header">
+      <h2>Playground</h2>
+    </div>
+
+    <div class="stamps-row">
+      <a class="stamp" href="https://ashukaur.netlify.app/playground/music-mood-map/" target="_blank" rel="noopener">
+        <div class="stamp-card">
+          <div class="stamp-media">
+            <video src="videos/music-map.mp4" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="stamp-text">
+            <h3 class="stamp-title">Music Mood Map</h3>
+            <p class="stamp-desc">Explore Spotify songs as vinyls on a canvas</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="stamp" href="https://ashukaur.netlify.app/playground/gesture-dueling/" target="_blank" rel="noopener">
+        <div class="stamp-card">
+          <div class="stamp-media">
+            <video src="videos/game1.mp4" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="stamp-text">
+            <h3 class="stamp-title">Dueling Game</h3>
+            <p class="stamp-desc">Turn-based browser game, built in a weekend</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="stamp" href="https://ashukaur.netlify.app/playground/stitch-ify/" target="_blank" rel="noopener">
+        <div class="stamp-card">
+          <div class="stamp-media">
+            <video src="videos/stitch-ify.mp4" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="stamp-text">
+            <h3 class="stamp-title">Stitch Pattern Generator</h3>
+            <p class="stamp-desc">Convert photos into cross-stitch charts</p>
+          </div>
+        </div>
+      </a>
+
+      <a class="stamp" href="videos/harry-potter.mp4" target="_blank" rel="noopener">
+        <div class="stamp-card">
+          <div class="stamp-media">
+            <video src="videos/harry-potter.mp4" muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="stamp-text">
+            <h3 class="stamp-title">Harry Potter Card</h3>
+            <p class="stamp-desc">Interactive collectible card in Harry Potter style</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================ FOOTER ================ -->
+  <footer class="footer">
+    <div class="footer-line">Let's make something thoughtful.</div>
+    <a href="mailto:ashukaur01@gmail.com" class="footer-email">ashukaur01@gmail.com</a>
+    <div class="footer-contact-row">
+      <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; text-decoration: none;">LinkedIn ↗</a>
+      <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; text-decoration: none;">X ↗</a>
+      <a href="https://ashukaur.netlify.app/Ashu_CV.pdf" target="_blank" rel="noopener" style="font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.1em; text-decoration: none;">Resume ↗</a>
+    </div>
+    <div class="footer-credits">Designed &amp; coded by Ashu · 2026 · Made with Claude Code</div>
+  </footer>
+
+  <script src="scripts/home.js" defer></script>
+  <script src="scripts/home-layout-2.js" defer></script>
 </body>
 </html>

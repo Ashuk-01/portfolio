@@ -1,90 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H82NT92R7N"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-H82NT92R7N");
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CleverX Design System — Ashu Kaur</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CleverX Design System — Ashu</title>
+  <meta name="description" content="Building CleverX's first design system from scratch — 25+ components, 100+ tokens, and a brand-first foundation." />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .cs-main { position: relative; z-index: 5; }
-    .cs-wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem); }
-    .cs-hero { padding: clamp(8rem, 16vh, 12rem) 0 clamp(3rem, 6vh, 5rem); }
-    .cs-tag { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-light); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; }
-    .cs-title { font-family: var(--font); font-size: clamp(32px, 5vw, 52px); font-weight: 500; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
-    .cs-intro { font-size: 16px; font-weight: 400; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
-    .cs-meta { display: flex; flex-wrap: wrap; gap: 24px 48px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(32, 32, 31, 0.08); }
-    .cs-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .cs-meta-label { font-family: var(--font); font-size: 11px; font-weight: 500; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; }
-    .cs-meta-value { font-size: 15px; font-weight: 400; color: var(--text); }
-    .cs-section { padding: clamp(3rem, 6vh, 5rem) 0; }
-    .cs-section + .cs-section { border-top: 1px solid rgba(32, 32, 31, 0.08); }
-    .cs-label { font-family: var(--font); font-size: 12px; font-weight: 500; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
-    .cs-heading { font-family: var(--font); font-size: clamp(24px, 3vw, 36px); font-weight: 500; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); margin-bottom: 20px; }
-    .cs-body p { font-size: 15px; font-weight: 400; color: var(--text-light); line-height: 1.8; margin-bottom: 16px; }
-    .cs-body p:last-child { margin-bottom: 0; }
-    .cs-body strong { color: var(--text); font-weight: 500; }
-    .cs-list { list-style: none; margin: 20px 0; display: flex; flex-direction: column; gap: 12px; }
-    .cs-list li { font-size: 15px; font-weight: 400; color: var(--text-light); line-height: 1.75; padding-left: 20px; position: relative; }
-    .cs-list li::before { content: '—'; position: absolute; left: 0; color: var(--text-light); }
-    .cs-list li strong { color: var(--text); font-weight: 500; }
-    .cs-gallery { margin-top: 32px; }
-    .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .cs-grid + .cs-grid { margin-top: 1rem; }
-    .cs-grid--single { grid-template-columns: 1fr; }
-    .cs-screen { border-radius: 12px; overflow: hidden; border: 1px solid rgba(32, 32, 31, 0.08); background: #fff; display: flex; align-items: center; justify-content: center; }
-    .cs-screen img { width: 100%; height: auto; display: block; }
-    .cs-back { padding: clamp(4rem, 8vh, 6rem) 0; text-align: center; border-top: 1px solid rgba(32, 32, 31, 0.08); }
-    .cs-back a { font-family: var(--font); font-size: 13px; font-weight: 400; color: var(--text-light); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.3s ease; }
-    .cs-back a:hover { color: var(--text); }
-    .nav-back { font-family: var(--font); font-size: 12px; font-weight: 400; color: var(--text); text-decoration: none; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; transition: opacity 0.3s ease; }
-    .nav-back:hover { opacity: 0.5; }
-    .nav-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-    @media (max-width: 767px) {
-      .cs-grid { grid-template-columns: 1fr; }
-      .cs-meta { gap: 16px 32px; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 20 20%27%3E%3Ccircle cx=%2710%27 cy=%2710%27 r=%276%27 fill=%27%23E8A57E%27/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles/case-study.css" />
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
+  <!-- Reading progress bar -->
+  <div class="cs-progress" id="cs-progress"></div>
 
-  <nav class="nav">
-    <a href="index.html#work-design-system" class="nav-back">
-      <svg viewBox="0 0 24 24"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>
-      Back to Work
+  <!-- Top nav -->
+  <nav class="topnav" id="topnav">
+    <a href="index.html" class="topnav-brand" aria-label="Back to home">
+      <span class="back-arrow">←</span>
+      <span class="dot"></span>
+      ashu
     </a>
-    <div class="nav-links">
-      <a href="index.html#work-design-system">Work</a>
-
-      <a href="index.html#about">About</a>
-      <a href="index.html#experience">Experience</a>
-      <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="index.html#contact">Contact Me</a>
+    <div class="topnav-links">
+      <a href="index.html#work">work</a>
+      <a href="index.html#about">about</a>
+      <a href="index.html#playground" data-hide-mobile>playground</a>
+      <a href="mailto:ashukaur01@gmail.com" class="topnav-cta-pill">say hi <span class="arrow">↗</span></a>
     </div>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-    </button>
   </nav>
 
   <main class="cs-main">
 
+    <!-- Left-side section nav -->
+    <nav class="cs-toc" id="cs-toc" aria-label="On this page">
+      <p class="cs-toc-label">On this page</p>
+      <ul>
+        <li><a href="#problem" data-toc-target="problem">The Problem</a></li>
+        <li><a href="#brand" data-toc-target="brand">Brand, Not Components</a></li>
+        <li><a href="#priority" data-toc-target="priority">Building in Priority Order</a></li>
+        <li><a href="#decisions" data-toc-target="decisions">The Hard Decisions</a></li>
+        <li><a href="#adoption" data-toc-target="adoption">Getting It Adopted</a></li>
+        <li><a href="#deliverables" data-toc-target="deliverables">What I Designed</a></li>
+        <li><a href="#impact" data-toc-target="impact">What Changed</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
     <section class="cs-hero">
       <div class="cs-wrap">
-        <p class="cs-tag" data-reveal>Design System &middot; Component Library</p>
+        <p class="cs-tag" data-reveal>Design System · Component Library</p>
         <h1 class="cs-title" data-reveal>CleverX Design System</h1>
         <p class="cs-intro" data-reveal>When I joined CleverX, there were no designs — no Figma files, no shared components, no visual reference for how anything should look or behave. The development team was building UI directly in code, and every page was made independently. Colors were slightly off between pages, buttons looked different depending on where they lived, and there was no consistent hierarchy.</p>
         <p class="cs-intro" data-reveal>The product worked, but it didn't feel like one product. That's when we decided to build a proper design system from the ground up.</p>
@@ -99,31 +67,35 @@
           </div>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Scale</span>
-            <span class="cs-meta-value">25+ components & 100+ tokens</span>
+            <span class="cs-meta-value">25+ components &amp; 100+ tokens</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- The Problem -->
+    <section class="cs-section" id="problem">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Context</p>
         <h2 class="cs-heading" data-reveal>The Problem</h2>
         <div class="cs-body" data-reveal>
           <p>CleverX's product worked, but it didn't feel like one product. Without a designer or a shared design tool, every page had been built in isolation:</p>
-          <ul class="cs-list">
-            <li>The same button existed in slightly different styles depending on which page it lived on</li>
-            <li>Colors were close but never quite the same — similar blues, slightly different greys, no shared palette</li>
-            <li>Spacing and padding were inconsistent, so elements that should have felt aligned didn't</li>
-            <li>There was no typographic hierarchy — pages felt flat, with no clear visual distinction between headings, body text, and labels</li>
-            <li>Developers had no reference to design against, so every implementation involved guesswork</li>
-          </ul>
+        </div>
+        <ul class="cs-list" data-reveal>
+          <li>The same button existed in slightly different styles depending on which page it lived on</li>
+          <li>Colors were close but never quite the same — similar blues, slightly different greys, no shared palette</li>
+          <li>Spacing and padding were inconsistent, so elements that should have felt aligned didn't</li>
+          <li>There was no typographic hierarchy — pages felt flat, with no clear visual distinction between headings, body text, and labels</li>
+          <li>Developers had no reference to design against, so every implementation involved guesswork</li>
+        </ul>
+        <div class="cs-body" data-reveal>
           <p>The inconsistency wasn't just a visual issue. It slowed everything down — developers had to make design decisions they shouldn't have been making, and every new feature introduced new one-off patterns instead of reusing what already existed.</p>
         </div>
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- Starting with Brand, Not Components -->
+    <section class="cs-section" id="brand">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Foundation</p>
         <h2 class="cs-heading" data-reveal>Starting with Brand, Not Components</h2>
@@ -136,7 +108,8 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- Building in Priority Order -->
+    <section class="cs-section" id="priority">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Process</p>
         <h2 class="cs-heading" data-reveal>Building in Priority Order</h2>
@@ -150,7 +123,8 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- The Hard Decisions -->
+    <section class="cs-section" id="decisions">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Thinking</p>
         <h2 class="cs-heading" data-reveal>The Hard Decisions</h2>
@@ -164,7 +138,8 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- Getting It Adopted -->
+    <section class="cs-section" id="adoption">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Adoption</p>
         <h2 class="cs-heading" data-reveal>Getting It Adopted</h2>
@@ -176,18 +151,19 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- What I Designed -->
+    <section class="cs-section" id="deliverables">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Deliverables</p>
         <h2 class="cs-heading" data-reveal>What I Designed</h2>
         <div class="cs-body" data-reveal>
           <p>The full design system included:</p>
-          <ul class="cs-list">
-            <li><strong>25+ components & 100+ tokens</strong> — Buttons, inputs, cards, modals, tables, navigation, badges, tooltips, search fields, checkboxes, and more. Each built with all variants, states, and responsive behavior defined</li>
-            <li><strong>Design tokens</strong> — Color, typography, spacing, and sizing — all named, documented, and traceable back to brand decisions</li>
-            <li><strong>Usage documentation</strong> — Rules for every component: when to use it, spacing requirements, alignment rules, and do's and don'ts. All housed in Figma alongside the components</li>
-          </ul>
         </div>
+        <ul class="cs-list" data-reveal>
+          <li><strong>25+ components &amp; 100+ tokens</strong> — Buttons, inputs, cards, modals, tables, navigation, badges, tooltips, search fields, checkboxes, and more. Each built with all variants, states, and responsive behavior defined</li>
+          <li><strong>Design tokens</strong> — Color, typography, spacing, and sizing — all named, documented, and traceable back to brand decisions</li>
+          <li><strong>Usage documentation</strong> — Rules for every component: when to use it, spacing requirements, alignment rules, and do's and don'ts. All housed in Figma alongside the components</li>
+        </ul>
         <div class="cs-gallery" data-reveal>
           <div class="cs-grid">
             <div class="cs-screen">
@@ -214,53 +190,35 @@
       </div>
     </section>
 
-    <section class="cs-section">
+    <!-- What Changed -->
+    <section class="cs-section" id="impact">
       <div class="cs-wrap">
         <p class="cs-label" data-reveal>Impact</p>
         <h2 class="cs-heading" data-reveal>What Changed</h2>
-        <div class="cs-body" data-reveal>
-          <ul class="cs-list">
-            <li>Introduced design tooling (Figma) and a design-driven workflow to a team that previously had no shared design process</li>
-            <li>Built CleverX's first design system from scratch as a two-person design team — a full token system, and documentation — creating a single source of truth for the entire product</li>
-            <li>Rooted every visual decision in brand strategy through a foundational brand exercise, ensuring the system was intentional and not just consistent</li>
-            <li>Gave developers a reliable reference that eliminated guesswork during implementation and cut repeated conversations about spacing, color, and component behavior</li>
-            <li>The system became the foundation for CleverX's product UI for years and is still in use today</li>
-          </ul>
-        </div>
+        <ul class="cs-list" data-reveal>
+          <li>Introduced design tooling (Figma) and a design-driven workflow to a team that previously had no shared design process</li>
+          <li>Built CleverX's first design system from scratch as a two-person design team — a full token system, and documentation — creating a single source of truth for the entire product</li>
+          <li>Rooted every visual decision in brand strategy through a foundational brand exercise, ensuring the system was intentional and not just consistent</li>
+          <li>Gave developers a reliable reference that eliminated guesswork during implementation and cut repeated conversations about spacing, color, and component behavior</li>
+          <li>The system became the foundation for CleverX's product UI for years and is still in use today</li>
+        </ul>
       </div>
     </section>
 
-    <section class="cs-back">
-      <div class="cs-wrap">
-        <a href="index.html#work-design-system">&larr; Back to all work</a>
-      </div>
-    </section>
+</main>
 
-  </main>
-
-  <footer class="footer" id="contact">
-    <div class="footer__marquee">
-      <div class="footer__marquee-track">
-        <span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span><span>Let's work together</span>
-      </div>
+  <!-- Footer -->
+  <footer class="cs-footer">
+    <div class="cs-footer-line">Let's make something thoughtful.</div>
+    <a href="mailto:ashukaur01@gmail.com" class="cs-footer-email">ashukaur01@gmail.com</a>
+    <div class="cs-footer-contact-row">
+      <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X ↗</a>
+      <a href="https://ashukaur.netlify.app/Ashu_CV.pdf" target="_blank" rel="noopener">Resume ↗</a>
     </div>
-    <div class="footer__center" data-reveal>
-      <a href="mailto:ashukaur01@gmail.com" class="footer__email">ashukaur01@gmail.com</a>
-      <div class="footer__socials">
-        <a href="https://www.linkedin.com/in/ashu-k-/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://x.com/Ashukaur_" target="_blank" rel="noopener">X</a>
-        <a href="Ashu_CV.pdf" target="_blank" rel="noopener">Resume</a>
-      </div>
-      <p class="footer__note">Currently open to full-time roles and interesting freelance projects.</p>
-    </div>
-    <div class="footer__bottom" data-reveal>
-      <span class="footer__credit">Designed & vibe coded by Ashu Kaur &bull; 2026</span>
-    </div>
+    <div class="cs-footer-credits">Designed &amp; coded by Ashu · 2026 · Made with Claude Code</div>
   </footer>
 
-  <script src="https://unpkg.com/lenis@1/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script src="scripts/case-study.js"></script>
 </body>
 </html>
